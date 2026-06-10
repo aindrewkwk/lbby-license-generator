@@ -323,6 +323,45 @@
   </style>
 </head>
 <body>
+  <!-- Password Gate -->
+  <div id="passwordGate" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;">
+    <div style="max-width: 400px; width: 100%; text-align: center;">
+      <div style="font-size: 48px; margin-bottom: 20px;">🔐</div>
+      <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 8px; color: var(--text);">Lbby License Generator</h1>
+      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Enter the team password to access</p>
+      <div style="margin-bottom: 16px;">
+        <input type="password" id="passwordInput" placeholder="Enter password" style="
+          width: 100%;
+          padding: 14px 18px;
+          background: rgba(0, 0, 0, 0.35);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-sm);
+          color: var(--text);
+          font-size: 16px;
+          font-family: inherit;
+          outline: none;
+          text-align: center;
+          letter-spacing: 2px;
+        ">
+      </div>
+      <button onclick="checkPassword()" style="
+        width: 100%;
+        padding: 14px 20px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: var(--radius-sm);
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+      ">Access Generator</button>
+      <div id="passwordError" style="display: none; margin-top: 12px; color: var(--red); font-size: 13px;"></div>
+    </div>
+  </div>
+
+  <!-- Main Content (hidden until password correct) -->
+  <div id="mainContent" style="display: none;">
   <div class="container">
     <header>
       <h1>🔑 Lbby License Generator</h1>
@@ -506,19 +545,90 @@
       <p style="margin-top: 8px;">Generated JWTs can be activated in the Lbby app via the License tab → Advanced → Paste JWT.</p>
     </div>
   </footer>
+  </div> <!-- End mainContent -->
 
   <script>
+    // ── Password Protection ──────────────────────────────────────────────────
+    // Password is hashed with SHA-256 for basic security
+    // Change this hash to update the password
+    const PASSWORD_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // "password"
+
+    async function hashPassword(password) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(password);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function checkPassword() {
+      const input = document.getElementById('passwordInput');
+      const error = document.getElementById('passwordError');
+      const password = input.value;
+
+      if (!password) {
+        error.textContent = 'Please enter a password';
+        error.style.display = 'block';
+        return;
+      }
+
+      const hash = await hashPassword(password);
+
+      if (hash === PASSWORD_HASH) {
+        // Password correct - show main content
+        document.getElementById('passwordGate').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        // Save to session so user doesn't need to re-enter
+        sessionStorage.setItem('lbby-auth', 'true');
+        // Initialize the app
+        initApp();
+      } else {
+        error.textContent = 'Incorrect password';
+        error.style.display = 'block';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    // Check if already authenticated in this session
+    function checkAuth() {
+      if (sessionStorage.getItem('lbby-auth') === 'true') {
+        document.getElementById('passwordGate').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        initApp();
+      }
+    }
+
+    // Handle Enter key in password input
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkPassword();
+      });
+    });
+
+    // ── Main App Initialization ──────────────────────────────────────────────
     // ── State ──────────────────────────────────────────────────────────────────
     let privateKey = null;
     let history = JSON.parse(localStorage.getItem('lbby-license-history') || '[]');
 
     // ── Initialization ────────────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', () => {
+    // Note: Main app initialization is called after password check succeeds
+    function initApp() {
       loadKey();
       updateKeyStatus();
       renderHistory();
       setupDeviceBinding();
       checkEd25519Support();
+    }
+
+    // Initialize when DOM is ready (password check handles showing/hiding)
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      // If already authenticated, init immediately
+      if (sessionStorage.getItem('lbby-auth') === 'true') {
+        initApp();
+      }
     });
 
     function checkEd25519Support() {
