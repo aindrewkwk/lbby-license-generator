@@ -426,17 +426,31 @@
 
       <div class="row">
         <div class="form-group">
-          <label for="expiryDays">Expiry (days)</label>
-          <input type="number" id="expiryDays" value="30" min="1" max="3650">
-          <div class="hint">License validity period</div>
-          <div style="display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap;">
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setExpiry(7)">7d</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setExpiry(30)">30d</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setExpiry(90)">90d</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setExpiry(180)">6mo</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setExpiry(365)">1y</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setExpiry(3650)">10y</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setExpiry(36500)">∞</button>
+          <label>License Duration</label>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <input type="number" id="expiryValue" value="30" min="1" style="width: 100px;">
+            <select id="expiryUnit" style="width: 120px;">
+              <option value="minutes">Minutes</option>
+              <option value="hours">Hours</option>
+              <option value="days" selected>Days</option>
+              <option value="weeks">Weeks</option>
+              <option value="months">Months</option>
+              <option value="years">Years</option>
+            </select>
+          </div>
+          <div class="hint">Custom duration from minutes to years</div>
+          <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(30, 'minutes')">30m</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(1, 'hours')">1h</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(6, 'hours')">6h</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(24, 'hours')">24h</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(7, 'days')">7d</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(30, 'days')">30d</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(90, 'days')">90d</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(6, 'months')">6mo</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(1, 'years')">1y</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(10, 'years')">10y</button>
+            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(100, 'years')">∞</button>
           </div>
         </div>
         <div class="form-group">
@@ -699,7 +713,8 @@
 
       const tier = document.getElementById('tier').value;
       const userId = document.getElementById('userId').value.trim();
-      const expiryDays = parseInt(document.getElementById('expiryDays').value);
+      const expiryValue = parseInt(document.getElementById('expiryValue').value);
+      const expiryUnit = document.getElementById('expiryUnit').value;
       const jwtId = document.getElementById('jwtId').value.trim() || generateId();
       const email = document.getElementById('email').value.trim() || null;
       const tgUsername = document.getElementById('tgUsername').value.trim() || null;
@@ -718,7 +733,33 @@
 
       try {
         const now = Math.floor(Date.now() / 1000);
-        const exp = now + (expiryDays * 24 * 60 * 60);
+
+        // Calculate expiry in seconds based on unit
+        let expirySeconds;
+        switch (expiryUnit) {
+          case 'minutes':
+            expirySeconds = expiryValue * 60;
+            break;
+          case 'hours':
+            expirySeconds = expiryValue * 60 * 60;
+            break;
+          case 'days':
+            expirySeconds = expiryValue * 24 * 60 * 60;
+            break;
+          case 'weeks':
+            expirySeconds = expiryValue * 7 * 24 * 60 * 60;
+            break;
+          case 'months':
+            expirySeconds = expiryValue * 30 * 24 * 60 * 60;
+            break;
+          case 'years':
+            expirySeconds = expiryValue * 365 * 24 * 60 * 60;
+            break;
+          default:
+            expirySeconds = expiryValue * 24 * 60 * 60;
+        }
+
+        const exp = now + expirySeconds;
 
         const claims = {
           sub: userId,
@@ -775,8 +816,9 @@
       return `${headerB64}.${payloadB64}.${sigB64}`;
     }
 
-    function setExpiry(days) {
-      document.getElementById('expiryDays').value = days;
+    function setQuickExpiry(value, unit) {
+      document.getElementById('expiryValue').value = value;
+      document.getElementById('expiryUnit').value = unit;
     }
 
     function generateNewJwtId() {
@@ -897,12 +939,13 @@
       const jwt = document.getElementById('jwtOutput').textContent;
       const tier = document.getElementById('tier').value;
       const tierLabel = tier === 'master' ? 'Master (Gold)' : 'Novice (Silver)';
-      const expiryDays = document.getElementById('expiryDays').value;
+      const expiryValue = document.getElementById('expiryValue').value;
+      const expiryUnit = document.getElementById('expiryUnit').value;
 
       const message = `🎉 Your Lbby License Key
 
 Tier: ${tierLabel}
-Validity: ${expiryDays} days
+Validity: ${expiryValue} ${expiryUnit}
 
 License Key:
 ${jwt}
