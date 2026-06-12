@@ -829,10 +829,16 @@ img { max-width: 100%; height: auto; }
 
 .download-card .btn { width: 100%; justify-content: center; }
 
-/* Download section container (inline-styled in HTML) */
+/* Download section — centered card */
 #download {
-  background: var(--bg-card) !important;
+  background: var(--bg-card);
   border: 1px solid var(--border);
+  border-radius: 24px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 /* ── Docs ────────────────────────────────────────────────────────────── */
@@ -1143,10 +1149,9 @@ html {
   }
 
   #download {
-    margin: 0 12px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    border-radius: 24px !important;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 20px;
   }
 
   .features-grid {
@@ -1236,10 +1241,9 @@ html {
   .changelog-item { padding: 20px; }
 
   #download {
-    margin: 0 8px !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    border-radius: 20px !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 16px;
   }
 }
 
