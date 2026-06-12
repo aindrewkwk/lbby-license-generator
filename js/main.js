@@ -1,16 +1,9 @@
 // ── Nav scroll effect ──────────────────────────────────────────────
 const nav = document.querySelector('.nav');
-let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
-  const st = window.scrollY;
-  if (st > 50) {
-    nav.style.background = 'rgba(10,10,12,0.95)';
-  } else {
-    nav.style.background = 'rgba(10,10,12,0.85)';
-  }
-  lastScroll = st;
-});
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
 
 // ── Active nav link on scroll ──────────────────────────────────────
 const sections = document.querySelectorAll('section[id]');
@@ -57,6 +50,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.feature-card, .download-card, .changelog-item, .contact-card').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  el.style.transition = 'opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1), border-color 0.25s, box-shadow 0.25s';
   observer.observe(el);
 });
