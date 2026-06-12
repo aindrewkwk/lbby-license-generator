@@ -11,12 +11,12 @@ function detectPlatform() {
   return 'unknown';
 }
 
-// Find best asset for a platform
+// Find best asset for a platform (matches actual Tauri asset names)
 function findAsset(assets, platform) {
   const patterns = {
-    windows: [/\.msi$/i, /windows.*\.exe$/i, /\.exe$/i],
-    macos: [/\.dmg$/i, /macos.*\.dmg$/i, /aarch64.*\.dmg$/i],
-    linux: [/\.deb$/i, /\.rpm$/i, /\.appimage$/i],
+    windows: [/\.exe$/i, /\.msi$/i],
+    macos: [/aarch64.*\.dmg$/i, /x64.*\.dmg$/i, /\.dmg$/i],
+    linux: [/\.deb$/i, /\.AppImage$/i, /\.rpm$/i],
   };
 
   for (const pattern of patterns[platform] || []) {
@@ -37,35 +37,26 @@ function fmtSize(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-// Platform icons and labels
+// Platform info
 const PLATFORMS = {
-  windows: { icon: '🪟', label: 'Windows', ext: '.msi' },
-  macos: { icon: '🍎', label: 'macOS', ext: '.dmg' },
-  linux: { icon: '🐧', label: 'Linux', ext: '.deb' },
+  windows: { icon: '🪟', label: 'Windows', note: 'Windows 10/11, 64-bit' },
+  macos: { icon: '🍎', label: 'macOS', note: 'Apple Silicon & Intel' },
+  linux: { icon: '🐧', label: 'Linux', note: 'deb / AppImage / rpm' },
 };
 
-// Safe DOM helpers
+// Safe DOM builder
 function el(tag, attrs, ...children) {
   const e = document.createElement(tag);
   if (attrs) {
     for (const [k, v] of Object.entries(attrs)) {
-      if (k === 'style' && typeof v === 'object') {
-        Object.assign(e.style, v);
-      } else if (k === 'className') {
-        e.className = v;
-      } else if (k.startsWith('on')) {
-        e.addEventListener(k.slice(2).toLowerCase(), v);
-      } else {
-        e.setAttribute(k, v);
-      }
+      if (k === 'style' && typeof v === 'object') Object.assign(e.style, v);
+      else if (k === 'className') e.className = v;
+      else e.setAttribute(k, v);
     }
   }
   for (const child of children) {
-    if (typeof child === 'string') {
-      e.appendChild(document.createTextNode(child));
-    } else if (child) {
-      e.appendChild(child);
-    }
+    if (typeof child === 'string') e.appendChild(document.createTextNode(child));
+    else if (child) e.appendChild(child);
   }
   return e;
 }
@@ -87,6 +78,7 @@ async function loadReleases() {
 
     container.textContent = '';
 
+    // Show cards for all platforms, highlight detected one
     for (const [key, info] of Object.entries(PLATFORMS)) {
       const asset = findAsset(release.assets, key);
       const isCurrent = key === platform;
@@ -103,14 +95,15 @@ async function loadReleases() {
         h3.appendChild(tag);
       }
       card.appendChild(h3);
-      card.appendChild(el('div', { className: 'version' }, `v${version} · ${date}`));
+      card.appendChild(el('div', { className: 'version' }, `v${version} · ${date} · ${info.note}`));
 
       if (asset) {
+        const ext = asset.name.split('.').pop().toUpperCase();
         const btn = el('a', {
           href: asset.browser_download_url,
           className: 'btn btn-primary btn-sm',
           style: { width: '100%', justifyContent: 'center' },
-        }, `Download ${info.ext} · ${fmtSize(asset.size)}`);
+        }, `Download .${ext} · ${fmtSize(asset.size)}`);
         card.appendChild(btn);
       } else {
         const btn = el('button', {
