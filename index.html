@@ -330,7 +330,7 @@
       <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 8px; color: var(--text);">Lbby License Generator</h1>
       <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Enter the team password to access</p>
       <div style="margin-bottom: 16px;">
-        <input type="password" id="passwordInput" placeholder="Enter password" style="
+        <input type="password" id="passwordInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPassword()" style="
           width: 100%;
           padding: 14px 18px;
           background: rgba(0, 0, 0, 0.35);
