@@ -3,1156 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lbby License Generator</title>
-  <style>
-    :root {
-      --bg: #0d0f14;
-      --surface: #161921;
-      --border: #2a2e3a;
-      --text: #e8eaef;
-      --text-muted: #8a8f9d;
-      --text-faint: #5a5f6d;
-      --accent: #7c6ef0;
-      --accent-hover: #6a5cd8;
-      --green: #4ade80;
-      --yellow: #fbbf24;
-      --red: #fb7185;
-      --radius: 12px;
-      --radius-sm: 8px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    header {
-      margin-bottom: 32px;
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, #f4c95d 0%, #ffe27a 25%, #d09a1b 60%, #ffeb8c 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    header p {
-      color: var(--text-muted);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    .card-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-
-    .form-group {
-      margin-bottom: 16px;
-    }
-
-    .form-group:last-child {
-      margin-bottom: 0;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px 14px;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      color: var(--text);
-      font-size: 14px;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--accent);
-    }
-
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 12px;
-    }
-
-    .hint {
-      font-size: 12px;
-      color: var(--text-faint);
-      margin-top: 6px;
-      line-height: 1.4;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    @media (max-width: 480px) {
-      .row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: var(--radius-sm);
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-family: inherit;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text);
-    }
-
-    .btn-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .output-card {
-      display: none;
-    }
-
-    .output-card.visible {
-      display: block;
-    }
-
-    .jwt-output {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 14px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 11px;
-      word-break: break-all;
-      line-height: 1.6;
-      color: var(--green);
-      max-height: 200px;
-      overflow-y: auto;
-      margin-bottom: 12px;
-    }
-
-    .copy-btn {
-      width: 100%;
-    }
-
-    .tier-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .tier-novice {
-      background: rgba(214, 218, 227, 0.15);
-      color: #d6dae3;
-      border: 1px solid rgba(214, 218, 227, 0.3);
-    }
-
-    .tier-master {
-      background: rgba(246, 196, 84, 0.15);
-      color: #f6c454;
-      border: 1px solid rgba(246, 196, 84, 0.3);
-    }
-
-    .status {
-      padding: 12px 16px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      margin-bottom: 16px;
-      display: none;
-    }
-
-    .status.visible {
-      display: block;
-    }
-
-    .status.success {
-      background: rgba(74, 222, 128, 0.08);
-      border: 1px solid rgba(74, 222, 128, 0.35);
-      color: var(--green);
-    }
-
-    .status.error {
-      background: rgba(251, 113, 133, 0.1);
-      border: 1px solid rgba(251, 113, 133, 0.45);
-      color: var(--red);
-    }
-
-    .key-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .key-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--text-faint);
-    }
-
-    .key-dot.active {
-      background: var(--green);
-    }
-
-    .key-label {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .history-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .history-item:last-child {
-      border-bottom: none;
-    }
-
-    .history-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .history-meta {
-      font-size: 12px;
-      color: var(--text-faint);
-    }
-
-    .history-copy {
-      padding: 4px 10px;
-      font-size: 11px;
-    }
-
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .checkbox-group input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--accent);
-    }
-
-    .checkbox-group label {
-      margin-bottom: 0;
-      cursor: pointer;
-    }
-  </style>
+  <title>R Studio — Lbby</title>
+  <meta name="description" content="R Studio — Creators of Lbby, the modern Minecraft server management app.">
+  <link rel="icon" href="assets/lbby-app-icon-square.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Password Gate -->
-  <div id="passwordGate" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;">
-    <div style="max-width: 400px; width: 100%; text-align: center;">
-      <div style="font-size: 48px; margin-bottom: 20px;">🔐</div>
-      <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 8px; color: var(--text);">Lbby License Generator</h1>
-      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Enter the team password to access</p>
-      <div style="margin-bottom: 16px;">
-        <input type="password" id="passwordInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPassword()" style="
-          width: 100%;
-          padding: 14px 18px;
-          background: rgba(0, 0, 0, 0.35);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-sm);
-          color: var(--text);
-          font-size: 16px;
-          font-family: inherit;
-          outline: none;
-          text-align: center;
-          letter-spacing: 2px;
-        ">
-      </div>
-      <button onclick="checkPassword()" style="
-        width: 100%;
-        padding: 14px 20px;
-        background: var(--accent);
-        color: white;
-        border: none;
-        border-radius: var(--radius-sm);
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.2s;
-      ">Access Generator</button>
-      <div id="passwordError" style="display: none; margin-top: 12px; color: var(--red); font-size: 13px;"></div>
+
+  <!-- ── Nav ──────────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <a href="#" class="nav-brand">
+      <img src="assets/lbby-r-studio.png" alt="R Studio">
+      <span>R Studio</span>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#docs">Docs</a>
+      <a href="#changelog">Changelog</a>
+      <a href="license.html">License</a>
+      <a href="#contact">Contact</a>
     </div>
-  </div>
+  </nav>
 
-  <!-- Main Content (hidden until password correct) -->
-  <div id="mainContent" style="display: none;">
-  <div class="container">
-    <header>
-      <h1>🔑 Lbby License Generator</h1>
-      <p>Generate Ed25519-signed JWT license keys for Lbby app. Keys are generated client-side and never leave your browser.</p>
-    </header>
-
-    <!-- Key Setup -->
-    <div class="card">
-      <div class="card-title">Private Key</div>
-      <div class="key-status">
-        <span class="key-dot" id="keyDot"></span>
-        <span class="key-label" id="keyLabel">No key loaded</span>
-      </div>
-      <div class="form-group">
-        <label for="privateKey">Ed25519 Private Key (PEM format)</label>
-        <textarea id="privateKey" placeholder="-----BEGIN PRIVATE KEY-----&#10;...&#10;-----END PRIVATE KEY-----"></textarea>
-        <div class="hint">Your Ed25519 private key in PEM format. This is stored in your browser's localStorage and never sent anywhere.</div>
-      </div>
-      <div class="btn-row">
-        <button class="btn btn-secondary" onclick="saveKey()">Save Key</button>
-        <button class="btn btn-secondary" onclick="clearKey()">Clear Key</button>
-        <button class="btn btn-secondary" onclick="generateKeyPair()">Generate New Key Pair</button>
-      </div>
-
-      <!-- Key Pair Generator (hidden by default) -->
-      <div id="keyPairOutput" style="display: none; margin-top: 16px; padding: 16px; background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); border: 1px solid var(--border);">
-        <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--green);">New Key Pair Generated</div>
-        <div style="margin-bottom: 12px;">
-          <label style="font-size: 12px;">Public Key (give this to the app):</label>
-          <textarea id="newPublicKey" readonly style="min-height: 60px; font-size: 10px;"></textarea>
-        </div>
-        <div style="margin-bottom: 12px;">
-          <label style="font-size: 12px;">Private Key (keep this secret):</label>
-          <textarea id="newPrivateKey" readonly style="min-height: 60px; font-size: 10px;"></textarea>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-secondary" onclick="useNewPrivateKey()">Use This Private Key</button>
-          <button class="btn btn-secondary" onclick="copyPublicKey()">Copy Public Key</button>
-        </div>
-        <div class="hint" style="margin-top: 8px;">Save both keys! The public key goes in the app's license-public.pem. The private key stays here.</div>
+  <!-- ── Hero ─────────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <img src="assets/lbby-logo-white.png" alt="Lbby" class="hero-logo">
+      <h1>Minecraft servers<br><span>made simple</span></h1>
+      <p>One app to create, manage, and share your Minecraft server. Setup in seconds, play with friends worldwide.</p>
+      <div class="hero-buttons">
+        <a href="#download" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+        <a href="#features" class="btn btn-secondary">Learn More</a>
       </div>
     </div>
+  </section>
 
-    <!-- License Config -->
-    <div class="card">
-      <div class="card-title">License Configuration</div>
-
-      <div class="row">
-        <div class="form-group">
-          <label for="tier">Tier</label>
-          <select id="tier">
-            <option value="novice">Novice (Silver)</option>
-            <option value="master">Master (Gold)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="userId">User ID</label>
-          <input type="text" id="userId" placeholder="e.g., telegram_id or email">
-          <div class="hint">Unique identifier for the user</div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group">
-          <label>License Duration</label>
-          <div style="display: flex; gap: 8px; align-items: center;">
-            <input type="number" id="expiryValue" value="30" min="1" style="width: 100px;">
-            <select id="expiryUnit" style="width: 120px;">
-              <option value="minutes">Minutes</option>
-              <option value="hours">Hours</option>
-              <option value="days" selected>Days</option>
-              <option value="weeks">Weeks</option>
-              <option value="months">Months</option>
-              <option value="years">Years</option>
-            </select>
-          </div>
-          <div class="hint">Custom duration from minutes to years</div>
-          <div style="display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;">
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(30, 'minutes')">30m</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(1, 'hours')">1h</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(6, 'hours')">6h</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(24, 'hours')">24h</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(7, 'days')">7d</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(30, 'days')">30d</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(90, 'days')">90d</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(6, 'months')">6mo</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(1, 'years')">1y</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(10, 'years')">10y</button>
-            <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="setQuickExpiry(100, 'years')">∞</button>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="jwtId">JWT ID (optional)</label>
-          <input type="text" id="jwtId" placeholder="Auto-generated">
-          <div class="hint">Unique ID for revocation tracking. Leave empty to auto-generate.</div>
-          <button class="btn btn-secondary" style="margin-top: 6px; padding: 4px 8px; font-size: 11px;" onclick="generateNewJwtId()">Generate New ID</button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group">
-          <label for="email">Email (optional)</label>
-          <input type="email" id="email" placeholder="user@example.com">
-        </div>
-        <div class="form-group">
-          <label for="tgUsername">Telegram Username (optional)</label>
-          <input type="text" id="tgUsername" placeholder="username">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="checkbox-group">
-          <input type="checkbox" id="bindDevice">
-          <label for="bindDevice">Bind to specific device</label>
-        </div>
-        <div class="hint">If checked, license will only work on one device</div>
-      </div>
-
-      <div class="form-group" id="deviceIdGroup" style="display: none;">
-        <label for="deviceId">Device Fingerprint</label>
-        <input type="text" id="deviceId" placeholder="SHA-256 hash of machine-uid">
-        <div class="hint">User's device fingerprint from the app (shown in License tab)</div>
-        <div style="margin-top: 6px; padding: 8px 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; font-size: 11px; color: var(--text-faint);">
-          <strong>Tip:</strong> Ask the user to copy their Device ID from the Lbby app License tab → Advanced section
-        </div>
-      </div>
-
-      <button class="btn btn-primary" onclick="generateLicense()" id="generateBtn" disabled>
-        Generate License Key
-      </button>
+  <!-- ── Features ─────────────────────────────────────────────────── -->
+  <section class="section" id="features">
+    <div class="section-header">
+      <h2>Everything you need</h2>
+      <p>From zero to a running server in under a minute. No terminal, no config files, no headaches.</p>
     </div>
-
-    <!-- Status Messages -->
-    <div class="status" id="status"></div>
-
-    <!-- Generated License -->
-    <div class="card output-card" id="outputCard">
-      <div class="card-title">
-        Generated License
-        <span class="tier-badge" id="outputTier"></span>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Setup</h3>
+        <p>Pick a server type, choose your version, click Start. Lbby handles Java, ports, and configuration automatically.</p>
       </div>
-      <div class="jwt-output" id="jwtOutput"></div>
-      <div class="btn-row">
-        <button class="btn btn-primary" style="flex: 1;" onclick="copyJwt()">
-          Copy License Key
-        </button>
-        <button class="btn btn-secondary" onclick="copyLicenseMessage()">
-          Copy Full Message
-        </button>
-        <button class="btn btn-secondary" onclick="verifyJwt()">
-          Verify
-        </button>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Play Anywhere</h3>
+        <p>Built-in tunneling with playit.gg lets friends join from anywhere — no port forwarding or static IP needed.</p>
       </div>
-
-      <!-- JWT Preview -->
-      <details style="margin-top: 12px;">
-        <summary style="cursor: pointer; font-size: 12px; color: var(--text-faint); padding: 4px 0;">
-          View Decoded JWT
-        </summary>
-        <div id="jwtPreview" style="margin-top: 8px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); font-family: monospace; font-size: 11px; white-space: pre-wrap; color: var(--text-muted);"></div>
-        <div style="margin-top: 8px; font-size: 11px; color: var(--text-faint);">
-          <strong>Note:</strong> This JWT is signed and ready to use. The user can paste it directly in the Lbby app.
-        </div>
-      </details>
-    </div>
-
-    <!-- JWT Decoder -->
-    <div class="card">
-      <div class="card-title">Decode Existing JWT</div>
-      <div class="form-group">
-        <label for="decodeJwt">Paste a JWT to decode</label>
-        <textarea id="decodeJwt" placeholder="eyJhbGciOiJFZERTQSIs..." style="min-height: 60px;"></textarea>
+      <div class="feature-card">
+        <div class="feature-icon">🔧</div>
+        <h3>11 Server Types</h3>
+        <p>Paper, Fabric, Forge, NeoForge, Bukkit, Spigot, Folia, Purpur, SpongeVanilla, SpongeForge, and Vanilla.</p>
       </div>
-      <button class="btn btn-secondary" onclick="decodeExistingJwt()">Decode JWT</button>
-      <div id="decodeOutput" style="display: none; margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: var(--radius-sm); font-family: monospace; font-size: 11px; white-space: pre-wrap; color: var(--text-muted);"></div>
-    </div>
-
-    <!-- History -->
-    <div class="card" id="historyCard" style="display: none;">
-      <div class="card-title">Recent Generations</div>
-      <div id="historyList"></div>
-      <div class="btn-row" style="margin-top: 12px;">
-        <button class="btn btn-secondary" onclick="exportHistory()">Export History</button>
-        <button class="btn btn-secondary" onclick="clearHistory()">Clear History</button>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3>Mod Manager</h3>
+        <p>Browse and install mods and plugins directly from Modrinth. Auto-updates included.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎮</div>
+        <h3>Live Console</h3>
+        <p>Real-time server console with command input. Monitor players, TPS, RAM, and CPU from the dashboard.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Remote Control</h3>
+        <p>Manage your server from your phone or another PC. Secure token-based access, optional Cloudflare tunnel.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Footer -->
-  <footer style="max-width: 680px; margin: 40px auto 0; padding: 24px 20px; border-top: 1px solid var(--border); text-align: center;">
-    <div style="font-size: 12px; color: var(--text-faint); line-height: 1.6;">
-      <p style="margin-bottom: 8px;"><strong>Lbby License Generator</strong> — For admin use only</p>
-      <p>This tool generates Ed25519-signed JWTs for the Lbby app license system.</p>
-      <p style="margin-top: 8px;">Private keys are stored in your browser's localStorage and never sent to any server.</p>
-      <p style="margin-top: 8px;">Generated JWTs can be activated in the Lbby app via the License tab → Advanced → Paste JWT.</p>
+  <!-- ── Download ─────────────────────────────────────────────────── -->
+  <section class="section" id="download" style="background: var(--bg-card); border-radius: 32px; margin: 0 16px; max-width: calc(var(--max-w) + 48px); padding-left: 48px; padding-right: 48px;">
+    <div class="section-header">
+      <h2>Download Lbby</h2>
+      <p>Available for Windows, macOS, and Linux. Free to use.</p>
     </div>
+    <div class="download-cards" id="download-cards">
+      <!-- Populated by JS -->
+      <div class="download-card"><p class="text-muted">Loading releases...</p></div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="https://github.com/aindrewkwk/lbby-releases/releases" target="_blank" class="btn btn-secondary btn-sm">View All Releases</a>
+    </div>
+  </section>
+
+  <!-- ── Docs ─────────────────────────────────────────────────────── -->
+  <section class="section" id="docs">
+    <div class="section-header">
+      <h2>Getting Started</h2>
+      <p>From download to your first server in minutes.</p>
+    </div>
+    <div class="docs-content">
+      <h3>1. Install Lbby</h3>
+      <p>Download the installer for your operating system from the <a href="#download" style="color: var(--accent);">Download</a> section above. Run the installer and follow the prompts.</p>
+      <ul>
+        <li><strong>Windows:</strong> Run the <code>.msi</code> installer</li>
+        <li><strong>macOS:</strong> Open the <code>.dmg</code> and drag to Applications</li>
+        <li><strong>Linux:</strong> Install the <code>.deb</code>, <code>.rpm</code>, or run the <code>.AppImage</code></li>
+      </ul>
+
+      <h3>2. Create Your First Server</h3>
+      <p>Open Lbby and the setup wizard will guide you:</p>
+      <ul>
+        <li>Choose a server name and folder</li>
+        <li>Pick your Minecraft version</li>
+        <li>Select a server type (Paper is recommended for most users)</li>
+        <li>Set RAM allocation (2–4 GB is a good start)</li>
+        <li>Click <strong>Start</strong> — Lbby downloads everything automatically</li>
+      </ul>
+
+      <h3>3. Play with Friends</h3>
+      <p>To let friends join over the internet:</p>
+      <ul>
+        <li>Go to the <strong>Tunnel</strong> tab</li>
+        <li>Enable the playit.gg tunnel</li>
+        <li>Share the generated address with your friends</li>
+        <li>No port forwarding or static IP required!</li>
+      </ul>
+
+      <h3>4. Install Mods & Plugins</h3>
+      <p>Head to the <strong>Mods</strong> tab to browse Modrinth:</p>
+      <ul>
+        <li>Search for mods/plugins compatible with your server type</li>
+        <li>Click Install — Lbby handles placement and restarts</li>
+        <li>Auto-update notifications when new versions are available</li>
+      </ul>
+
+      <h3>Server Types</h3>
+      <p>Lbby supports 11 server types. Here's a quick guide:</p>
+      <ul>
+        <li><strong>Paper</strong> — Optimized, plugin support. Best for most servers.</li>
+        <li><strong>Fabric</strong> — Modern mod loader. Great for performance mods.</li>
+        <li><strong>Forge</strong> — Classic mod loader. Largest mod ecosystem.</li>
+        <li><strong>Purpur</strong> — Paper fork with extra features and customization.</li>
+        <li><strong>Folia</strong> — Multithreaded Paper for massive servers.</li>
+        <li><strong>NeoForge</strong> — Modern fork of Forge with active development.</li>
+        <li><strong>Vanilla</strong> — Pure Minecraft, no mods or plugins.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Changelog ────────────────────────────────────────────────── -->
+  <section class="section" id="changelog">
+    <div class="section-header">
+      <h2>Changelog</h2>
+      <p>What's new in Lbby.</p>
+    </div>
+    <div id="changelog-list" style="max-width: 760px; margin: 0 auto;">
+      <p class="text-muted text-center">Loading changelog...</p>
+    </div>
+  </section>
+
+  <!-- ── Contact ──────────────────────────────────────────────────── -->
+  <section class="section" id="contact">
+    <div class="section-header">
+      <h2>Get in Touch</h2>
+      <p>Join the community or reach out directly.</p>
+    </div>
+    <div class="contact-links">
+      <a href="https://discord.gg/bF62psq97S" target="_blank" class="contact-card">
+        <span class="icon">💬</span>
+        <div>
+          <div class="label">Discord</div>
+          <div class="sub">Join our community</div>
+        </div>
+      </a>
+      <a href="https://github.com/aindrewkwk/lbby-app" target="_blank" class="contact-card">
+        <span class="icon">📦</span>
+        <div>
+          <div class="label">GitHub</div>
+          <div class="sub">Source code & issues</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ───────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <p>&copy; 2026 R Studio. All rights reserved.</p>
   </footer>
-  </div> <!-- End mainContent -->
 
-  <script>
-    // ── Password Protection ──────────────────────────────────────────────────
-    // Password is hashed with SHA-256 for basic security
-    // Change this hash to update the password
-    const PASSWORD_HASH = 'c59bc9d351d040c66f96275b4caede8832a403c6d7f4a6220b758c4012df4b94'; // Team password
-
-    // Pure JS SHA-256 fallback (crypto.subtle only works over HTTPS)
-    function sha256Fallback(str) {
-      function rightRotate(v, n) { return (v >>> n) | (v << (32 - n)); }
-      const K = [0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
-      let h0=0x6a09e667,h1=0xbb67ae85,h2=0x3c6ef372,h3=0xa54ff53a,h4=0x510e527f,h5=0x9b05688c,h6=0x1f83d9ab,h7=0x5be0cd19;
-      const bytes = new TextEncoder().encode(str);
-      const l = bytes.length;
-      const bitLen = l * 8;
-      const padded = new Uint8Array(((l + 9 + 63) & ~63));
-      padded.set(bytes);
-      padded[l] = 0x80;
-      padded[padded.length - 4] = (bitLen >>> 24) & 0xff;
-      padded[padded.length - 3] = (bitLen >>> 16) & 0xff;
-      padded[padded.length - 2] = (bitLen >>> 8) & 0xff;
-      padded[padded.length - 1] = bitLen & 0xff;
-      for (let off = 0; off < padded.length; off += 64) {
-        const w = new Uint32Array(64);
-        for (let i = 0; i < 16; i++) w[i] = (padded[off+i*4]<<24)|(padded[off+i*4+1]<<16)|(padded[off+i*4+2]<<8)|padded[off+i*4+3];
-        for (let i = 16; i < 64; i++) {
-          const s0 = rightRotate(w[i-15],7) ^ rightRotate(w[i-15],18) ^ (w[i-15]>>>3);
-          const s1 = rightRotate(w[i-2],17) ^ rightRotate(w[i-2],19) ^ (w[i-2]>>>10);
-          w[i] = (w[i-16] + s0 + w[i-7] + s1) | 0;
-        }
-        let a=h0,b=h1,c=h2,d=h3,e=h4,f=h5,g=h6,h=h7;
-        for (let i = 0; i < 64; i++) {
-          const S1 = rightRotate(e,6)^rightRotate(e,11)^rightRotate(e,25);
-          const ch = (e&f)^((~e)&g);
-          const t1 = (h+S1+ch+K[i]+w[i])|0;
-          const S0 = rightRotate(a,2)^rightRotate(a,13)^rightRotate(a,22);
-          const maj = (a&b)^(a&c)^(b&c);
-          const t2 = (S0+maj)|0;
-          h=g; g=f; f=e; e=(d+t1)|0; d=c; c=b; b=a; a=(t1+t2)|0;
-        }
-        h0=(h0+a)|0; h1=(h1+b)|0; h2=(h2+c)|0; h3=(h3+d)|0; h4=(h4+e)|0; h5=(h5+f)|0; h6=(h6+g)|0; h7=(h7+h)|0;
-      }
-      return [h0,h1,h2,h3,h4,h5,h6,h7].map(v => (v>>>0).toString(16).padStart(8,'0')).join('');
-    }
-
-    async function hashPassword(password) {
-      // Use Web Crypto API if available (HTTPS), otherwise fallback
-      if (window.crypto && crypto.subtle) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(password);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      }
-      return sha256Fallback(password);
-    }
-
-    async function checkPassword() {
-      const input = document.getElementById('passwordInput');
-      const error = document.getElementById('passwordError');
-      const password = input.value;
-
-      if (!password) {
-        error.textContent = 'Please enter a password';
-        error.style.display = 'block';
-        return;
-      }
-
-      const hash = await hashPassword(password);
-
-      if (hash === PASSWORD_HASH) {
-        // Password correct - show main content
-        document.getElementById('passwordGate').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        // Save to session so user doesn't need to re-enter
-        sessionStorage.setItem('lbby-auth', 'true');
-        // Initialize the app
-        initApp();
-      } else {
-        error.textContent = 'Incorrect password';
-        error.style.display = 'block';
-        input.value = '';
-        input.focus();
-      }
-    }
-
-    // Check if already authenticated in this session
-    function checkAuth() {
-      if (sessionStorage.getItem('lbby-auth') === 'true') {
-        document.getElementById('passwordGate').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        initApp();
-      }
-    }
-
-    // Handle Enter key in password input
-    document.addEventListener('DOMContentLoaded', () => {
-      checkAuth();
-      document.getElementById('passwordInput').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') checkPassword();
-      });
-    });
-
-    // ── Main App Initialization ──────────────────────────────────────────────
-    // ── State ──────────────────────────────────────────────────────────────────
-    let privateKey = null;
-    let history = JSON.parse(localStorage.getItem('lbby-license-history') || '[]');
-
-    // ── Initialization ────────────────────────────────────────────────────────
-    // Note: Main app initialization is called after password check succeeds
-    function initApp() {
-      loadKey();
-      updateKeyStatus();
-      renderHistory();
-      setupDeviceBinding();
-      checkEd25519Support();
-    }
-
-    // Initialize when DOM is ready (password check handles showing/hiding)
-    document.addEventListener('DOMContentLoaded', () => {
-      checkAuth();
-      // If already authenticated, init immediately
-      if (sessionStorage.getItem('lbby-auth') === 'true') {
-        initApp();
-      }
-    });
-
-    function checkEd25519Support() {
-      // Check if Ed25519 is supported
-      crypto.subtle.generateKey({ name: 'Ed25519' }, true, ['sign']).then(() => {
-        // Ed25519 is supported
-      }).catch(() => {
-        showStatus('Your browser may not support Ed25519. Try Chrome 113+ or Firefox 111+', 'error');
-      });
-    }
-
-    // ── Key Management ────────────────────────────────────────────────────────
-    function loadKey() {
-      const saved = localStorage.getItem('lbby-private-key');
-      if (saved) {
-        document.getElementById('privateKey').value = saved;
-        privateKey = saved;
-      }
-    }
-
-    function saveKey() {
-      const key = document.getElementById('privateKey').value.trim();
-      if (!key) {
-        showStatus('Please enter a private key', 'error');
-        return;
-      }
-      localStorage.setItem('lbby-private-key', key);
-      privateKey = key;
-      updateKeyStatus();
-      showStatus('Private key saved to browser', 'success');
-    }
-
-    function clearKey() {
-      if (!confirm('Remove the private key from browser storage?')) return;
-      localStorage.removeItem('lbby-private-key');
-      document.getElementById('privateKey').value = '';
-      privateKey = null;
-      updateKeyStatus();
-    }
-
-    function updateKeyStatus() {
-      const dot = document.getElementById('keyDot');
-      const label = document.getElementById('keyLabel');
-      if (privateKey) {
-        dot.classList.add('active');
-        label.textContent = 'Key loaded';
-        document.getElementById('generateBtn').disabled = false;
-      } else {
-        dot.classList.remove('active');
-        label.textContent = 'No key loaded';
-        document.getElementById('generateBtn').disabled = true;
-      }
-    }
-
-    // ── Device Binding Toggle ──────────────────────────────────────────────────
-    function setupDeviceBinding() {
-      document.getElementById('bindDevice').addEventListener('change', (e) => {
-        document.getElementById('deviceIdGroup').style.display = e.target.checked ? 'block' : 'none';
-      });
-    }
-
-    // ── JWT Generation ────────────────────────────────────────────────────────
-    async function generateLicense() {
-      if (!privateKey) {
-        showStatus('Please save your private key first', 'error');
-        return;
-      }
-
-      const tier = document.getElementById('tier').value;
-      const userId = document.getElementById('userId').value.trim();
-      const expiryValue = parseInt(document.getElementById('expiryValue').value);
-      const expiryUnit = document.getElementById('expiryUnit').value;
-      const jwtId = document.getElementById('jwtId').value.trim() || generateId();
-      const email = document.getElementById('email').value.trim() || null;
-      const tgUsername = document.getElementById('tgUsername').value.trim() || null;
-      const bindDevice = document.getElementById('bindDevice').checked;
-      const deviceId = document.getElementById('deviceId').value.trim() || null;
-
-      if (!userId) {
-        showStatus('Please enter a User ID', 'error');
-        return;
-      }
-
-      if (bindDevice && !deviceId) {
-        showStatus('Please enter a device fingerprint when binding is enabled', 'error');
-        return;
-      }
-
-      try {
-        const now = Math.floor(Date.now() / 1000);
-
-        // Calculate expiry in seconds based on unit
-        let expirySeconds;
-        switch (expiryUnit) {
-          case 'minutes':
-            expirySeconds = expiryValue * 60;
-            break;
-          case 'hours':
-            expirySeconds = expiryValue * 60 * 60;
-            break;
-          case 'days':
-            expirySeconds = expiryValue * 24 * 60 * 60;
-            break;
-          case 'weeks':
-            expirySeconds = expiryValue * 7 * 24 * 60 * 60;
-            break;
-          case 'months':
-            expirySeconds = expiryValue * 30 * 24 * 60 * 60;
-            break;
-          case 'years':
-            expirySeconds = expiryValue * 365 * 24 * 60 * 60;
-            break;
-          default:
-            expirySeconds = expiryValue * 24 * 60 * 60;
-        }
-
-        const exp = now + expirySeconds;
-
-        const claims = {
-          sub: userId,
-          tier: tier,
-          iat: now,
-          exp: exp,
-          iss: 'lbby',
-          jti: jwtId
-        };
-
-        if (email) claims.email = email;
-        if (tgUsername) claims.tg_username = tgUsername;
-        if (bindDevice && deviceId) claims.dev = deviceId;
-
-        const jwt = await signJwt(claims);
-        showOutput(jwt, tier);
-        addToHistory(userId, tier, jwtId, exp);
-        showStatus('License key generated successfully!', 'success');
-      } catch (err) {
-        showStatus('Error generating license: ' + err.message, 'error');
-        console.error(err);
-      }
-    }
-
-    async function signJwt(claims) {
-      // Import private key from PEM
-      const pemContents = privateKey
-        .replace('-----BEGIN PRIVATE KEY-----', '')
-        .replace('-----END PRIVATE KEY-----', '')
-        .replace(/\s/g, '');
-
-      const binaryDer = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
-
-      const cryptoKey = await crypto.subtle.importKey(
-        'pkcs8',
-        binaryDer,
-        { name: 'Ed25519' },
-        false,
-        ['sign']
-      );
-
-      // Create JWT header
-      const header = { alg: 'EdDSA', typ: 'JWT' };
-      const headerB64 = btoa(JSON.stringify(header)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-
-      // Create JWT payload
-      const payloadB64 = btoa(JSON.stringify(claims)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-
-      // Sign
-      const data = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
-      const signature = await crypto.subtle.sign('Ed25519', cryptoKey, data);
-      const sigB64 = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-
-      return `${headerB64}.${payloadB64}.${sigB64}`;
-    }
-
-    function setQuickExpiry(value, unit) {
-      document.getElementById('expiryValue').value = value;
-      document.getElementById('expiryUnit').value = unit;
-    }
-
-    function generateNewJwtId() {
-      document.getElementById('jwtId').value = generateId();
-    }
-
-    function generateId() {
-      return Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    // ── Key Pair Generation ──────────────────────────────────────────────────
-    async function generateKeyPair() {
-      try {
-        const keyPair = await crypto.subtle.generateKey(
-          { name: 'Ed25519' },
-          true,
-          ['sign', 'verify']
-        );
-
-        // Export private key
-        const privateJwk = await crypto.subtle.exportKey('pkcs8', keyPair.privateKey);
-        const privatePem = '-----BEGIN PRIVATE KEY-----\n' +
-          chunkString(btoa(String.fromCharCode(...new Uint8Array(privateJwk))), 64) +
-          '\n-----END PRIVATE KEY-----';
-
-        // Export public key
-        const publicJwk = await crypto.subtle.exportKey('spki', keyPair.publicKey);
-        const publicPem = '-----BEGIN PUBLIC KEY-----\n' +
-          chunkString(btoa(String.fromCharCode(...new Uint8Array(publicJwk))), 64) +
-          '\n-----END PUBLIC KEY-----';
-
-        document.getElementById('newPublicKey').value = publicPem;
-        document.getElementById('newPrivateKey').value = privatePem;
-        document.getElementById('keyPairOutput').style.display = 'block';
-
-        showStatus('New key pair generated! Save both keys.', 'success');
-      } catch (err) {
-        showStatus('Error generating key pair: ' + err.message, 'error');
-        console.error(err);
-      }
-    }
-
-    function chunkString(str, size) {
-      const chunks = [];
-      for (let i = 0; i < str.length; i += size) {
-        chunks.push(str.substring(i, i + size));
-      }
-      return chunks.join('\n');
-    }
-
-    function useNewPrivateKey() {
-      const privateKey = document.getElementById('newPrivateKey').value;
-      document.getElementById('privateKey').value = privateKey;
-      saveKey();
-      document.getElementById('keyPairOutput').style.display = 'none';
-      showStatus('Private key loaded and saved!', 'success');
-    }
-
-    function copyPublicKey() {
-      const publicKey = document.getElementById('newPublicKey').value;
-      navigator.clipboard.writeText(publicKey).then(() => {
-        showStatus('Public key copied to clipboard!', 'success');
-      }).catch(() => {
-        showStatus('Failed to copy', 'error');
-      });
-    }
-
-    // ── UI Helpers ────────────────────────────────────────────────────────────
-    function showStatus(message, type) {
-      const el = document.getElementById('status');
-      el.textContent = message;
-      el.className = `status visible ${type}`;
-      setTimeout(() => el.className = 'status', 4000);
-    }
-
-    function showOutput(jwt, tier) {
-      const card = document.getElementById('outputCard');
-      const output = document.getElementById('jwtOutput');
-      const badge = document.getElementById('outputTier');
-      const preview = document.getElementById('jwtPreview');
-
-      output.textContent = jwt;
-      badge.textContent = tier;
-      badge.className = `tier-badge tier-${tier}`;
-
-      // Decode and show JWT contents
-      try {
-        const parts = jwt.split('.');
-        const header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')));
-        const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
-        const expDate = new Date(payload.exp * 1000).toLocaleString();
-        const iatDate = new Date(payload.iat * 1000).toLocaleString();
-        preview.textContent = JSON.stringify({
-          header,
-          payload: {
-            ...payload,
-            exp: `${payload.exp} (${expDate})`,
-            iat: `${payload.iat} (${iatDate})`
-          }
-        }, null, 2);
-      } catch (e) {
-        preview.textContent = 'Could not decode JWT: ' + e.message;
-      }
-
-      card.classList.add('visible');
-    }
-
-    function copyJwt() {
-      const jwt = document.getElementById('jwtOutput').textContent;
-      navigator.clipboard.writeText(jwt).then(() => {
-        showStatus('Copied to clipboard!', 'success');
-      }).catch(() => {
-        showStatus('Failed to copy', 'error');
-      });
-    }
-
-    function copyLicenseMessage() {
-      const jwt = document.getElementById('jwtOutput').textContent;
-      const tier = document.getElementById('tier').value;
-      const tierLabel = tier === 'master' ? 'Master (Gold)' : 'Novice (Silver)';
-      const expiryValue = document.getElementById('expiryValue').value;
-      const expiryUnit = document.getElementById('expiryUnit').value;
-
-      const message = `🎉 Your Lbby License Key
-
-Tier: ${tierLabel}
-Validity: ${expiryValue} ${expiryUnit}
-
-License Key:
-${jwt}
-
-How to activate:
-1. Open the Lbby app
-2. Go to the License tab
-3. Click "Advanced" at the bottom
-4. Paste the license key above
-5. Click "Activate"
-
-Your license is now active! Enjoy your upgraded features.`;
-
-      navigator.clipboard.writeText(message).then(() => {
-        showStatus('Full license message copied!', 'success');
-      }).catch(() => {
-        showStatus('Failed to copy', 'error');
-      });
-    }
-
-    // ── JWT Verification ─────────────────────────────────────────────────────
-    async function verifyJwt() {
-      const jwt = document.getElementById('jwtOutput').textContent;
-      const publicKeyPem = prompt('Paste the public key (PEM format) to verify the signature:');
-
-      if (!publicKeyPem) return;
-
-      try {
-        // Import public key
-        const pemContents = publicKeyPem
-          .replace('-----BEGIN PUBLIC KEY-----', '')
-          .replace('-----END PUBLIC KEY-----', '')
-          .replace(/\s/g, '');
-
-        const binaryDer = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
-
-        const publicKey = await crypto.subtle.importKey(
-          'spki',
-          binaryDer,
-          { name: 'Ed25519' },
-          false,
-          ['verify']
-        );
-
-        // Verify signature
-        const parts = jwt.split('.');
-        const data = new TextEncoder().encode(`${parts[0]}.${parts[1]}`);
-
-        // Decode signature from base64url
-        const sigB64 = parts[2].replace(/-/g, '+').replace(/_/g, '/');
-        const sigBinary = Uint8Array.from(atob(sigB64), c => c.charCodeAt(0));
-
-        const valid = await crypto.subtle.verify('Ed25519', publicKey, sigBinary, data);
-
-        if (valid) {
-          showStatus('✓ JWT signature is valid!', 'success');
-        } else {
-          showStatus('✗ JWT signature is INVALID', 'error');
-        }
-      } catch (err) {
-        showStatus('Verification error: ' + err.message, 'error');
-      }
-    }
-
-    // ── JWT Decoder ──────────────────────────────────────────────────────────
-    function decodeExistingJwt() {
-      const jwt = document.getElementById('decodeJwt').value.trim();
-      const output = document.getElementById('decodeOutput');
-
-      if (!jwt) {
-        showStatus('Please paste a JWT to decode', 'error');
-        return;
-      }
-
-      try {
-        const parts = jwt.split('.');
-        if (parts.length !== 3) {
-          throw new Error('Invalid JWT format');
-        }
-
-        const header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')));
-        const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
-
-        const expDate = new Date(payload.exp * 1000).toLocaleString();
-        const iatDate = new Date(payload.iat * 1000).toLocaleString();
-
-        output.textContent = JSON.stringify({
-          header,
-          payload: {
-            ...payload,
-            exp: `${payload.exp} (${expDate})`,
-            iat: `${payload.iat} (${iatDate})`
-          }
-        }, null, 2);
-        output.style.display = 'block';
-        showStatus('JWT decoded successfully', 'success');
-      } catch (err) {
-        output.style.display = 'none';
-        showStatus('Invalid JWT: ' + err.message, 'error');
-      }
-    }
-
-    // ── History ────────────────────────────────────────────────────────────────
-    function addToHistory(userId, tier, jwtId, exp) {
-      history.unshift({
-        userId,
-        tier,
-        jwtId,
-        exp,
-        timestamp: Date.now()
-      });
-
-      // Keep only last 50
-      if (history.length > 50) history = history.slice(0, 50);
-      localStorage.setItem('lbby-license-history', JSON.stringify(history));
-      renderHistory();
-    }
-
-    function exportHistory() {
-      const blob = new Blob([JSON.stringify(history, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `lbby-license-history-${new Date().toISOString().split('T')[0]}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showStatus('History exported!', 'success');
-    }
-
-    function clearHistory() {
-      if (!confirm('Clear all license generation history?')) return;
-      history = [];
-      localStorage.removeItem('lbby-license-history');
-      renderHistory();
-      showStatus('History cleared', 'success');
-    }
-
-    function renderHistory() {
-      const card = document.getElementById('historyCard');
-      const list = document.getElementById('historyList');
-
-      if (history.length === 0) {
-        card.style.display = 'none';
-        return;
-      }
-
-      card.style.display = 'block';
-      list.innerHTML = history.slice(0, 10).map(item => {
-        const date = new Date(item.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-        const expDate = new Date(item.exp * 1000).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-        return `
-          <div class="history-item">
-            <div class="history-info">
-              <span class="tier-badge tier-${item.tier}" style="font-size: 10px; padding: 2px 6px;">${item.tier}</span>
-              <div>
-                <div style="font-size: 13px; font-weight: 600;">${item.userId}</div>
-                <div class="history-meta">Generated ${date} · Expires ${expDate}</div>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-  </script>
+  <script src="js/main.js"></script>
+  <script src="js/releases.js"></script>
 </body>
 </html>
