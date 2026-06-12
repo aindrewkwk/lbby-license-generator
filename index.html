@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R Studio — Lbby</title>
-  <meta name="description" content="Lbby — A modern Minecraft server host for individuals, communities, and studios. by R Studio.">
-  <link rel="icon" href="assets/lbby-app-icon-square.png" type="image/png">
+  <title>R Studio — Software Studio</title>
+  <meta name="description" content="R Studio is a software studio building powerful, elegant tools for gamers and creators. Our flagship product, Lbby, makes Minecraft server hosting effortless.">
+  <link rel="icon" href="assets/lbby-r-studio.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ── Nav ──────────────────────────────────────────────────────── -->
+  <!-- Nav -->
   <nav class="nav">
     <a href="#" class="nav-brand">
       <img src="assets/lbby-r-studio.png" alt="R Studio">
@@ -18,8 +18,8 @@
     </a>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
     <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#download">Download</a>
+      <a href="#products">Products</a>
+      <a href="#lbby">Lbby</a>
       <a href="#docs">Docs</a>
       <a href="#changelog">Changelog</a>
       <a href="license.html">License</a>
@@ -27,27 +27,50 @@
     </div>
   </nav>
 
-  <!-- ── Hero ─────────────────────────────────────────────────────── -->
+  <!-- Hero -->
   <section class="hero" id="hero">
     <div class="hero-content">
-      <img src="assets/lbby-logo-white.png" alt="Lbby" class="hero-logo">
-      <h1>Minecraft servers<br><span>made simple</span></h1>
-      <p>Host Minecraft Java servers without port forwarding, command-line work, or router configuration. Install, manage, and share — all from one native app.</p>
+      <img src="assets/lbby-r-studio.png" alt="R Studio" class="hero-logo">
+      <h1>Software<br><span>by design</span></h1>
+      <p>We are R Studio — a software studio crafting powerful, elegant tools for gamers and creators. We believe great software should feel effortless.</p>
       <div class="hero-buttons">
-        <a href="#download" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download for Free
+        <a href="#products" class="btn btn-primary">
+          Explore Our Products
         </a>
-        <a href="#features" class="btn btn-secondary">Learn More</a>
+        <a href="#lbby" class="btn btn-secondary">Lbby</a>
       </div>
-      <p style="font-size: 13px; color: var(--text-faint); margin-top: 16px;">v0.2.1 · Windows · macOS · Linux · Beta</p>
     </div>
   </section>
 
-  <!-- ── Features ─────────────────────────────────────────────────── -->
-  <section class="section" id="features">
+  <!-- Products -->
+  <section class="section" id="products">
     <div class="section-header">
-      <h2>Everything you need</h2>
+      <h2>Our Products</h2>
+      <p>Thoughtfully built tools designed to solve real problems.</p>
+    </div>
+    <div class="features-grid" style="grid-template-columns: 1fr; max-width: 520px; margin: 0 auto;">
+      <a href="#lbby" class="feature-card" style="text-decoration: none; color: inherit; text-align: center; padding: 48px 32px; cursor: pointer;">
+        <img src="assets/lbby-app-icon-square.png" alt="Lbby" style="width: 72px; height: 72px; border-radius: 16px; margin: 0 auto 20px; display: block;">
+        <h3 style="font-size: 22px; margin-bottom: 8px;">Lbby</h3>
+        <p style="color: var(--text-muted); font-size: 15px; max-width: 360px; margin: 0 auto;">A modern Minecraft server host. Install, manage, and share — all from one native app. No port forwarding, no terminal, no headaches.</p>
+        <span style="display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--accent);">Learn more →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Lbby Deep-Dive -->
+  <section class="section" id="lbby" style="border-top: 1px solid var(--border);">
+    <div class="section-header">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 8px;">
+        <img src="assets/lbby-app-icon-square.png" alt="Lbby" style="width: 48px; height: 48px; border-radius: 12px;">
+        <h2 style="margin: 0;">Lbby</h2>
+      </div>
+      <p>Minecraft servers made simple. By R Studio.</p>
+    </div>
+
+    <!-- Lbby Features -->
+    <div class="section-header" style="margin-top: 16px;">
+      <h3 style="font-size: 20px;">Everything you need</h3>
       <p>From zero to a running server in under a minute. No terminal, no config files, no headaches.</p>
     </div>
     <div class="features-grid">
@@ -68,8 +91,8 @@
       </div>
       <div class="feature-card">
         <div class="feature-icon">📦</div>
-        <h3>Mods & Plugins</h3>
-        <p>Browse Modrinth, install mods & plugins, modpack support (Modrinth + CurseForge), and automatic update checker.</p>
+        <h3>Mods &amp; Plugins</h3>
+        <p>Browse Modrinth, install mods &amp; plugins, modpack support (Modrinth + CurseForge), and automatic update checker.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💾</div>
@@ -93,20 +116,19 @@
       </div>
       <div class="feature-card">
         <div class="feature-icon">🎨</div>
-        <h3>Dark & Light Mode</h3>
+        <h3>Dark &amp; Light Mode</h3>
         <p>Beautiful UI with dark and light themes. English and Vietnamese language support.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── Download ─────────────────────────────────────────────────── -->
+  <!-- Lbby Download -->
   <section class="section" id="download" style="background: var(--bg-card); border-radius: 32px; margin: 0 16px; max-width: calc(var(--max-w) + 48px); padding-left: 48px; padding-right: 48px;">
     <div class="section-header">
       <h2>Download Lbby</h2>
       <p>Free to use. Available for Windows, macOS, and Linux.</p>
     </div>
     <div class="download-cards" id="download-cards">
-      <!-- Populated by JS from GitHub releases API -->
       <div class="download-card"><p class="text-muted">Loading releases...</p></div>
     </div>
     <div style="text-align: center; margin-top: 24px;">
@@ -117,104 +139,81 @@
     </div>
   </section>
 
-  <!-- ── Docs ─────────────────────────────────────────────────────── -->
+  <!-- Docs -->
   <section class="section" id="docs">
     <div class="section-header">
-      <h2>Getting Started</h2>
-      <p>From download to your first server in minutes.</p>
+      <h2>Lbby Docs</h2>
+      <p>Get up and running, then master every feature.</p>
     </div>
+
     <div class="docs-content">
-      <h3>Quick Start</h3>
-      <ol style="color: var(--text-muted); font-size: 15px; line-height: 1.8; margin-bottom: 20px; padding-left: 24px;">
-        <li>Download and install Lbby for your platform</li>
-        <li>Open Lbby — the setup wizard will guide you</li>
-        <li>Pick a server type: <strong>Paper</strong> (recommended for most users), <strong>Fabric</strong>, <strong>Forge</strong>, etc.</li>
-        <li>Choose a Minecraft version and loader/build version if needed</li>
-        <li>Set your server name, folder, RAM, and max players</li>
-        <li>Click <strong>Install Server</strong></li>
-        <li>Open the Dashboard and click <strong>Start</strong></li>
-        <li>Open the <strong>Tunnel</strong> tab and start playit.gg</li>
-        <li>Share the public tunnel address with friends</li>
+      <h3>Getting Started</h3>
+      <ol>
+        <li><strong>Install Lbby</strong> — Download the latest release for your platform from the <a href="#download">Download</a> section above. The app is a standalone native binary — no dependencies required.</li>
+        <li><strong>Create Your Server</strong> — Open Lbby and click <strong>New Server</strong>. Choose a name, select a Minecraft version, and pick a server type (Vanilla, Paper, Fabric, Forge, or Spigot). Lbby handles the rest — downloading the JAR, creating the folder structure, and generating configuration files.</li>
+        <li><strong>Start &amp; Connect</strong> — Hit <strong>Start</strong> on your server card. Lbby launches the server and automatically sets up a public address using <strong>playit.gg</strong> — no port forwarding needed. Share the provided address with friends so they can join.</li>
       </ol>
-      <p><strong>That's it:</strong> install → start → tunnel → share.</p>
 
       <h3>Server Types</h3>
-      <p>Lbby supports 11 server types. Here's a quick guide:</p>
       <ul>
-        <li><strong>Paper</strong> — Optimized server with plugin support. Best for most servers.</li>
-        <li><strong>Fabric</strong> — Lightweight modern mod loader. Great for performance mods.</li>
-        <li><strong>Forge</strong> — Classic mod loader with the largest mod ecosystem.</li>
-        <li><strong>Purpur</strong> — Feature-rich Paper fork with extra customization options.</li>
-        <li><strong>Folia</strong> — Multithreaded Paper fork for massive servers (regionalized).</li>
-        <li><strong>NeoForge</strong> — Modern fork of Forge with active development.</li>
-        <li><strong>Bukkit / Spigot</strong> — Original plugin API servers (compiled via BuildTools).</li>
-        <li><strong>SpongeVanilla / SpongeForge</strong> — Standalone Sponge API servers.</li>
-        <li><strong>Vanilla</strong> — Pure Minecraft, no mods or plugins.</li>
+        <li><strong>Vanilla</strong> — The official Minecraft server software. No mods, no plugins — pure gameplay. Best for small friend groups who want the stock experience.</li>
+        <li><strong>Paper</strong> — A high-performance fork of Spigot with additional optimizations and bug fixes. Supports plugins via the Bukkit/Spigot API. The recommended choice for most servers.</li>
+        <li><strong>Fabric</strong> — A lightweight, modern mod loader. Ideal for clientside and serverside mods. Large mod ecosystem with tools like Sodium, Lithium, and Iris.</li>
+        <li><strong>Forge</strong> — The original Minecraft modding platform. Supports large modpacks and complex modding frameworks. Best for heavy modpack servers.</li>
+        <li><strong>Spigot</strong> — A CraftBukkit fork with performance improvements and plugin support. A solid choice for plugin-based servers.</li>
       </ul>
 
       <h3>Player Management</h3>
-      <p>Manage players directly from the app:</p>
-      <ul>
-        <li>View online players with Minecraft head avatars</li>
-        <li>OP / de-OP players</li>
-        <li>Kick, ban, and unban players</li>
-        <li>Teleport one player to another</li>
-      </ul>
+      <p><strong>Whitelist</strong> — Enable the whitelist from the server dashboard to restrict who can join. Add players by their Minecraft username. Whitelisted players are stored in <code>whitelist.json</code>.</p>
+      <p><strong>Ops (Operators)</strong> — Grant operator privileges to trusted players. Ops can run server commands, manage players, and change game settings. Managed through the Ops panel in Lbby.</p>
+      <p><strong>Bans</strong> — Ban players by username or IP address. Banned players are stored in <code>banned-players.json</code> and <code>banned-ips.json</code>. Manage bans from the Players panel.</p>
 
-      <h3>Mods & Modpacks</h3>
-      <p>The Mods page has four sections:</p>
-      <ul>
-        <li><strong>Modpacks</strong> — Install Modrinth <code>.mrpack</code>, paste a Modrinth link, or upload a CurseForge <code>.zip</code></li>
-        <li><strong>Browse Mods</strong> — Search Modrinth and install compatible server mods directly</li>
-        <li><strong>Installed & Updates</strong> — View installed <code>.jar</code> files, check for updates, and update safely</li>
-        <li><strong>Resource Packs</strong> — Add, list, remove, and open the server resource pack folder</li>
-      </ul>
+      <h3>Mods &amp; Plugins</h3>
+      <p><strong>Installing Mods</strong> — For Fabric and Forge servers, drop <code>.jar</code> mod files into the <code>mods</code> folder inside your server directory. Lbby displays the server path in the server settings. Restart the server after adding mods.</p>
+      <p><strong>Installing Plugins</strong> — For Paper and Spigot servers, drop <code>.jar</code> plugin files into the <code>plugins</code> folder. Plugins are loaded automatically on server start. Popular sources: <a href="https://modrinth.com" target="_blank">Modrinth</a>, <a href="https://hangar.papermc.io" target="_blank">Hangar</a>, <a href="https://www.spigotmc.org/resources/" target="_blank">SpigotMC</a>.</p>
+      <p><strong>Modpacks (Forge)</strong> — Forge supports full modpacks. Download a modpack's server files, extract them into your server directory, and ensure the Forge version matches. Lbby will detect and launch the correct JAR.</p>
 
       <h3>Backups</h3>
-      <ul>
-        <li>Create manual ZIP backups of your server</li>
-        <li>Restore from any previous backup</li>
-        <li>Schedule automatic backups (Novice tier and above)</li>
-        <li>Old mod files are backed up before updates in <code>.lbby-backups</code></li>
-      </ul>
+      <p><strong>Automatic Backups</strong> — Lbby can automatically create backups of your world data on a configurable schedule. Enable auto-backups in server settings. Backups are stored locally and can be restored with one click.</p>
+      <p><strong>Manual Backups</strong> — Create a snapshot of your server at any time from the server dashboard. Useful before major changes like mod updates or world edits.</p>
+      <p><strong>Restoring</strong> — Select a backup from the backups list and click <strong>Restore</strong>. The server will stop, the world data will be replaced, and you can restart. Always stop the server before restoring.</p>
 
       <h3>Performance Tips</h3>
       <ul>
-        <li>Use <strong>Settings → Performance → Low CPU</strong> if CPU spikes</li>
-        <li>Keep <strong>Optimized JVM flags</strong> enabled</li>
-        <li>Lower <strong>View Distance</strong> to 6–8</li>
-        <li>Lower <strong>Simulation Distance</strong> to 4–6</li>
-        <li>Use <strong>Pre-generate Chunks</strong> before players explore far from spawn</li>
+        <li><strong>Allocate Enough RAM</strong> — For Vanilla servers with a few players, 2–4 GB is sufficient. Modded servers (Forge/Fabric) may need 4–8 GB. Adjust in server settings. Avoid allocating more than 8 GB unless running large modpacks.</li>
+        <li><strong>Use Paper for Better Performance</strong> — Paper includes hundreds of performance optimizations over Vanilla and Spigot. If you don't need Forge/Fabric mods, Paper is the best choice for a fast, stable server.</li>
+        <li><strong>View Distance</strong> — Lower the view distance in <code>server.properties</code> (default is 10). For weaker hardware, 6–8 chunks is a good balance between performance and visibility.</li>
+        <li><strong>Keep Software Updated</strong> — Always run the latest Minecraft server version and the latest version of Lbby. Updates include performance improvements and security patches.</li>
       </ul>
 
       <h3>playit.gg Troubleshooting</h3>
-      <p>If friends can't join, check these:</p>
-      <ul>
-        <li>Dashboard shows the Minecraft server is <strong>Online</strong></li>
-        <li>Tunnel tab shows playit.gg is running</li>
-        <li>Tunnel type is <strong>Minecraft Java / TCP</strong></li>
-        <li>Local tunnel port matches <code>server-port</code> in <code>server.properties</code> (usually <code>25565</code>)</li>
-        <li>Use the exact address shown by Lbby, including the port if shown</li>
-      </ul>
+      <p><strong>What is playit.gg?</strong> — playit.gg is a tunneling service that gives your local server a public IP address without port forwarding. Lbby integrates playit.gg automatically — you don't need to install or configure it separately.</p>
+      <p><strong>"Failed to start tunnel"</strong> — This usually means the playit.gg binary is missing or outdated. Lbby manages this for you, but if you see this error: stop the server, restart Lbby, and try again. The app will re-download the binary if needed.</p>
+      <p><strong>Friends Can't Connect</strong> — Make sure you're sharing the full address from Lbby (it looks like <code>xx.playit.gg:PORT</code>). The server must be running. If the address changed, re-share it — playit.gg addresses can change between sessions.</p>
+      <p><strong>High Latency</strong> — playit.gg routes traffic through their servers, which adds some latency. If you and your friends are on the same local network, direct LAN connection (<code>localhost</code> or local IP) will be faster.</p>
+      <p><strong>playit.gg Account</strong> — Using playit.gg through Lbby does not require a playit.gg account. For advanced features (custom domains, static IPs), you can create an account at <a href="https://playit.gg" target="_blank">playit.gg</a>.</p>
     </div>
   </section>
 
-  <!-- ── Changelog ────────────────────────────────────────────────── -->
+  <!-- Changelog -->
   <section class="section" id="changelog">
     <div class="section-header">
-      <h2>Changelog</h2>
-      <p>What's new in Lbby.</p>
+      <h2>Lbby Changelog</h2>
+      <p>What's new in recent releases.</p>
     </div>
-    <div id="changelog-list" style="max-width: 760px; margin: 0 auto;">
-      <p class="text-muted text-center">Loading changelog...</p>
+    <div class="changelog-list" id="changelog-list">
+      <p class="text-muted">Loading changelog...</p>
+    </div>
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="https://github.com/aindrewkwk/lbby-releases/releases" target="_blank" class="btn btn-secondary btn-sm">View All Releases</a>
     </div>
   </section>
 
-  <!-- ── Contact ──────────────────────────────────────────────────── -->
+  <!-- Contact -->
   <section class="section" id="contact">
     <div class="section-header">
-      <h2>Community</h2>
-      <p>Lbby is a community project. Join the conversation.</p>
+      <h2>Get in Touch</h2>
+      <p>Have questions, feedback, or need help? Reach out to us.</p>
     </div>
     <div class="contact-links">
       <a href="https://discord.gg/WgyYK623" target="_blank" class="contact-card">
@@ -228,17 +227,18 @@
         <span class="icon">📦</span>
         <div>
           <div class="label">GitHub</div>
-          <div class="sub">Source code & issues</div>
+          <div class="sub">Source code &amp; issues</div>
         </div>
       </a>
     </div>
   </section>
 
-  <!-- ── Footer ───────────────────────────────────────────────────── -->
+  <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2026 R Studio. All rights reserved.</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="js/releases.js"></script>
 </body>

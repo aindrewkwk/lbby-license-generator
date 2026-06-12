@@ -301,6 +301,13 @@ img { max-width: 100%; height: auto; }
   animation: heroLogoFloat 6s ease-in-out infinite;
 }
 
+/* Studio hero — larger logo for R Studio branding */
+.hero-studio .hero-logo {
+  height: 120px;
+  margin-bottom: 32px;
+  filter: drop-shadow(0 0 60px var(--accent-glow-strong));
+}
+
 @keyframes heroLogoFloat {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-8px); }
@@ -319,6 +326,47 @@ img { max-width: 100%; height: auto; }
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Studio hero — punchier, shorter tagline */
+.hero-studio h1 {
+  font-size: clamp(36px, 6vw, 56px);
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.hero-studio p {
+  font-size: 19px;
+  max-width: 480px;
+}
+
+/* Studio badge — "by R Studio" chip above product names */
+.studio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  background: rgba(124,58,237,0.10);
+  border: 1px solid rgba(124,58,237,0.18);
+  color: var(--accent-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.studio-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow-strong);
 }
 
 .hero p {
@@ -515,6 +563,193 @@ img { max-width: 100%; height: auto; }
   font-size: 14px;
   color: var(--text-muted);
   line-height: 1.55;
+}
+
+/* ── Products Grid ──────────────────────────────────────────────────── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Accent gradient edge on hover */
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--accent-light));
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+/* Ambient glow on hover */
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.product-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(124,58,237,0.10);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-card:hover::after {
+  opacity: 1;
+}
+
+.product-card .product-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--accent-glow) 0%, rgba(124,58,237,0.06) 100%);
+  border: 1px solid rgba(124,58,237,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card .product-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.product-card .product-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.product-card h3 {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card .product-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-light);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: gap 0.25s var(--ease-out), color 0.2s;
+  position: relative;
+  z-index: 1;
+}
+
+.product-card .product-cta:hover {
+  color: var(--text);
+  gap: 10px;
+}
+
+.product-card .product-cta::after {
+  content: '\2192';
+  transition: transform 0.25s var(--ease-out);
+}
+
+.product-card .product-cta:hover::after {
+  transform: translateX(3px);
+}
+
+/* ── Section Divider ────────────────────────────────────────────────── */
+.section-divider {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  border: none;
+}
+
+.section-divider::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border) 20%,
+    rgba(124,58,237,0.15) 50%,
+    var(--border) 80%,
+    transparent 100%
+  );
+}
+
+/* ── Lbby Section ───────────────────────────────────────────────────── */
+.lbby-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle violet ambient glow behind the Lbby section */
+.lbby-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(124,58,237,0.06) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* ── Section Anchoring & Snap ───────────────────────────────────────── */
+.hero,
+.lbby-section {
+  scroll-snap-align: start;
+}
+
+/* Anchor link smooth offset for fixed nav */
+[id] {
+  scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
 /* ── Download ────────────────────────────────────────────────────────── */
@@ -825,10 +1060,11 @@ img { max-width: 100%; height: auto; }
 }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
 
-/* Firefox scrollbar */
+/* Firefox scrollbar + scroll snap */
 html {
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.10) var(--bg);
+  scroll-snap-type: y proximity;
 }
 
 /* ── Focus Styles ────────────────────────────────────────────────────── */
@@ -883,6 +1119,29 @@ html {
     gap: 14px;
   }
 
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .product-card {
+    padding: 30px 24px;
+  }
+
+  .product-card .product-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+  }
+
+  .hero-studio h1 {
+    letter-spacing: -1.2px;
+  }
+
+  .hero-studio .hero-logo {
+    height: 96px;
+  }
+
   .download-cards {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -906,6 +1165,32 @@ html {
   .nav-brand span { display: none; }
 
   .hero-logo { height: 64px; }
+
+  .hero-studio .hero-logo { height: 80px; }
+
+  .hero-studio h1 {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+  }
+
+  .studio-badge {
+    font-size: 11px;
+    padding: 4px 12px;
+  }
+
+  .product-card {
+    padding: 24px 20px;
+  }
+
+  .product-card .product-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+  }
+
+  .product-card h3 {
+    font-size: 19px;
+  }
 
   .feature-card { padding: 22px; }
 
