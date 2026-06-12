@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,12 +18,15 @@
     </a>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
     <div class="nav-links">
-      <a href="#products">Products</a>
-      <a href="#lbby">Lbby</a>
-      <a href="#docs">Docs</a>
-      <a href="#changelog">Changelog</a>
-      <a href="/license">License</a>
-      <a href="#contact">Contact</a>
+      <a href="#products" data-i18n="nav.products">Sản phẩm</a>
+      <a href="#lbby" data-i18n="nav.lbby">Lbby</a>
+      <a href="#docs" data-i18n="nav.docs">Tài liệu</a>
+      <a href="#changelog" data-i18n="nav.changelog">Nhật ký</a>
+      <a href="/license" data-i18n="nav.license">Giấy phép</a>
+      <a href="#contact" data-i18n="nav.contact">Liên hệ</a>
+      <button class="lang-toggle" onclick="toggleLang()" title="Switch language">
+        <span data-i18n="nav.lang_label">EN</span>
+      </button>
     </div>
   </nav>
 
@@ -31,13 +34,13 @@
   <section class="hero" id="hero">
     <div class="hero-content">
       <img src="assets/lbby-r-studio.png" alt="R Studio" class="hero-logo">
-      <h1>Software<br><span>by design</span></h1>
-      <p>We are R Studio — a software studio crafting powerful, elegant tools for gamers and creators. We believe great software should feel effortless.</p>
+      <h1><span data-i18n="hero.tagline">Một phần mềm</span><br><span data-i18n="hero.tagline_span">được thiết kế</span></h1>
+      <p data-i18n="hero.description">Chúng tôi là R Studio — studio phần mềm tạo ra những công cụ mạnh mẽ, tinh tế dành cho game thủ và người sáng tạo. Chúng tôi tin rằng phần mềm tuyệt vời phải mang lại trải nghiệm nhẹ nhàng.</p>
       <div class="hero-buttons">
-        <a href="#products" class="btn btn-primary">
-          Explore Our Products
+        <a href="#products" class="btn btn-primary" data-i18n="hero.cta_primary">
+          Khám phá sản phẩm
         </a>
-        <a href="#lbby" class="btn btn-secondary">Lbby</a>
+        <a href="#lbby" class="btn btn-secondary" data-i18n="hero.cta_secondary">Lbby</a>
       </div>
     </div>
   </section>
@@ -45,15 +48,15 @@
   <!-- Products -->
   <section class="section" id="products">
     <div class="section-header">
-      <h2>Our Products</h2>
-      <p>Thoughtfully built tools designed to solve real problems.</p>
+      <h2 data-i18n="products.title">Sản phẩm của chúng tôi</h2>
+      <p data-i18n="products.subtitle">Những công cụ được xây dựng tỉ mỉ, giải quyết vấn đề thực tế.</p>
     </div>
     <div class="features-grid" style="grid-template-columns: 1fr; max-width: 520px; margin: 0 auto;">
       <a href="#lbby" class="feature-card" style="text-decoration: none; color: inherit; text-align: center; padding: 48px 32px; cursor: pointer;">
         <img src="assets/lbby-app-icon-square.png" alt="Lbby" style="width: 72px; height: 72px; border-radius: 16px; margin: 0 auto 20px; display: block;">
         <h3 style="font-size: 22px; margin-bottom: 8px;">Lbby</h3>
-        <p style="color: var(--text-muted); font-size: 15px; max-width: 360px; margin: 0 auto;">A modern Minecraft server host. Install, manage, and share — all from one native app. No port forwarding, no terminal, no headaches.</p>
-        <span style="display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--accent);">Learn more →</span>
+        <p style="color: var(--text-muted); font-size: 15px; max-width: 360px; margin: 0 auto;" data-i18n="products.lbby_desc">Một trình quản lý máy chủ Minecraft hiện đại. Cài đặt, quản lý và chia sẻ — tất cả trong một ứng dụng gốc. Không cần cấu hình mạng, không cần dòng lệnh, không phiền phức.</p>
+        <span style="display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 600; color: var(--accent);" data-i18n="products.learn_more">Tìm hiểu thêm →</span>
       </a>
     </div>
   </section>
@@ -63,61 +66,61 @@
     <div class="section-header">
       <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 8px;">
         <img src="assets/lbby-app-icon-square.png" alt="Lbby" style="width: 48px; height: 48px; border-radius: 12px;">
-        <h2 style="margin: 0;">Lbby</h2>
+        <h2 style="margin: 0;" data-i18n="lbby.title">Lbby</h2>
       </div>
-      <p>Minecraft servers made simple. By R Studio.</p>
+      <p data-i18n="lbby.subtitle">Máy chủ Minecraft trở nên đơn giản. Bởi R Studio.</p>
     </div>
 
     <!-- Lbby Features -->
     <div class="section-header" style="margin-top: 16px;">
-      <h3 style="font-size: 20px;">Everything you need</h3>
-      <p>From zero to a running server in under a minute. No terminal, no config files, no headaches.</p>
+      <h3 style="font-size: 20px;" data-i18n="lbby.features_title">Tất cả những gì bạn cần</h3>
+      <p data-i18n="lbby.features_subtitle">Từ con số không đến máy chủ đang chạy chỉ trong chưa đầy một phút. Không cần dòng lệnh, không cần file cấu hình, không phiền phức.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">🧩</div>
-        <h3>11 Server Types</h3>
-        <p>Vanilla, Paper, Folia, Purpur, Bukkit, Spigot, Forge, Fabric, NeoForge, SpongeVanilla, and SpongeForge — all from a guided setup wizard.</p>
+        <h3 data-i18n="features.server_types">11 Loại máy chủ</h3>
+        <p data-i18n="features.server_types_desc">Vanilla, Paper, Folia, Purpur, Bukkit, Spigot, Forge, Fabric, NeoForge, SpongeVanilla và SpongeForge — tất cả đều có trong trình hướng dẫn cài đặt.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🌐</div>
-        <h3>Play Anywhere</h3>
-        <p>Built-in playit.gg tunnel so friends can join from anywhere. No port forwarding or static IP needed.</p>
+        <h3 data-i18n="features.play_anywhere">Chơi mọi nơi</h3>
+        <p data-i18n="features.play_anywhere_desc">Tích hợp sẵn playit.gg để bạn bè có thể tham gia từ bất kỳ đâu. Không cần mở cổng mạng hay IP tĩnh.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📡</div>
-        <h3>Remote Control</h3>
-        <p>Manage your server from your phone or another PC. LAN + Cloudflare Quick Tunnel with secure token authentication.</p>
+        <h3 data-i18n="features.remote_control">Điều khiển từ xa</h3>
+        <p data-i18n="features.remote_control_desc">Quản lý máy chủ từ điện thoại hoặc máy tính khác. Mạng LAN + Cloudflare Quick Tunnel với xác thực token bảo mật.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📦</div>
-        <h3>Mods &amp; Plugins</h3>
-        <p>Browse Modrinth, install mods &amp; plugins, modpack support (Modrinth + CurseForge), and automatic update checker.</p>
+        <h3 data-i18n="features.mods_plugins">Mod &amp; Plugin</h3>
+        <p data-i18n="features.mods_plugins_desc">Duyệt Modrinth, cài đặt mod và plugin, hỗ trợ modpack (Modrinth + CurseForge), cùng trình kiểm tra cập nhật tự động.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💾</div>
-        <h3>Backups</h3>
-        <p>Create ZIP backups, restore from backups, and schedule automatic backups. Never lose your world again.</p>
+        <h3 data-i18n="features.backups">Sao lưu</h3>
+        <p data-i18n="features.backups_desc">Tạo bản sao lưu ZIP, khôi phục từ bản sao lưu và lên lịch sao lưu tự động. Không bao giờ mất thế giới của bạn nữa.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">⚡</div>
-        <h3>Performance</h3>
-        <p>JVM optimization presets, TPS monitoring, chunk pre-generation, and customizable dashboard with live ring meters.</p>
+        <h3 data-i18n="features.performance">Hiệu suất</h3>
+        <p data-i18n="features.performance_desc">Tối ưu JVM, giám sát TPS, tạo trước chunk và bảng điều khiển tùy chỉnh với đồng hồ vòng trực tiếp.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">👥</div>
-        <h3>Player Admin</h3>
-        <p>Online player list with Minecraft head avatars. OP, kick, ban, unban, and teleport — all from the app.</p>
+        <h3 data-i18n="features.player_admin">Quản lý người chơi</h3>
+        <p data-i18n="features.player_admin_desc">Danh sách người chơi trực tuyến với avatar đầu Minecraft. OP, kick, ban, unban và teleport — tất cả từ ứng dụng.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🖥️</div>
-        <h3>Live Console</h3>
-        <p>Real-time server console with command input. Monitor players, TPS, RAM, CPU, and disk from the dashboard.</p>
+        <h3 data-i18n="features.live_console">Console trực tiếp</h3>
+        <p data-i18n="features.live_console_desc">Bảng điều khiển máy chủ thời gian thực với khả năng nhập lệnh. Giám sát người chơi, TPS, RAM, CPU và ổ đĩa từ bảng dashboard.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🎨</div>
-        <h3>Dark &amp; Light Mode</h3>
-        <p>Beautiful UI with dark and light themes. English and Vietnamese language support.</p>
+        <h3 data-i18n="features.dark_light">Chế độ tối &amp; sáng</h3>
+        <p data-i18n="features.dark_light_desc">Giao diện đẹp mắt với chủ đề tối và sáng. Hỗ trợ ngôn ngữ tiếng Anh và tiếng Việt.</p>
       </div>
     </div>
   </section>
@@ -125,109 +128,109 @@
   <!-- Lbby Download -->
   <section class="section" id="download" style="background: var(--bg-card); border-radius: 32px; margin: 0 16px; max-width: calc(var(--max-w) + 48px); padding-left: 48px; padding-right: 48px;">
     <div class="section-header">
-      <h2>Download Lbby</h2>
-      <p>Free to use. Available for Windows, macOS, and Linux.</p>
+      <h2 data-i18n="download.title">Tải Lbby</h2>
+      <p data-i18n="download.subtitle">Miễn phí sử dụng. Có sẵn cho Windows, macOS và Linux.</p>
     </div>
     <div class="download-cards" id="download-cards">
       <div class="download-card"><p class="text-muted">Loading releases...</p></div>
     </div>
     <div style="text-align: center; margin-top: 24px;">
-      <a href="https://github.com/aindrewkwk/lbby-releases/releases" target="_blank" class="btn btn-secondary btn-sm">View All Releases on GitHub</a>
+      <a href="https://github.com/aindrewkwk/lbby-releases/releases" target="_blank" class="btn btn-secondary btn-sm" data-i18n="download.github_releases">Xem tất cả phiên bản trên GitHub</a>
     </div>
-    <div style="margin-top: 20px; padding: 16px; background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-muted); text-align: center;">
-      <strong style="color: var(--yellow);">⚠ Beta Notice:</strong> The app is currently unsigned. On macOS, right-click → Open → Open. On Windows, click "More info → Run anyway".
+    <div style="margin-top: 20px; padding: 16px; background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-muted); text-align: center;" data-i18n="download.beta_notice">
+      <strong style="color: var(--yellow);">⚠ Lưu ý Beta:</strong> Ứng dụng hiện chưa được ký số. Trên macOS, nhấn chuột phải → Mở → Mở. Trên Windows, nhấn "Thông tin khác → Chạy anyway".
     </div>
   </section>
 
   <!-- Docs -->
   <section class="section" id="docs">
     <div class="section-header">
-      <h2>Lbby Docs</h2>
-      <p>Get up and running, then master every feature.</p>
+      <h2 data-i18n="docs.title">Tài liệu Lbby</h2>
+      <p data-i18n="docs.subtitle">Bắt đầu nhanh, rồi làm chủ mọi tính năng.</p>
     </div>
 
     <div class="docs-content">
-      <h3>Getting Started</h3>
+      <h3 data-i18n="docs.getting_started">Bắt đầu</h3>
       <ol>
-        <li><strong>Install Lbby</strong> — Download the latest release for your platform from the <a href="#download">Download</a> section above. The app is a standalone native binary — no dependencies required.</li>
-        <li><strong>Create Your Server</strong> — Open Lbby and click <strong>New Server</strong>. Choose a name, select a Minecraft version, and pick a server type (Vanilla, Paper, Fabric, Forge, or Spigot). Lbby handles the rest — downloading the JAR, creating the folder structure, and generating configuration files.</li>
-        <li><strong>Start &amp; Connect</strong> — Hit <strong>Start</strong> on your server card. Lbby launches the server and automatically sets up a public address using <strong>playit.gg</strong> — no port forwarding needed. Share the provided address with friends so they can join.</li>
+        <li data-i18n="docs.gs_1"><strong>Cài đặt Lbby</strong> — Tải phiên bản mới nhất cho hệ điều hành của bạn từ mục <a href="#download">Tải về</a> phía trên. Ứng dụng là file chạy độc lập — không cần cài đặt thêm gì.</li>
+        <li data-i18n="docs.gs_2"><strong>Tạo máy chủ</strong> — Mở Lbby và nhấn <strong>Máy chủ mới</strong>. Chọn tên, phiên bản Minecraft và loại máy chủ (Vanilla, Paper, Fabric, Forge hoặc Spigot). Lbby sẽ tự động tải JAR, tạo cấu trúc thư mục và file cấu hình.</li>
+        <li data-i18n="docs.gs_3"><strong>Khởi động &amp; Kết nối</strong> — Nhấn <strong>Khởi động</strong> trên thẻ máy chủ. Lbby sẽ chạy máy chủ và tự động thiết lập địa chỉ công khai qua <strong>playit.gg</strong> — không cần mở cổng mạng. Chia sẻ địa chỉ đó cho bạn bè để họ tham gia.</li>
       </ol>
 
-      <h3>Server Types</h3>
+      <h3 data-i18n="docs.server_types">Các loại máy chủ</h3>
       <ul>
-        <li><strong>Vanilla</strong> — The official Minecraft server software. No mods, no plugins — pure gameplay. Best for small friend groups who want the stock experience.</li>
-        <li><strong>Paper</strong> — A high-performance fork of Spigot with additional optimizations and bug fixes. Supports plugins via the Bukkit/Spigot API. The recommended choice for most servers.</li>
-        <li><strong>Fabric</strong> — A lightweight, modern mod loader. Ideal for clientside and serverside mods. Large mod ecosystem with tools like Sodium, Lithium, and Iris.</li>
-        <li><strong>Forge</strong> — The original Minecraft modding platform. Supports large modpacks and complex modding frameworks. Best for heavy modpack servers.</li>
-        <li><strong>Spigot</strong> — A CraftBukkit fork with performance improvements and plugin support. A solid choice for plugin-based servers.</li>
+        <li data-i18n="docs.st_vanilla"><strong>Vanilla</strong> — Phần mềm máy chủ chính thức của Minecraft. Không mod, không plugin — gameplay thuần túy. Phù hợp nhất cho nhóm bạn nhỏ muốn trải nghiệm gốc.</li>
+        <li data-i18n="docs.st_paper"><strong>Paper</strong> — Bản fork hiệu suất cao của Spigot với tối ưu và sửa lỗi bổ sung. Hỗ trợ plugin qua Bukkit/Spigot API. Lựa chọn được khuyên dùng cho hầu hết máy chủ.</li>
+        <li data-i18n="docs.st_fabric"><strong>Fabric</strong> — Trình tải mod nhẹ, hiện đại. Lý tưởng cho mod phía client và server. Hệ sinh thái mod lớn với các công cụ như Sodium, Lithium và Iris.</li>
+        <li data-i18n="docs.st_forge"><strong>Forge</strong> — Nền tảng modding gốc của Minecraft. Hỗ trợ modpack lớn và framework modding phức tạp. Phù hợp nhất cho máy chủ modpack nặng.</li>
+        <li data-i18n="docs.st_spigot"><strong>Spigot</strong> — Bản fork CraftBukkit với cải tiến hiệu suất và hỗ trợ plugin. Lựa chọn tốt cho máy chủ dựa trên plugin.</li>
       </ul>
 
-      <h3>Player Management</h3>
-      <p><strong>Whitelist</strong> — Enable the whitelist from the server dashboard to restrict who can join. Add players by their Minecraft username. Whitelisted players are stored in <code>whitelist.json</code>.</p>
-      <p><strong>Ops (Operators)</strong> — Grant operator privileges to trusted players. Ops can run server commands, manage players, and change game settings. Managed through the Ops panel in Lbby.</p>
-      <p><strong>Bans</strong> — Ban players by username or IP address. Banned players are stored in <code>banned-players.json</code> and <code>banned-ips.json</code>. Manage bans from the Players panel.</p>
+      <h3 data-i18n="docs.player_management">Quản lý người chơi</h3>
+      <p data-i18n="docs.pm_whitelist"><strong>Whitelist</strong> — Bật whitelist từ bảng dashboard để giới hạn ai được tham gia. Thêm người chơi theo tên Minecraft. Danh sách whitelist lưu trong <code>whitelist.json</code>.</p>
+      <p data-i18n="docs.pm_ops"><strong>Ops (Operators)</strong> — Cấp quyền quản trị cho người chơi đáng tin cậy. Ops có thể chạy lệnh máy chủ, quản lý người chơi và thay đổi cài đặt game. Quản lý qua bảng Ops trong Lbby.</p>
+      <p data-i18n="docs.pm_bans"><strong>Bans</strong> — Cấm người chơi theo tên hoặc địa chỉ IP. Danh sách cấm lưu trong <code>banned-players.json</code> và <code>banned-ips.json</code>. Quản lý từ bảng Người chơi.</p>
 
-      <h3>Mods &amp; Plugins</h3>
-      <p><strong>Installing Mods</strong> — For Fabric and Forge servers, drop <code>.jar</code> mod files into the <code>mods</code> folder inside your server directory. Lbby displays the server path in the server settings. Restart the server after adding mods.</p>
-      <p><strong>Installing Plugins</strong> — For Paper and Spigot servers, drop <code>.jar</code> plugin files into the <code>plugins</code> folder. Plugins are loaded automatically on server start. Popular sources: <a href="https://modrinth.com" target="_blank">Modrinth</a>, <a href="https://hangar.papermc.io" target="_blank">Hangar</a>, <a href="https://www.spigotmc.org/resources/" target="_blank">SpigotMC</a>.</p>
-      <p><strong>Modpacks (Forge)</strong> — Forge supports full modpacks. Download a modpack's server files, extract them into your server directory, and ensure the Forge version matches. Lbby will detect and launch the correct JAR.</p>
+      <h3 data-i18n="docs.mods_plugins">Mod &amp; Plugin</h3>
+      <p data-i18n="docs.mp_mods"><strong>Cài đặt Mod</strong> — Đối với máy chủ Fabric và Forge, thả file mod <code>.jar</code> vào thư mục <code>mods</code> trong thư mục máy chủ. Lbby hiển thị đường dẫn máy chủ trong cài đặt. Khởi động lại máy chủ sau khi thêm mod.</p>
+      <p data-i18n="docs.mp_plugins"><strong>Cài đặt Plugin</strong> — Đối với máy chủ Paper và Spigot, thả file plugin <code>.jar</code> vào thư mục <code>plugins</code>. Plugin được tải tự động khi khởi động máy chủ. Nguồn phổ biến: <a href="https://modrinth.com" target="_blank">Modrinth</a>, <a href="https://hangar.papermc.io" target="_blank">Hangar</a>, <a href="https://www.spigotmc.org/resources/" target="_blank">SpigotMC</a>.</p>
+      <p data-i18n="docs.mp_modpacks"><strong>Modpack (Forge)</strong> — Forge hỗ trợ modpack đầy đủ. Tải file server của modpack, giải nén vào thư mục máy chủ và đảm bảo phiên bản Forge khớp. Lbby sẽ tự động phát hiện và chạy JAR phù hợp.</p>
 
-      <h3>Backups</h3>
-      <p><strong>Automatic Backups</strong> — Lbby can automatically create backups of your world data on a configurable schedule. Enable auto-backups in server settings. Backups are stored locally and can be restored with one click.</p>
-      <p><strong>Manual Backups</strong> — Create a snapshot of your server at any time from the server dashboard. Useful before major changes like mod updates or world edits.</p>
-      <p><strong>Restoring</strong> — Select a backup from the backups list and click <strong>Restore</strong>. The server will stop, the world data will be replaced, and you can restart. Always stop the server before restoring.</p>
+      <h3 data-i18n="docs.backups">Sao lưu</h3>
+      <p data-i18n="docs.bk_auto"><strong>Sao lưu tự động</strong> — Lbby có thể tự động sao lưu dữ liệu thế giới theo lịch trình tùy chỉnh. Bật sao lưu tự động trong cài đặt máy chủ. Bản sao lưu được lưu cục bộ và có thể khôi phục chỉ bằng một cú nhấp.</p>
+      <p data-i18n="docs.bk_manual"><strong>Sao lưu thủ công</strong> — Tạo bản chụp nhanh máy chủ bất kỳ lúc nào từ bảng dashboard. Hữu ích trước khi thực hiện thay đổi lớn như cập nhật mod hoặc chỉnh sửa thế giới.</p>
+      <p data-i18n="docs.bk_restore"><strong>Khôi phục</strong> — Chọn một bản sao lưu từ danh sách và nhấn <strong>Khôi phục</strong>. Máy chủ sẽ dừng, dữ liệu thế giới được thay thế và bạn có thể khởi động lại. Luôn dừng máy chủ trước khi khôi phục.</p>
 
-      <h3>Performance Tips</h3>
+      <h3 data-i18n="docs.performance">Mẹo hiệu suất</h3>
       <ul>
-        <li><strong>Allocate Enough RAM</strong> — For Vanilla servers with a few players, 2–4 GB is sufficient. Modded servers (Forge/Fabric) may need 4–8 GB. Adjust in server settings. Avoid allocating more than 8 GB unless running large modpacks.</li>
-        <li><strong>Use Paper for Better Performance</strong> — Paper includes hundreds of performance optimizations over Vanilla and Spigot. If you don't need Forge/Fabric mods, Paper is the best choice for a fast, stable server.</li>
-        <li><strong>View Distance</strong> — Lower the view distance in <code>server.properties</code> (default is 10). For weaker hardware, 6–8 chunks is a good balance between performance and visibility.</li>
-        <li><strong>Keep Software Updated</strong> — Always run the latest Minecraft server version and the latest version of Lbby. Updates include performance improvements and security patches.</li>
+        <li data-i18n="docs.pt_ram"><strong>Cấp đủ RAM</strong> — Đối với máy chủ Vanilla với vài người chơi, 2–4 GB là đủ. Máy chủ mod (Forge/Fabric) có thể cần 4–8 GB. Điều chỉnh trong cài đặt máy chủ. Không nên cấp quá 8 GB trừ khi chạy modpack lớn.</li>
+        <li data-i18n="docs.pt_paper"><strong>Dùng Paper để tối ưu hiệu suất</strong> — Paper bao gồm hàng trăm tối ưu hiệu suất so với Vanilla và Spigot. Nếu không cần mod Forge/Fabric, Paper là lựa chọn tốt nhất cho máy chủ nhanh và ổn định.</li>
+        <li data-i18n="docs.pt_distance"><strong>Khoảng nhìn</strong> — Giảm khoảng nhìn trong <code>server.properties</code> (mặc định là 10). Đối với phần cứng yếu, 6–8 chunk là mức cân bằng tốt giữa hiệu suất và tầm nhìn.</li>
+        <li data-i18n="docs.pt_update"><strong>Luôn cập nhật</strong> — Luôn chạy phiên bản Minecraft server mới nhất và phiên bản Lbby mới nhất. Các bản cập nhật bao gồm cải tiến hiệu suất và vá bảo mật.</li>
       </ul>
 
-      <h3>playit.gg Troubleshooting</h3>
-      <p><strong>What is playit.gg?</strong> — playit.gg is a tunneling service that gives your local server a public IP address without port forwarding. Lbby integrates playit.gg automatically — you don't need to install or configure it separately.</p>
-      <p><strong>"Failed to start tunnel"</strong> — This usually means the playit.gg binary is missing or outdated. Lbby manages this for you, but if you see this error: stop the server, restart Lbby, and try again. The app will re-download the binary if needed.</p>
-      <p><strong>Friends Can't Connect</strong> — Make sure you're sharing the full address from Lbby (it looks like <code>xx.playit.gg:PORT</code>). The server must be running. If the address changed, re-share it — playit.gg addresses can change between sessions.</p>
-      <p><strong>High Latency</strong> — playit.gg routes traffic through their servers, which adds some latency. If you and your friends are on the same local network, direct LAN connection (<code>localhost</code> or local IP) will be faster.</p>
-      <p><strong>playit.gg Account</strong> — Using playit.gg through Lbby does not require a playit.gg account. For advanced features (custom domains, static IPs), you can create an account at <a href="https://playit.gg" target="_blank">playit.gg</a>.</p>
+      <h3 data-i18n="docs.playit_troubleshooting">Khắc phục sự cố playit.gg</h3>
+      <p data-i18n="docs.ptg_what"><strong>playit.gg là gì?</strong> — playit.gg là dịch vụ tunnel cung cấp địa chỉ IP công khai cho máy chủ cục bộ mà không cần mở cổng mạng. Lbby tích hợp playit.gg tự động — bạn không cần cài đặt hay cấu hình riêng.</p>
+      <p data-i18n="docs.ptg_failed"><strong>"Không khởi động được tunnel"</strong> — Thường do file playit.gg bị thiếu hoặc cũ. Lbby quản lý việc này, nhưng nếu gặp lỗi: dừng máy chủ, khởi động lại Lbby và thử lại. Ứng dụng sẽ tự tải lại file nếu cần.</p>
+      <p data-i18n="docs.ptg_cant_join"><strong>Bạn bè không thể kết nối</strong> — Đảm bảo bạn chia sẻ đầy đủ địa chỉ từ Lbby (dạng <code>xx.playit.gg:PORT</code>). Máy chủ phải đang chạy. Nếu địa chỉ thay đổi, chia sẻ lại — địa chỉ playit.gg có thể thay đổi giữa các phiên.</p>
+      <p data-i18n="docs.ptg_latency"><strong>Độ trễ cao</strong> — playit.gg định tuyến lưu lượng qua server của họ, gây thêm độ trễ. Nếu bạn và bạn bè cùng mạng nội bộ, kết nối LAN trực tiếp (<code>localhost</code> hoặc IP nội bộ) sẽ nhanh hơn.</p>
+      <p data-i18n="docs.ptg_account"><strong>Tài khoản playit.gg</strong> — Sử dụng playit.gg qua Lbby không cần tài khoản playit.gg. Để có tính năng nâng cao (tên miền tùy chỉnh, IP tĩnh), bạn có thể tạo tài khoản tại <a href="https://playit.gg" target="_blank">playit.gg</a>.</p>
     </div>
   </section>
 
   <!-- Changelog -->
   <section class="section" id="changelog">
     <div class="section-header">
-      <h2>Lbby Changelog</h2>
-      <p>What's new in recent releases.</p>
+      <h2 data-i18n="changelog.title">Nhật ký Lbby</h2>
+      <p data-i18n="changelog.subtitle">Những gì mới trong các phiên bản gần đây.</p>
     </div>
     <div class="changelog-list" id="changelog-list">
       <p class="text-muted">Loading changelog...</p>
     </div>
     <div style="text-align: center; margin-top: 24px;">
-      <a href="https://github.com/aindrewkwk/lbby-releases/releases" target="_blank" class="btn btn-secondary btn-sm">View All Releases</a>
+      <a href="https://github.com/aindrewkwk/lbby-releases/releases" target="_blank" class="btn btn-secondary btn-sm" data-i18n="changelog.all_releases">Xem tất cả phiên bản</a>
     </div>
   </section>
 
   <!-- Contact -->
   <section class="section" id="contact">
     <div class="section-header">
-      <h2>Get in Touch</h2>
-      <p>Have questions, feedback, or need help? Reach out to us.</p>
+      <h2 data-i18n="contact.title">Liên hệ</h2>
+      <p data-i18n="contact.subtitle">Có câu hỏi, phản hồi hay cần hỗ trợ? Hãy liên hệ với chúng tôi.</p>
     </div>
     <div class="contact-links">
       <a href="https://discord.gg/WgyYK623" target="_blank" class="contact-card">
         <span class="icon">💬</span>
         <div>
-          <div class="label">Discord</div>
-          <div class="sub">Join our community</div>
+          <div class="label" data-i18n="contact.discord">Discord</div>
+          <div class="sub" data-i18n="contact.discord_sub">Tham gia cộng đồng</div>
         </div>
       </a>
       <a href="https://github.com/aindrewkwk/lbby-app" target="_blank" class="contact-card">
         <span class="icon">📦</span>
         <div>
-          <div class="label">GitHub</div>
-          <div class="sub">Source code &amp; issues</div>
+          <div class="label" data-i18n="contact.github">GitHub</div>
+          <div class="sub" data-i18n="contact.github_sub">Mã nguồn &amp; vấn đề</div>
         </div>
       </a>
     </div>
@@ -235,10 +238,11 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2026 R Studio. All rights reserved.</p>
+    <p data-i18n="footer.copyright">&copy; 2026 R Studio. Mọi quyền được bảo lưu.</p>
   </footer>
 
   <!-- Scripts -->
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script src="js/releases.js"></script>
 </body>

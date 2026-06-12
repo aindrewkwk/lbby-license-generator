@@ -226,6 +226,17 @@ img { max-width: 100%; height: auto; }
   }
 
   .nav-links a.active::after { display: none; }
+
+  /* Language toggle in mobile menu */
+  .nav-links .lang-toggle {
+    display: flex;
+    width: calc(100% - 32px);
+    height: 44px;
+    margin: 8px 16px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    justify-content: center;
+  }
 }
 
 /* ── Hero ────────────────────────────────────────────────────────────── */
@@ -1072,6 +1083,30 @@ html {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* ── Language Toggle ───────────────────────────────────────────────── */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.lang-toggle:hover {
+  background: rgba(255,255,255,0.12);
+  color: var(--text);
+  border-color: var(--border-hover);
 }
 
 /* ── Responsive Tweaks ───────────────────────────────────────────────── */
