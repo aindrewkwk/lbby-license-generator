@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>License Generator — R Studio</title>
   <meta name="description" content="Lbby License Generator by R Studio. Generate and manage license keys.">
-  <link rel="icon" href="../assets/lbby-r-studio.png" type="image/png">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="/assets/lbby-r-studio.png" type="image/png">
+  <link rel="stylesheet" href="/css/style.css">
   <style>
     .license-container { max-width: 900px; margin: 0 auto; padding: 100px 24px 60px; }
     .license-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; }
@@ -33,17 +33,20 @@
   <!-- ── Nav ──────────────────────────────────────────────────────── -->
   <nav class="nav">
     <a href="/" class="nav-brand">
-      <img src="../assets/lbby-r-studio.png" alt="R Studio">
+      <img src="/assets/lbby-r-studio.png" alt="R Studio">
       <span>R Studio</span>
     </a>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
     <div class="nav-links">
-      <a href="/#products">Products</a>
-      <a href="/#lbby">Lbby</a>
-      <a href="/#docs">Docs</a>
-      <a href="/#changelog">Changelog</a>
-      <a href="/license" class="active">License</a>
-      <a href="/#contact">Contact</a>
+      <a href="/">Sản phẩm</a>
+      <a href="/lbby">Lbby</a>
+      <a href="/docs">Tài liệu</a>
+      <a href="/changelog">Nhật ký</a>
+      <a href="/license" class="active">Giấy phép</a>
+      <a href="/contact">Liên hệ</a>
+      <button class="lang-toggle" onclick="toggleLang()" title="Switch language">
+        <span>EN</span>
+      </button>
     </div>
   </nav>
 
@@ -497,5 +500,7 @@
       document.getElementById('jwtId').value = generateId();
     }
   </script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs — R Studio</title>
+  <meta name="description" content="Lbby documentation — get up and running, then master every feature. Server types, player management, mods, backups, performance tips, and playit.gg troubleshooting.">
+  <link rel="icon" href="/assets/lbby-r-studio.png" type="image/png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="/" class="nav-brand">
+      <img src="/assets/lbby-r-studio.png" alt="R Studio">
+      <span>R Studio</span>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/" data-i18n="nav.products">Sản phẩm</a>
+      <a href="/lbby" data-i18n="nav.lbby">Lbby</a>
+      <a href="/docs" data-i18n="nav.docs">Tài liệu</a>
+      <a href="/changelog" data-i18n="nav.changelog">Nhật ký</a>
+      <a href="/license" data-i18n="nav.license">Giấy phép</a>
+      <a href="/contact" data-i18n="nav.contact">Liên hệ</a>
+      <button class="lang-toggle" onclick="toggleLang()" title="Switch language">
+        <span data-i18n="nav.lang_label">EN</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1 data-i18n="docs.title">Tài liệu Lbby</h1>
+      <p data-i18n="docs.subtitle">Bắt đầu nhanh, rồi làm chủ mọi tính năng.</p>
+    </div>
+  </section>
+
+  <!-- Docs Content -->
+  <section class="section">
+    <div class="docs-content">
+      <h3 data-i18n="docs.getting_started">Bắt đầu</h3>
+      <ol>
+        <li data-i18n="docs.gs_1"><strong>Cài đặt Lbby</strong> — Tải phiên bản mới nhất cho hệ điều hành của bạn từ mục <a href="/lbby#download">Tải về</a>. Ứng dụng là file chạy độc lập — không cần cài đặt thêm gì.</li>
+        <li data-i18n="docs.gs_2"><strong>Tạo máy chủ</strong> — Mở Lbby và nhấn <strong>Máy chủ mới</strong>. Chọn tên, phiên bản Minecraft và loại máy chủ (Vanilla, Paper, Fabric, Forge hoặc Spigot). Lbby sẽ tự động tải JAR, tạo cấu trúc thư mục và file cấu hình.</li>
+        <li data-i18n="docs.gs_3"><strong>Khởi động &amp; Kết nối</strong> — Nhấn <strong>Khởi động</strong> trên thẻ máy chủ. Lbby sẽ chạy máy chủ và tự động thiết lập địa chỉ công khai qua <strong>playit.gg</strong> — không cần mở cổng mạng. Chia sẻ địa chỉ đó cho bạn bè để họ tham gia.</li>
+      </ol>
+
+      <h3 data-i18n="docs.server_types">Các loại máy chủ</h3>
+      <ul>
+        <li data-i18n="docs.st_vanilla"><strong>Vanilla</strong> — Phần mềm máy chủ chính thức của Minecraft. Không mod, không plugin — gameplay thuần túy. Phù hợp nhất cho nhóm bạn nhỏ muốn trải nghiệm gốc.</li>
+        <li data-i18n="docs.st_paper"><strong>Paper</strong> — Bản fork hiệu suất cao của Spigot với tối ưu và sửa lỗi bổ sung. Hỗ trợ plugin qua Bukkit/Spigot API. Lựa chọn được khuyên dùng cho hầu hết máy chủ.</li>
+        <li data-i18n="docs.st_fabric"><strong>Fabric</strong> — Trình tải mod nhẹ, hiện đại. Lý tưởng cho mod phía client và server. Hệ sinh thái mod lớn với các công cụ như Sodium, Lithium và Iris.</li>
+        <li data-i18n="docs.st_forge"><strong>Forge</strong> — Nền tảng modding gốc của Minecraft. Hỗ trợ modpack lớn và framework modding phức tạp. Phù hợp nhất cho máy chủ modpack nặng.</li>
+        <li data-i18n="docs.st_spigot"><strong>Spigot</strong> — Bản fork CraftBukkit với cải tiến hiệu suất và hỗ trợ plugin. Lựa chọn tốt cho máy chủ dựa trên plugin.</li>
+      </ul>
+
+      <h3 data-i18n="docs.player_management">Quản lý người chơi</h3>
+      <p data-i18n="docs.pm_whitelist"><strong>Whitelist</strong> — Bật whitelist từ bảng dashboard để giới hạn ai được tham gia. Thêm người chơi theo tên Minecraft. Danh sách whitelist lưu trong <code>whitelist.json</code>.</p>
+      <p data-i18n="docs.pm_ops"><strong>Ops (Operators)</strong> — Cấp quyền quản trị cho người chơi đáng tin cậy. Ops có thể chạy lệnh máy chủ, quản lý người chơi và thay đổi cài đặt game. Quản lý qua bảng Ops trong Lbby.</p>
+      <p data-i18n="docs.pm_bans"><strong>Bans</strong> — Cấm người chơi theo tên hoặc địa chỉ IP. Danh sách cấm lưu trong <code>banned-players.json</code> và <code>banned-ips.json</code>. Quản lý từ bảng Người chơi.</p>
+
+      <h3 data-i18n="docs.mods_plugins">Mod &amp; Plugin</h3>
+      <p data-i18n="docs.mp_mods"><strong>Cài đặt Mod</strong> — Đối với máy chủ Fabric và Forge, thả file mod <code>.jar</code> vào thư mục <code>mods</code> trong thư mục máy chủ. Lbby hiển thị đường dẫn máy chủ trong cài đặt. Khởi động lại máy chủ sau khi thêm mod.</p>
+      <p data-i18n="docs.mp_plugins"><strong>Cài đặt Plugin</strong> — Đối với máy chủ Paper và Spigot, thả file plugin <code>.jar</code> vào thư mục <code>plugins</code>. Plugin được tải tự động khi khởi động máy chủ. Nguồn phổ biến: <a href="https://modrinth.com" target="_blank">Modrinth</a>, <a href="https://hangar.papermc.io" target="_blank">Hangar</a>, <a href="https://www.spigotmc.org/resources/" target="_blank">SpigotMC</a>.</p>
+      <p data-i18n="docs.mp_modpacks"><strong>Modpack (Forge)</strong> — Forge hỗ trợ modpack đầy đủ. Tải file server của modpack, giải nén vào thư mục máy chủ và đảm bảo phiên bản Forge khớp. Lbby sẽ tự động phát hiện và chạy JAR phù hợp.</p>
+
+      <h3 data-i18n="docs.backups">Sao lưu</h3>
+      <p data-i18n="docs.bk_auto"><strong>Sao lưu tự động</strong> — Lbby có thể tự động sao lưu dữ liệu thế giới theo lịch trình tùy chỉnh. Bật sao lưu tự động trong cài đặt máy chủ. Bản sao lưu được lưu cục bộ và có thể khôi phục chỉ bằng một cú nhấp.</p>
+      <p data-i18n="docs.bk_manual"><strong>Sao lưu thủ công</strong> — Tạo bản chụp nhanh máy chủ bất kỳ lúc nào từ bảng dashboard. Hữu ích trước khi thực hiện thay đổi lớn như cập nhật mod hoặc chỉnh sửa thế giới.</p>
+      <p data-i18n="docs.bk_restore"><strong>Khôi phục</strong> — Chọn một bản sao lưu từ danh sách và nhấn <strong>Khôi phục</strong>. Máy chủ sẽ dừng, dữ liệu thế giới được thay thế và bạn có thể khởi động lại. Luôn dừng máy chủ trước khi khôi phục.</p>
+
+      <h3 data-i18n="docs.performance">Mẹo hiệu suất</h3>
+      <ul>
+        <li data-i18n="docs.pt_ram"><strong>Cấp đủ RAM</strong> — Đối với máy chủ Vanilla với vài người chơi, 2–4 GB là đủ. Máy chủ mod (Forge/Fabric) có thể cần 4–8 GB. Điều chỉnh trong cài đặt máy chủ. Không nên cấp quá 8 GB trừ khi chạy modpack lớn.</li>
+        <li data-i18n="docs.pt_paper"><strong>Dùng Paper để tối ưu hiệu suất</strong> — Paper bao gồm hàng trăm tối ưu hiệu suất so với Vanilla và Spigot. Nếu không cần mod Forge/Fabric, Paper là lựa chọn tốt nhất cho máy chủ nhanh và ổn định.</li>
+        <li data-i18n="docs.pt_distance"><strong>Khoảng nhìn</strong> — Giảm khoảng nhìn trong <code>server.properties</code> (mặc định là 10). Đối với phần cứng yếu, 6–8 chunk là mức cân bằng tốt giữa hiệu suất và tầm nhìn.</li>
+        <li data-i18n="docs.pt_update"><strong>Luôn cập nhật</strong> — Luôn chạy phiên bản Minecraft server mới nhất và phiên bản Lbby mới nhất. Các bản cập nhật bao gồm cải tiến hiệu suất và vá bảo mật.</li>
+      </ul>
+
+      <h3 data-i18n="docs.playit_troubleshooting">Khắc phục sự cố playit.gg</h3>
+      <p data-i18n="docs.ptg_what"><strong>playit.gg là gì?</strong> — playit.gg là dịch vụ tunnel cung cấp địa chỉ IP công khai cho máy chủ cục bộ mà không cần mở cổng mạng. Lbby tích hợp playit.gg tự động — bạn không cần cài đặt hay cấu hình riêng.</p>
+      <p data-i18n="docs.ptg_failed"><strong>"Không khởi động được tunnel"</strong> — Thường do file playit.gg bị thiếu hoặc cũ. Lbby quản lý việc này, nhưng nếu gặp lỗi: dừng máy chủ, khởi động lại Lbby và thử lại. Ứng dụng sẽ tự tải lại file nếu cần.</p>
+      <p data-i18n="docs.ptg_cant_join"><strong>Bạn bè không thể kết nối</strong> — Đảm bảo bạn chia sẻ đầy đủ địa chỉ từ Lbby (dạng <code>xx.playit.gg:PORT</code>). Máy chủ phải đang chạy. Nếu địa chỉ thay đổi, chia sẻ lại — địa chỉ playit.gg có thể thay đổi giữa các phiên.</p>
+      <p data-i18n="docs.ptg_latency"><strong>Độ trễ cao</strong> — playit.gg định tuyến lưu lượng qua server của họ, gây thêm độ trễ. Nếu bạn và bạn bè cùng mạng nội bộ, kết nối LAN trực tiếp (<code>localhost</code> hoặc IP nội bộ) sẽ nhanh hơn.</p>
+      <p data-i18n="docs.ptg_account"><strong>Tài khoản playit.gg</strong> — Sử dụng playit.gg qua Lbby không cần tài khoản playit.gg. Để có tính năng nâng cao (tên miền tùy chỉnh, IP tĩnh), bạn có thể tạo tài khoản tại <a href="https://playit.gg" target="_blank">playit.gg</a>.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-i18n="footer.copyright">&copy; 2026 R Studio. Mọi quyền được bảo lưu.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

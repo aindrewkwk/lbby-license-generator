@@ -5,29 +5,21 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
-// ── Active nav link on scroll ──────────────────────────────────────
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+// ── Active nav link based on current path ──────────────────────────
+(function () {
+  var path = window.location.pathname.replace(/\/+$/, '') || '/';
+  var navLinks = document.querySelectorAll('.nav-links a');
 
-function updateActiveLink() {
-  const scrollY = window.scrollY + 100;
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    const height = section.offsetHeight;
-    const id = section.getAttribute('id');
-    if (scrollY >= top && scrollY < top + height) {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${id}`) {
-          link.classList.add('active');
-        }
-      });
+  navLinks.forEach(function (link) {
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http')) return;
+
+    var normalizedHref = href.replace(/\/+$/, '') || '/';
+    if (path === normalizedHref) {
+      link.classList.add('active');
     }
   });
-}
-
-window.addEventListener('scroll', updateActiveLink);
-updateActiveLink();
+})();
 
 // ── Close mobile nav on link click ─────────────────────────────────
 document.querySelectorAll('.nav-links a').forEach(link => {

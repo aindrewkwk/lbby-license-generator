@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — R Studio</title>
+  <meta name="description" content="Lbby changelog — what's new in recent releases.">
+  <link rel="icon" href="/assets/lbby-r-studio.png" type="image/png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="/" class="nav-brand">
+      <img src="/assets/lbby-r-studio.png" alt="R Studio">
+      <span>R Studio</span>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/" data-i18n="nav.products">Sản phẩm</a>
+      <a href="/lbby" data-i18n="nav.lbby">Lbby</a>
+      <a href="/docs" data-i18n="nav.docs">Tài liệu</a>
+      <a href="/changelog" data-i18n="nav.changelog">Nhật ký</a>
+      <a href="/license" data-i18n="nav.license">Giấy phép</a>
+      <a href="/contact" data-i18n="nav.contact">Liên hệ</a>
+      <button class="lang-toggle" onclick="toggleLang()" title="Switch language">
+        <span data-i18n="nav.lang_label">EN</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1 data-i18n="changelog.title">Nhật ký Lbby</h1>
+      <p data-i18n="changelog.subtitle">Những gì mới trong các phiên bản gần đây.</p>
+    </div>
+  </section>
+
+  <!-- Changelog -->
+  <section class="section">
+    <div class="changelog-list" id="changelog-list">
+      <p class="text-muted">Loading changelog...</p>
+    </div>
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="https://github.com/aindrewkwk/lbby-releases/releases" target="_blank" class="btn btn-secondary btn-sm" data-i18n="changelog.all_releases">Xem tất cả phiên bản</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-i18n="footer.copyright">&copy; 2026 R Studio. Mọi quyền được bảo lưu.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/releases.js"></script>
+</body>
+</html>

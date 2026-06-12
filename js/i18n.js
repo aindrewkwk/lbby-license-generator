@@ -31,6 +31,10 @@ const translations = {
     "lbby.subtitle":         "Máy chủ Minecraft trở nên đơn giản. Bởi R Studio.",
     "lbby.features_title":   "Tất cả những gì bạn cần",
     "lbby.features_subtitle":"Từ con số không đến máy chủ đang chạy chỉ trong chưa đầy một phút. Không cần dòng lệnh, không cần file cấu hình, không phiền phức.",
+    "lbby.download_title":     "Tải Lbby",
+    "lbby.download_subtitle":  "Miễn phí sử dụng. Có sẵn cho Windows, macOS và Linux.",
+    "lbby.github_releases":    "Xem tất cả phiên bản trên GitHub",
+    "lbby.beta_notice":        "⚠ Lưu ý Beta: Ứng dụng hiện chưa được ký số. Trên macOS, nhấn chuột phải → Mở → Mở. Trên Windows, nhấn \"Thông tin khác → Chạy anyway\".",
 
     // ── Features ──
     "features.server_types":       "11 Loại máy chủ",
@@ -70,7 +74,7 @@ const translations = {
     "docs.playit_troubleshooting": "Khắc phục sự cố playit.gg",
 
     // Docs — Getting Started
-    "docs.gs_1": "<strong>Cài đặt Lbby</strong> — Tải phiên bản mới nhất cho hệ điều hành của bạn từ mục <a href=\"#download\">Tải về</a> phía trên. Ứng dụng là file chạy độc lập — không cần cài đặt thêm gì.",
+    "docs.gs_1": "<strong>Cài đặt Lbby</strong> — Tải phiên bản mới nhất cho hệ điều hành của bạn từ mục <a href=\"/lbby#download\">Tải về</a>. Ứng dụng là file chạy độc lập — không cần cài đặt thêm gì.",
     "docs.gs_2": "<strong>Tạo máy chủ</strong> — Mở Lbby và nhấn <strong>Máy chủ mới</strong>. Chọn tên, phiên bản Minecraft và loại máy chủ (Vanilla, Paper, Fabric, Forge hoặc Spigot). Lbby sẽ tự động tải JAR, tạo cấu trúc thư mục và file cấu hình.",
     "docs.gs_3": "<strong>Khởi động & Kết nối</strong> — Nhấn <strong>Khởi động</strong> trên thẻ máy chủ. Lbby sẽ chạy máy chủ và tự động thiết lập địa chỉ công khai qua <strong>playit.gg</strong> — không cần mở cổng mạng. Chia sẻ địa chỉ đó cho bạn bè để họ tham gia.",
 
@@ -154,6 +158,10 @@ const translations = {
     "lbby.subtitle":         "Minecraft servers made simple. By R Studio.",
     "lbby.features_title":   "Everything you need",
     "lbby.features_subtitle":"From zero to a running server in under a minute. No terminal, no config files, no headaches.",
+    "lbby.download_title":     "Download Lbby",
+    "lbby.download_subtitle":  "Free to use. Available for Windows, macOS, and Linux.",
+    "lbby.github_releases":    "View All Releases on GitHub",
+    "lbby.beta_notice":        "⚠ Beta Notice: The app is currently unsigned. On macOS, right-click → Open → Open. On Windows, click \"More info → Run anyway\".",
 
     // ── Features ──
     "features.server_types":       "11 Server Types",
@@ -193,7 +201,7 @@ const translations = {
     "docs.playit_troubleshooting": "playit.gg Troubleshooting",
 
     // Docs — Getting Started
-    "docs.gs_1": "<strong>Install Lbby</strong> — Download the latest release for your platform from the <a href=\"#download\">Download</a> section above. The app is a standalone native binary — no dependencies required.",
+    "docs.gs_1": "<strong>Install Lbby</strong> — Download the latest release for your platform from the <a href=\"/lbby#download\">Download</a> section. The app is a standalone native binary — no dependencies required.",
     "docs.gs_2": "<strong>Create Your Server</strong> — Open Lbby and click <strong>New Server</strong>. Choose a name, select a Minecraft version, and pick a server type (Vanilla, Paper, Fabric, Forge, or Spigot). Lbby handles the rest — downloading the JAR, creating the folder structure, and generating configuration files.",
     "docs.gs_3": "<strong>Start & Connect</strong> — Hit <strong>Start</strong> on your server card. Lbby launches the server and automatically sets up a public address using <strong>playit.gg</strong> — no port forwarding needed. Share the provided address with friends so they can join.",
 

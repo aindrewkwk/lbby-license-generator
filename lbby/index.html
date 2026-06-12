@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lbby — R Studio</title>
+  <meta name="description" content="Lbby is a modern Minecraft server host by R Studio. Install, manage, and share — all from one native app.">
+  <link rel="icon" href="/assets/lbby-r-studio.png" type="image/png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="/" class="nav-brand">
+      <img src="/assets/lbby-r-studio.png" alt="R Studio">
+      <span>R Studio</span>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="nav-links">
+      <a href="/" data-i18n="nav.products">Sản phẩm</a>
+      <a href="/lbby" data-i18n="nav.lbby">Lbby</a>
+      <a href="/docs" data-i18n="nav.docs">Tài liệu</a>
+      <a href="/changelog" data-i18n="nav.changelog">Nhật ký</a>
+      <a href="/license" data-i18n="nav.license">Giấy phép</a>
+      <a href="/contact" data-i18n="nav.contact">Liên hệ</a>
+      <button class="lang-toggle" onclick="toggleLang()" title="Switch language">
+        <span data-i18n="nav.lang_label">EN</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="studio-badge" data-i18n="lbby.subtitle">Máy chủ Minecraft trở nên đơn giản. Bởi R Studio.</div>
+      <h1>Lbby</h1>
+      <p data-i18n="lbby.features_subtitle">Từ con số không đến máy chủ đang chạy chỉ trong chưa đầy một phút. Không cần dòng lệnh, không cần file cấu hình, không phiền phức.</p>
+    </div>
+  </section>
+
+  <!-- Lbby Features -->
+  <section class="section">
+    <div class="section-header">
+      <h3 style="font-size: 24px;" data-i18n="lbby.features_title">Tất cả những gì bạn cần</h3>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h3 data-i18n="features.server_types">11 Loại máy chủ</h3>
+        <p data-i18n="features.server_types_desc">Vanilla, Paper, Folia, Purpur, Bukkit, Spigot, Forge, Fabric, NeoForge, SpongeVanilla và SpongeForge — tất cả đều có trong trình hướng dẫn cài đặt.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3 data-i18n="features.play_anywhere">Chơi mọi nơi</h3>
+        <p data-i18n="features.play_anywhere_desc">Tích hợp sẵn playit.gg để bạn bè có thể tham gia từ bất kỳ đâu. Không cần mở cổng mạng hay IP tĩnh.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📡</div>
+        <h3 data-i18n="features.remote_control">Điều khiển từ xa</h3>
+        <p data-i18n="features.remote_control_desc">Quản lý máy chủ từ điện thoại hoặc máy tính khác. Mạng LAN + Cloudflare Quick Tunnel với xác thực token bảo mật.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3 data-i18n="features.mods_plugins">Mod &amp; Plugin</h3>
+        <p data-i18n="features.mods_plugins_desc">Duyệt Modrinth, cài đặt mod và plugin, hỗ trợ modpack (Modrinth + CurseForge), cùng trình kiểm tra cập nhật tự động.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3 data-i18n="features.backups">Sao lưu</h3>
+        <p data-i18n="features.backups_desc">Tạo bản sao lưu ZIP, khôi phục từ bản sao lưu và lên lịch sao lưu tự động. Không bao giờ mất thế giới của bạn nữa.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 data-i18n="features.performance">Hiệu suất</h3>
+        <p data-i18n="features.performance_desc">Tối ưu JVM, giám sát TPS, tạo trước chunk và bảng điều khiển tùy chỉnh với đồng hồ vòng trực tiếp.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3 data-i18n="features.player_admin">Quản lý người chơi</h3>
+        <p data-i18n="features.player_admin_desc">Danh sách người chơi trực tuyến với avatar đầu Minecraft. OP, kick, ban, unban và teleport — tất cả từ ứng dụng.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🖥️</div>
+        <h3 data-i18n="features.live_console">Console trực tiếp</h3>
+        <p data-i18n="features.live_console_desc">Bảng điều khiển máy chủ thời gian thực với khả năng nhập lệnh. Giám sát người chơi, TPS, RAM, CPU và ổ đĩa từ bảng dashboard.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3 data-i18n="features.dark_light">Chế độ tối &amp; sáng</h3>
+        <p data-i18n="features.dark_light_desc">Giao diện đẹp mắt với chủ đề tối và sáng. Hỗ trợ ngôn ngữ tiếng Anh và tiếng Việt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lbby Download -->
+  <section class="section" id="download">
+    <div class="section-header">
+      <h2 data-i18n="lbby.download_title">Tải Lbby</h2>
+      <p data-i18n="lbby.download_subtitle">Miễn phí sử dụng. Có sẵn cho Windows, macOS và Linux.</p>
+    </div>
+    <div class="download-cards" id="download-cards">
+      <div class="download-card"><p class="text-muted">Loading releases...</p></div>
+    </div>
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="https://github.com/aindrewkwk/lbby-releases/releases" target="_blank" class="btn btn-secondary btn-sm" data-i18n="lbby.github_releases">Xem tất cả phiên bản trên GitHub</a>
+    </div>
+    <div style="margin-top: 20px; padding: 16px; background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-muted); text-align: center;" data-i18n="lbby.beta_notice">
+      <strong style="color: var(--yellow);">⚠ Lưu ý Beta:</strong> Ứng dụng hiện chưa được ký số. Trên macOS, nhấn chuột phải → Mở → Mở. Trên Windows, nhấn "Thông tin khác → Chạy anyway".
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-i18n="footer.copyright">&copy; 2026 R Studio. Mọi quyền được bảo lưu.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/i18n.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/releases.js"></script>
+</body>
+</html>
