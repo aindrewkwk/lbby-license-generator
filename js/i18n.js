@@ -133,8 +133,8 @@ const translations = {
     "contact.subtitle":    "Có câu hỏi, phản hồi hay cần hỗ trợ? Hãy liên hệ với chúng tôi.",
     "contact.discord":     "Discord",
     "contact.discord_sub": "Tham gia cộng đồng",
-    "contact.github":      "GitHub",
-    "contact.github_sub":  "Mã nguồn & vấn đề",
+    "contact.email":       "Email",
+    "contact.email_sub":   "prodrstudio26@gmail.com",
 
     // ── About ──
     "about.label":  "Giới thiệu",
@@ -145,9 +145,9 @@ const translations = {
     // ── Connect ──
     "connect.label":     "Kết nối",
     "connect.title":     "Theo dõi chúng tôi",
-    "connect.subtitle":  "Tham gia trò chuyện hoặc xem qua các dự án.",
+    "connect.subtitle":  "Tham gia trò chuyện hoặc gửi email cho chúng tôi.",
     "connect.discord":   "Tham gia cộng đồng",
-    "connect.github":    "Dự án mã nguồn mở",
+    "connect.email":     "prodrstudio26@gmail.com",
 
     // ── Footer ──
     "footer.copyright": "© 2026 R Studio. Mọi quyền được bảo lưu."
@@ -283,8 +283,8 @@ const translations = {
     "contact.subtitle":    "Have questions, feedback, or need help? Reach out to us.",
     "contact.discord":     "Discord",
     "contact.discord_sub": "Join our community",
-    "contact.github":      "GitHub",
-    "contact.github_sub":  "Source code & issues",
+    "contact.email":       "Email",
+    "contact.email_sub":   "prodrstudio26@gmail.com",
 
     // ── About ──
     "about.label":  "About",
@@ -295,9 +295,9 @@ const translations = {
     // ── Connect ──
     "connect.label":     "Connect",
     "connect.title":     "Follow along",
-    "connect.subtitle":  "Join the conversation or check out our work.",
+    "connect.subtitle":  "Join the conversation or send us an email.",
     "connect.discord":   "Join our community",
-    "connect.github":    "Open source projects",
+    "connect.email":     "prodrstudio26@gmail.com",
 
     // ── Footer ──
     "footer.copyright": "© 2026 R Studio. All rights reserved."
