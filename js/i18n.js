@@ -6,6 +6,8 @@ const translations = {
   vi: {
     // ── Nav ──
     "nav.products":   "Sản phẩm",
+    "nav.about":      "Giới thiệu",
+    "nav.connect":    "Liên hệ",
     "nav.lbby":       "Lbby",
     "nav.docs":       "Tài liệu",
     "nav.changelog":  "Nhật ký",
@@ -14,17 +16,25 @@ const translations = {
     "nav.lang_label": "EN",
 
     // ── Hero ──
-    "hero.tagline":        "Một phần mềm",
-    "hero.tagline_span":   "được thiết kế",
-    "hero.description":    "Chúng tôi là R Studio — studio phần mềm tạo ra những công cụ mạnh mẽ, tinh tế dành cho game thủ và người sáng tạo. Chúng tôi tin rằng phần mềm tuyệt vời phải mang lại trải nghiệm nhẹ nhàng.",
-    "hero.cta_primary":    "Khám phá sản phẩm",
-    "hero.cta_secondary":  "Lbby",
+    "hero.badge":           "Studio Indie · Việt Nam 🇻🇳",
+    "hero.title":           "R Studio",
+    "hero.subtitle":        "Chúng tôi xây dựng phần mềm mạnh mẽ, tinh tế dành cho game thủ và người sáng tạo. Công cụ đơn giản mà hiệu quả.",
+    "hero.cta":             "Khám phá sản phẩm",
+    "hero.cta2":            "Về chúng tôi",
+    "hero.tagline":         "Một phần mềm",
+    "hero.tagline_span":    "được thiết kế",
+    "hero.description":     "Chúng tôi là R Studio — studio phần mềm tạo ra những công cụ mạnh mẽ, tinh tế dành cho game thủ và người sáng tạo. Chúng tôi tin rằng phần mềm tuyệt vời phải mang lại trải nghiệm nhẹ nhàng.",
+    "hero.cta_primary":     "Khám phá sản phẩm",
+    "hero.cta_secondary":   "Lbby",
 
     // ── Products ──
-    "products.title":       "Sản phẩm của chúng tôi",
-    "products.subtitle":    "Những công cụ được xây dựng tỉ mỉ, giải quyết vấn đề thực tế.",
-    "products.lbby_desc":   "Một trình quản lý máy chủ Minecraft hiện đại. Cài đặt, quản lý và chia sẻ — tất cả trong một ứng dụng gốc. Không cần cấu hình mạng, không cần dòng lệnh, không phiền phức.",
-    "products.learn_more":  "Tìm hiểu thêm →",
+    "products.label":        "Sản phẩm",
+    "products.title":        "Sản phẩm của chúng tôi",
+    "products.subtitle":     "Những công cụ được xây dựng tỉ mỉ, giải quyết vấn đề thực tế.",
+    "products.lbby_desc":    "Một trình quản lý máy chủ Minecraft hiện đại. Cài đặt, quản lý và chia sẻ — tất cả trong một ứng dụng gốc. Không cần cấu hình mạng, không cần dòng lệnh, không phiền phức.",
+    "products.edumanage_desc": "Quản lý trường học thông minh cho giáo dục hiện đại. Học sinh, giáo viên, lịch học, điểm số — tất cả trong một nền tảng.",
+    "products.learn_more":   "Tìm hiểu thêm",
+    "products.coming_soon":  "Sắp ra mắt",
 
     // ── Lbby ──
     "lbby.title":            "Lbby",
@@ -126,6 +136,19 @@ const translations = {
     "contact.github":      "GitHub",
     "contact.github_sub":  "Mã nguồn & vấn đề",
 
+    // ── About ──
+    "about.label":  "Giới thiệu",
+    "about.title":  "Studio nhỏ, ý tưởng lớn",
+    "about.p1":     "R Studio là studio phần mềm indie đến từ Việt Nam 🇻🇳. Chúng tôi tin rằng phần mềm tuyệt vời phải mang lại cảm giác nhẹ nhàng — mạnh mẽ bên trong, tinh tế bên ngoài, và miễn phí dùng thử.",
+    "about.p2":     "Từ máy chủ Minecraft đến quản lý trường học, chúng tôi xây dựng công cụ giải quyết vấn đề thực tế cho người thực.",
+
+    // ── Connect ──
+    "connect.label":     "Kết nối",
+    "connect.title":     "Theo dõi chúng tôi",
+    "connect.subtitle":  "Tham gia trò chuyện hoặc xem qua các dự án.",
+    "connect.discord":   "Tham gia cộng đồng",
+    "connect.github":    "Dự án mã nguồn mở",
+
     // ── Footer ──
     "footer.copyright": "© 2026 R Studio. Mọi quyền được bảo lưu."
   },
@@ -133,6 +156,8 @@ const translations = {
   en: {
     // ── Nav ──
     "nav.products":   "Products",
+    "nav.about":      "About",
+    "nav.connect":    "Connect",
     "nav.lbby":       "Lbby",
     "nav.docs":       "Docs",
     "nav.changelog":  "Changelog",
@@ -141,17 +166,25 @@ const translations = {
     "nav.lang_label": "VI",
 
     // ── Hero ──
-    "hero.tagline":        "Software",
-    "hero.tagline_span":   "by design",
-    "hero.description":    "We are R Studio — a software studio crafting powerful, elegant tools for gamers and creators. We believe great software should feel effortless.",
-    "hero.cta_primary":    "Explore Our Products",
-    "hero.cta_secondary":  "Lbby",
+    "hero.badge":           "Indie Studio · Vietnam 🇻🇳",
+    "hero.title":           "R Studio",
+    "hero.subtitle":        "We build powerful, elegant software for gamers and creators. Simple tools that just work.",
+    "hero.cta":             "Explore Products",
+    "hero.cta2":            "About Us",
+    "hero.tagline":         "Software",
+    "hero.tagline_span":    "by design",
+    "hero.description":     "We are R Studio — a software studio crafting powerful, elegant tools for gamers and creators. We believe great software should feel effortless.",
+    "hero.cta_primary":     "Explore Our Products",
+    "hero.cta_secondary":   "Lbby",
 
     // ── Products ──
-    "products.title":       "Our Products",
-    "products.subtitle":    "Thoughtfully built tools designed to solve real problems.",
-    "products.lbby_desc":   "A modern Minecraft server host. Install, manage, and share — all from one native app. No port forwarding, no terminal, no headaches.",
-    "products.learn_more":  "Learn more →",
+    "products.label":        "Products",
+    "products.title":        "What we're building",
+    "products.subtitle":     "Crafted tools that solve real problems.",
+    "products.lbby_desc":    "A modern Minecraft server host. Install, manage, and share — all from one native app. No port forwarding, no terminal, no headaches.",
+    "products.edumanage_desc": "Smart school management for modern education. Students, teachers, schedules, grades — all in one platform.",
+    "products.learn_more":   "Learn more",
+    "products.coming_soon":  "Coming soon",
 
     // ── Lbby ──
     "lbby.title":            "Lbby",
@@ -252,6 +285,19 @@ const translations = {
     "contact.discord_sub": "Join our community",
     "contact.github":      "GitHub",
     "contact.github_sub":  "Source code & issues",
+
+    // ── About ──
+    "about.label":  "About",
+    "about.title":  "Small studio, big ideas",
+    "about.p1":     "R Studio is an indie software studio based in Vietnam 🇻🇳. We believe great software should feel effortless — powerful under the hood, polished on the surface, and free to try.",
+    "about.p2":     "From Minecraft server hosting to school management, we build tools that solve real problems for real people.",
+
+    // ── Connect ──
+    "connect.label":     "Connect",
+    "connect.title":     "Follow along",
+    "connect.subtitle":  "Join the conversation or check out our work.",
+    "connect.discord":   "Join our community",
+    "connect.github":    "Open source projects",
 
     // ── Footer ──
     "footer.copyright": "© 2026 R Studio. All rights reserved."
