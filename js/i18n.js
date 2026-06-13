@@ -7,6 +7,7 @@ const translations = {
     // ── Nav ──
     "nav.products":   "Sản phẩm",
     "nav.about":      "Giới thiệu",
+    "nav.members":    "Thành viên",
     "nav.connect":    "Liên hệ",
     "nav.lbby":       "Lbby",
     "nav.docs":       "Tài liệu",
@@ -142,6 +143,11 @@ const translations = {
     "about.p1":     "R Studio là studio phần mềm indie đến từ Việt Nam 🇻🇳. Chúng tôi tin rằng phần mềm tuyệt vời phải mang lại cảm giác nhẹ nhàng — mạnh mẽ bên trong, tinh tế bên ngoài, và miễn phí dùng thử.",
     "about.p2":     "Từ máy chủ Minecraft đến quản lý trường học, chúng tôi xây dựng công cụ giải quyết vấn đề thực tế cho người thực.",
 
+    // ── Members ──
+    "members.label":    "Đội ngũ",
+    "members.title":    "Thành viên",
+    "members.subtitle": "Những người cùng R Studio nghiên cứu, kiểm thử, đánh giá và hoàn thiện sản phẩm.",
+
     // ── Connect ──
     "connect.label":     "Kết nối",
     "connect.title":     "Theo dõi chúng tôi",
@@ -157,6 +163,7 @@ const translations = {
     // ── Nav ──
     "nav.products":   "Products",
     "nav.about":      "About",
+    "nav.members":    "Members",
     "nav.connect":    "Connect",
     "nav.lbby":       "Lbby",
     "nav.docs":       "Docs",
@@ -291,6 +298,11 @@ const translations = {
     "about.title":  "Small studio, big ideas",
     "about.p1":     "R Studio is an indie software studio based in Vietnam 🇻🇳. We believe great software should feel effortless — powerful under the hood, polished on the surface, and free to try.",
     "about.p2":     "From Minecraft server hosting to school management, we build tools that solve real problems for real people.",
+
+    // ── Members ──
+    "members.label":    "Team",
+    "members.title":    "Members",
+    "members.subtitle": "The people helping R Studio research, test, review, and polish our products.",
 
     // ── Connect ──
     "connect.label":     "Connect",
