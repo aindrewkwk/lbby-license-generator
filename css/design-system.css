@@ -479,6 +479,12 @@ img { max-width: 100%; height: auto; }
   border-radius: 8px;
 }
 
+.product-card .product-icon img.product-logo-edumanage {
+  width: 42px;
+  height: 42px;
+  border-radius: 0;
+}
+
 .product-card h3 {
   font-size: 20px;
   font-weight: 800;
