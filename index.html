@@ -41,7 +41,23 @@
       box-shadow: var(--shadow-md), 0 0 0 1px rgba(124,58,237,0.08);
     }
     .product-card:hover::before { opacity: 1; }
-    .product-card .product-emoji { font-size: 48px; margin-bottom: 20px; display: block; }
+    .product-card .product-icon {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 20px;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+    }
+    .product-card .product-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
     .product-card h3 { font-size: 22px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.3px; }
     .product-card p { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
     .product-card .product-link {
@@ -102,14 +118,18 @@
     <div class="products-grid">
 
       <a href="https://lbby.rstudio.live" class="product-card">
-        <span class="product-emoji">🎮</span>
+        <div class="product-icon">
+          <img src="assets/lbby-app-icon-square.png" alt="Lbby">
+        </div>
         <h3>Lbby <span class="badge badge-live">Live</span></h3>
         <p>A modern Minecraft server host for individuals, communities, and studios. No port forwarding, no terminal — just install and play.</p>
         <span class="product-link">Visit lbby.rstudio.live →</span>
       </a>
 
       <a href="https://edumanage.rstudio.live" class="product-card">
-        <span class="product-emoji">🎓</span>
+        <div class="product-icon">
+          <img src="assets/edumanage-icon.svg" alt="EduManage">
+        </div>
         <h3>EduManage <span class="badge badge-soon">Soon</span></h3>
         <p>Smart school management for modern education. Students, teachers, schedules, and grades — all in one platform.</p>
         <span class="product-link">Visit edumanage.rstudio.live →</span>
