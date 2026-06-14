@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">EduManage icon</title>
+  <desc id="desc">Minimal blue and green icon combining a school, open book, and checkmark.</desc>
+  <defs>
+    <style>.blue{fill:#0968B7}.green{fill:#58B934}.white{fill:#fff}</style>
+  </defs>
+  <g transform="translate(-88,-50) scale(1)">
+    <path class="blue" d="M600 205 L740 335 Q751 345 742 356 Q737 362 728 362 L708 362 L708 500 Q708 515 693 515 L507 515 Q492 515 492 500 L492 362 L472 362 Q463 362 458 356 Q449 345 460 335 Z"/>
+    <path class="white" d="M555 515 L555 440 Q555 394 600 394 Q645 394 645 440 L645 515 Z"/>
+    <rect class="blue" x="592" y="165" width="16" height="64" rx="8"/>
+    <path class="blue" d="M608 178 L690 178 Q702 178 696 190 L684 214 L696 238 Q702 250 690 250 L608 250 Z"/>
+    <path class="blue" d="M390 500 Q494 500 572 585 L572 715 Q494 647 390 647 Q376 647 376 633 L376 514 Q376 500 390 500 Z"/>
+    <path class="green" d="M810 500 Q706 500 628 585 L628 715 Q706 647 810 647 Q824 647 824 633 L824 514 Q824 500 810 500 Z"/>
+    <path class="white" d="M572 585 Q600 610 628 585 L628 715 Q600 692 572 715 Z"/>
+    <path class="green" d="M564 595 Q572 587 581 595 L611 625 L669 557 Q678 547 688 556 Q697 565 688 575 L621 655 Q612 665 602 655 L564 617 Q555 608 564 595 Z"/>
+  </g>
+</svg>
