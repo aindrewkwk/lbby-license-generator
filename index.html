@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,9 +31,15 @@
       <a href="#about" data-vi="Giới thiệu">About</a>
       <a href="#team" data-vi="Thành viên">Team</a>
       <a href="#contact" data-vi="Liên hệ">Contact</a>
-      <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
-        <span class="lang-label" data-vi="EN">VI</span>
-      </button>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg class="theme-icon sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="theme-icon moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+          <span class="lang-label" data-vi="EN">VI</span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -41,8 +47,6 @@
   <section class="hero" id="hero">
     <div class="hero-bg">
       <canvas id="ascii-bg"></canvas>
-      <div class="hero-glow"></div>
-      <div class="hero-glow-secondary"></div>
     </div>
     <div class="hero-content" id="hero-content">
       <span class="hero-eyebrow" data-vi="Studio Indie · Việt Nam">Indie Studio · Vietnam</span>
@@ -52,29 +56,6 @@
         <a href="#products" class="btn btn-primary" data-vi="Khám phá sản phẩm">Explore Products</a>
         <a href="#team" class="btn btn-secondary" data-vi="Gặp đội ngũ">Meet the Team</a>
       </div>
-      <div class="hero-labels">
-        <span class="hero-label" data-vi="Công cụ gốc">Native tools</span>
-        <span class="hero-label" data-vi="Hosting Minecraft">Minecraft hosting</span>
-        <span class="hero-label" data-vi="Hệ thống giáo dục">Education systems</span>
-        <span class="hero-label" data-vi="Sản xuất tại Việt Nam">Made in Vietnam</span>
-      </div>
-    </div>
-    <div class="hero-strip">
-      <span>R Studio</span>
-      <span class="strip-dot">·</span>
-      <span>Lbby</span>
-      <span class="strip-dot">·</span>
-      <span>EduManage</span>
-      <span class="strip-dot">·</span>
-      <span>Vietnam</span>
-      <span class="strip-dot">·</span>
-      <span data-vi="Phần mềm Indie">Indie Software</span>
-      <span class="strip-dot">·</span>
-      <span data-vi="Người chơi">Gamers</span>
-      <span class="strip-dot">·</span>
-      <span>Creators</span>
-      <span class="strip-dot">·</span>
-      <span data-vi="Giáo dục">Education</span>
     </div>
   </section>
 
@@ -86,52 +67,24 @@
     </div>
     <div class="products-grid">
 
-      <a href="https://lbby.rstudio.live" class="product-card glass-card">
-        <div class="card-glow"></div>
-        <div class="card-content">
-          <span class="product-label" data-vi="Dành cho game thủ">For gamers</span>
-          <div class="product-icon">
-            <img src="/assets/lbby-app-icon-square.png" alt="Lbby">
-          </div>
-          <h3>Lbby</h3>
-          <p data-vi="Máy chủ Minecraft hiện đại. Cài đặt, quản lý và chia sẻ — tất cả từ một ứng dụng. Không cần port forwarding, không terminal, không rắc rối.">A modern Minecraft server host. Install, manage, and share — all from one native app. No port forwarding, no terminal, no headaches.</p>
-          <span class="product-link" data-vi="Tìm hiểu thêm">Learn more <span class="arrow">→</span></span>
+      <a href="https://lbby.rstudio.live" class="product-card">
+        <span class="product-label" data-vi="Dành cho game thủ">For gamers</span>
+        <div class="product-icon">
+          <img src="/assets/lbby-app-icon-square.png" alt="Lbby">
         </div>
-        <div class="card-visual lbby-visual">
-          <div class="server-grid">
-            <div class="server-node"></div>
-            <div class="server-node"></div>
-            <div class="server-node"></div>
-            <div class="server-node active"></div>
-            <div class="server-node"></div>
-            <div class="server-node"></div>
-            <div class="server-node"></div>
-            <div class="server-node active"></div>
-            <div class="server-node"></div>
-          </div>
-        </div>
+        <h3>Lbby</h3>
+        <p data-vi="Máy chủ Minecraft hiện đại. Cài đặt, quản lý và chia sẻ — tất cả từ một ứng dụng. Không cần port forwarding, không terminal, không rắc rối.">A modern Minecraft server host. Install, manage, and share — all from one native app. No port forwarding, no terminal, no headaches.</p>
+        <span class="product-link" data-vi="Tìm hiểu thêm">Learn more <span class="arrow">→</span></span>
       </a>
 
-      <a href="https://edumanage.rstudio.live" class="product-card glass-card">
-        <div class="card-glow"></div>
-        <div class="card-content">
-          <span class="product-label" data-vi="Dành cho giáo dục">For education</span>
-          <div class="product-icon">
-            <img src="/assets/edumanage-icon.svg" alt="EduManage">
-          </div>
-          <h3>EduManage</h3>
-          <span class="badge badge-soon" data-vi="Sắp ra mắt">Coming soon</span>
-          <p data-vi="Quản lý trường học thông minh cho giáo dục hiện đại. Học sinh, giáo viên, lịch học, điểm số — tất cả trong một nền tảng.">Smart school management for modern education. Students, teachers, schedules, grades — all in one platform.</p>
-          <span class="product-link" data-vi="Tìm hiểu thêm">Learn more <span class="arrow">→</span></span>
+      <a href="https://edumanage.rstudio.live" class="product-card">
+        <span class="product-label" data-vi="Dành cho giáo dục">For education</span>
+        <div class="product-icon">
+          <img src="/assets/edumanage-icon.svg" alt="EduManage">
         </div>
-        <div class="card-visual edu-visual">
-          <div class="dash-cards">
-            <div class="dash-card"></div>
-            <div class="dash-card wide"></div>
-            <div class="dash-card"></div>
-            <div class="dash-card"></div>
-          </div>
-        </div>
+        <h3>EduManage <span class="badge" data-vi="Sắp ra mắt">Coming soon</span></h3>
+        <p data-vi="Quản lý trường học thông minh cho giáo dục hiện đại. Học sinh, giáo viên, lịch học, điểm số — tất cả trong một nền tảng.">Smart school management for modern education. Students, teachers, schedules, grades — all in one platform.</p>
+        <span class="product-link" data-vi="Tìm hiểu thêm">Learn more <span class="arrow">→</span></span>
       </a>
 
     </div>
@@ -145,19 +98,19 @@
         <p data-vi="R Studio là studio phần mềm indie tại Việt Nam. Chúng tôi tin rằng phần mềm tuyệt vời phải nhẹ nhàng — mạnh mẽ bên trong, tinh tế bên ngoài, và miễn phí để trải nghiệm.">R Studio is an indie software studio based in Vietnam. We believe great software should feel effortless — powerful under the hood, polished on the surface, and free to try.</p>
       </div>
       <div class="about-stats">
-        <div class="stat-card glass-card">
+        <div class="stat-card">
           <div class="stat-icon">🇻🇳</div>
           <div class="stat-label" data-vi="Trụ sở Việt Nam">Vietnam-based</div>
         </div>
-        <div class="stat-card glass-card">
+        <div class="stat-card">
           <div class="stat-icon">⚡</div>
           <div class="stat-label" data-vi="Tự phát triển">Indie-built</div>
         </div>
-        <div class="stat-card glass-card">
+        <div class="stat-card">
           <div class="stat-icon">🎮</div>
           <div class="stat-label" data-vi="Game thủ + Người sáng tạo">Gamers + creators</div>
         </div>
-        <div class="stat-card glass-card">
+        <div class="stat-card">
           <div class="stat-icon">✨</div>
           <div class="stat-label" data-vi="Miễn phí trải nghiệm">Free to try</div>
         </div>
@@ -172,79 +125,54 @@
       <p data-vi="Những người giúp R Studio xây dựng, kiểm thử và hoàn thiện sản phẩm.">The people helping R Studio build, test, review, and polish our products.</p>
     </div>
     <div class="team-grid">
-
-      <div class="team-card glass-card">
-        <div class="team-avatar">
-          <img src="/assets/members/member-row-8.jpg" alt="Trần Đình Tiến Anh">
-        </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="/assets/members/member-row-8.jpg" alt="Trần Đình Tiến Anh"></div>
         <div class="team-name">Trần Đình Tiến Anh</div>
         <div class="team-role">Founder / OP</div>
         <div class="team-handle">@_aindrew</div>
       </div>
-
-      <div class="team-card glass-card">
-        <div class="team-avatar">
-          <img src="/assets/members/member-row-4.jpg" alt="Nguyễn Lê Gia Hưng">
-        </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="/assets/members/member-row-4.jpg" alt="Nguyễn Lê Gia Hưng"></div>
         <div class="team-name">Nguyễn Lê Gia Hưng</div>
         <div class="team-role">PM Assistant / QC Support</div>
         <div class="team-handle">@imhung</div>
       </div>
-
-      <div class="team-card glass-card">
-        <div class="team-avatar">
-          <img src="/assets/members/member-row-6.jpg" alt="Tạ Trần Phúc An">
-        </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="/assets/members/member-row-6.jpg" alt="Tạ Trần Phúc An"></div>
         <div class="team-name">Tạ Trần Phúc An</div>
         <div class="team-role">Lead QC / Tester</div>
         <div class="team-handle">@.ttpa</div>
       </div>
-
-      <div class="team-card glass-card">
-        <div class="team-avatar">
-          <img src="/assets/members/member-row-7.jpg" alt="Trần Nguyễn Phi Vũ">
-        </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="/assets/members/member-row-7.jpg" alt="Trần Nguyễn Phi Vũ"></div>
         <div class="team-name">Trần Nguyễn Phi Vũ</div>
         <div class="team-role">Content Reviewer</div>
         <div class="team-handle">@mysterious_kiwi_58513</div>
       </div>
-
-      <div class="team-card glass-card">
-        <div class="team-avatar">
-          <img src="/assets/members/member-row-2.jpg" alt="Lưu Hiển Vinh">
-        </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="/assets/members/member-row-2.jpg" alt="Lưu Hiển Vinh"></div>
         <div class="team-name">Lưu Hiển Vinh</div>
         <div class="team-role">Researcher / Tester</div>
         <div class="team-handle">@gauchothieunang17078</div>
       </div>
-
-      <div class="team-card glass-card">
-        <div class="team-avatar">
-          <img src="/assets/members/member-row-3.jpg" alt="La Quốc Bảo">
-        </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="/assets/members/member-row-3.jpg" alt="La Quốc Bảo"></div>
         <div class="team-name">La Quốc Bảo</div>
         <div class="team-role">Researcher / Tester</div>
         <div class="team-handle">@silvyanniiz</div>
       </div>
-
-      <div class="team-card glass-card">
-        <div class="team-avatar">
-          <img src="/assets/members/member-row-5.jpg" alt="Trung Hiếu">
-        </div>
+      <div class="team-card">
+        <div class="team-avatar"><img src="/assets/members/member-row-5.jpg" alt="Trung Hiếu"></div>
         <div class="team-name">Trung Hiếu</div>
         <div class="team-role">Researcher / Tester</div>
         <div class="team-handle">@fishonboat</div>
       </div>
-
-      <div class="team-card glass-card">
-        <div class="team-avatar">
-          <div class="avatar-placeholder">DG</div>
-        </div>
+      <div class="team-card">
+        <div class="team-avatar"><div class="avatar-placeholder">DG</div></div>
         <div class="team-name">Dương Giang</div>
         <div class="team-role">UI/UX</div>
         <div class="team-handle">@Bunnieyang</div>
       </div>
-
     </div>
   </section>
 
@@ -255,47 +183,41 @@
       <p data-vi="Tham gia trò chuyện hoặc xem công việc của chúng tôi.">Join the conversation or check out our work.</p>
     </div>
     <div class="contact-grid">
-
-      <a href="https://discord.gg/cAyhN24pAN" target="_blank" class="contact-card glass-card">
+      <a href="https://discord.gg/cAyhN24pAN" target="_blank" class="contact-card">
         <div class="contact-icon">💬</div>
         <div class="contact-info">
           <div class="contact-label">Discord</div>
           <div class="contact-sub" data-vi="Tham gia cộng đồng">Join our community</div>
         </div>
       </a>
-
-      <a href="https://github.com/aindrewkwk" target="_blank" class="contact-card glass-card">
+      <a href="https://github.com/aindrewkwk" target="_blank" class="contact-card">
         <div class="contact-icon">📦</div>
         <div class="contact-info">
           <div class="contact-label">GitHub</div>
           <div class="contact-sub" data-vi="Dự án mã nguồn mở">Open source projects</div>
         </div>
       </a>
-
-      <a href="mailto:prodrstudio26@gmail.com" class="contact-card glass-card">
+      <a href="mailto:prodrstudio26@gmail.com" class="contact-card">
         <div class="contact-icon">✉️</div>
         <div class="contact-info">
           <div class="contact-label" data-vi="Thư điện tử">Email</div>
           <div class="contact-sub">prodrstudio26@gmail.com</div>
         </div>
       </a>
-
-      <a href="https://lbby.rstudio.live" class="contact-card glass-card">
+      <a href="https://lbby.rstudio.live" class="contact-card">
         <div class="contact-icon">🎮</div>
         <div class="contact-info">
           <div class="contact-label">Lbby</div>
           <div class="contact-sub" data-vi="Máy chủ Minecraft">Minecraft server host</div>
         </div>
       </a>
-
-      <a href="https://edumanage.rstudio.live" class="contact-card glass-card">
+      <a href="https://edumanage.rstudio.live" class="contact-card">
         <div class="contact-icon">📚</div>
         <div class="contact-info">
           <div class="contact-label">EduManage</div>
           <div class="contact-sub" data-vi="Quản lý giáo dục">School management</div>
         </div>
       </a>
-
     </div>
   </section>
 
