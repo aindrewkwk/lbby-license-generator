@@ -1,5 +1,26 @@
-/* Theme icon visibility */
+/* Theme-aware icon and logo visibility */
+
+/* Sun/Moon toggle icons */
 .sun-icon { display: none; }
 .moon-icon { display: none; }
 [data-theme="dark"] .sun-icon { display: block; }
 [data-theme="light"] .moon-icon { display: block; }
+
+/* Logo mark switching */
+.nav__logo-white,
+.nav__logo-black {
+  height: 24px;
+  width: auto;
+  border-radius: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.nav__logo-white { display: none; }
+.nav__logo-black { display: none; }
+
+[data-theme="dark"] .nav__logo-white { display: inline-block; }
+[data-theme="light"] .nav__logo-black { display: inline-block; }
+
+/* Favicon is updated via JS in the head script */
