@@ -9,7 +9,7 @@
   <meta property="og:description" content="R Studio is an indie software studio from Vietnam building polished tools like Lbby and EduManage.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rstudio.live">
-  <link rel="icon" href="/assets/lbby-r-studio.png" type="image/png">
+  <link rel="icon" id="favicon" href="/assets/favicon-white.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,6 +22,8 @@
         var t = localStorage.getItem('rs-theme');
         if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', t);
+        var f = document.getElementById('favicon');
+        if (f) f.href = t === 'dark' ? '/assets/favicon-white.png' : '/assets/favicon-black.png';
       } catch(e) {}
     })();
   </script>
@@ -31,8 +33,9 @@
   <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="/" class="nav__logo">
-        <img src="/assets/lbby-r-studio.png" alt="R Studio" style="height:24px;width:auto;border-radius:5px;display:inline-block;vertical-align:middle;margin-right:8px;">
-        R Studio
+        <img class="nav__logo-img nav__logo-white" src="/assets/logo-mark-white.png" alt="R Studio">
+        <img class="nav__logo-img nav__logo-black" src="/assets/logo-mark-black.png" alt="R Studio">
+        <span>R Studio</span>
       </a>
       <div class="nav__links">
         <a href="#products" class="nav__link" data-vi="Sản phẩm">Products</a>
