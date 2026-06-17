@@ -1,146 +1,390 @@
-// ── ASCII World Background ─────────────────────────────────────────
-(function() {
+(function () {
   'use strict';
 
-  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) return;
+  /* ------------------------------------------------------------------ */
+  /*  Reduced motion — draw one static frame and bail                   */
+  /* ------------------------------------------------------------------ */
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ------------------------------------------------------------------ */
+  /*  Canvas bootstrap                                                  */
+  /* ------------------------------------------------------------------ */
   var canvas = document.getElementById('ascii-bg');
   if (!canvas) return;
-
   var ctx = canvas.getContext('2d');
-  var isMobile = window.innerWidth < 768;
-  var dpr = Math.min(window.devicePixelRatio || 1, 2);
-  var WORDS = ['RSTUDIO','LBBY','EDUMANAGE','VIETNAM','BUILD','CREATE','HOST','LEARN','PLAY','DESIGN','CODE','GAMERS','CREATORS','EDUCATION','SOFTWARE','INDIE','SERVER','PLATFORM'];
-  var W, H, particles = [], mouseX = -9999, mouseY = -9999, mouseLX = -9999, mouseLY = -9999;
-  var isVisible = true;
 
+  var W, H, dpr, isMobile;
+  var chars = [];
+  var mouse = { x: 0, y: 0 };
+  var smoothMouse = { x: 0, y: 0 };
+  var mouseActive = false;
+  var paused = false;
+  var time = 0;
+  var rafId = null;
+
+  /* ------------------------------------------------------------------ */
+  /*  Word / fragment pools                                             */
+  /* ------------------------------------------------------------------ */
+  var WORDS = [
+    'RSTUDIO','R STUDIO','LBBY','EDUMANAGE','VIETNAM','BUILD','CREATE',
+    'HOST','PLAY','LEARN','CODE','DESIGN','SOFTWARE','TOOLS','SYSTEMS',
+    'GAMERS','CREATORS','EDUCATION','SERVER','PLATFORM','INDIE','STUDIO',
+    'NATIVE','SIMPLE','POLISHED','CONNECT','MANAGE','WORLD','DATA',
+    'NETWORK','CRAFT','PRODUCT','APP','WEB','CLOUD'
+  ];
+
+  var FRAGMENTS = [
+    '01/RSTUDIO','02/LBBY','03/EDUMANAGE','VN/INDIE','BUILD.CREATE',
+    'HOST.PLAY','LEARN.CODE','TOOLS.SYSTEMS','SERVER.NODE','PLATFORM.DATA',
+    'CREATORS.NETWORK','GAMERS.WORLD','EDU.MANAGE','R/SYSTEM','R/WORLD',
+    'R/LIVE','node_01','node_02','build_2026','create_loop','host_cluster',
+    'learn_index','play_state','x:1024 y:768','lat:10.77','lon:106.69'
+  ];
+
+  var DOTS = ['.', '·', '•', '●', '○', '–', '—', '-'];
+
+  /* ------------------------------------------------------------------ */
+  /*  Simple noise (hash-based value noise with smooth interpolation)   */
+  /* ------------------------------------------------------------------ */
+  function hash(ix, iy) {
+    var n = Math.sin(ix * 127.1 + iy * 311.7) * 43758.5453;
+    return n - Math.floor(n);
+  }
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function smoothstep(t) {
+    return t * t * (3 - 2 * t);
+  }
+
+  function noise(x, y) {
+    var ix = Math.floor(x);
+    var iy = Math.floor(y);
+    var fx = smoothstep(x - ix);
+    var fy = smoothstep(y - iy);
+    var a = hash(ix, iy);
+    var b = hash(ix + 1, iy);
+    var c = hash(ix, iy + 1);
+    var d = hash(ix + 1, iy + 1);
+    return lerp(lerp(a, b, fx), lerp(c, d, fx), fy);
+  }
+
+  function fbm(x, y, octaves) {
+    var val = 0;
+    var amp = 0.5;
+    var freq = 1;
+    for (var i = 0; i < octaves; i++) {
+      val += noise(x * freq, y * freq) * amp;
+      amp *= 0.5;
+      freq *= 2.0;
+    }
+    return val;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Density map                                                       */
+  /* ------------------------------------------------------------------ */
+  function densityAt(px, py) {
+    var scale = 0.018;
+    var d = fbm(px * scale, py * scale, 4);
+    /* add a second, larger-scale shape layer for continent feel */
+    d += fbm(px * scale * 0.4, py * scale * 0.4, 3) * 0.4;
+    /* normalize roughly 0-1 */
+    d = d / 1.4;
+    /* push extremes for more contrast */
+    d = smoothstep(d);
+    return d;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Character generation                                              */
+  /* ------------------------------------------------------------------ */
+  function pickChar(density) {
+    if (density > 0.70) {
+      return FRAGMENTS[Math.floor(Math.random() * FRAGMENTS.length)];
+    }
+    if (density > 0.45) {
+      return WORDS[Math.floor(Math.random() * WORDS.length)];
+    }
+    if (density > 0.25) {
+      return WORDS[Math.floor(Math.random() * WORDS.length)];
+    }
+    return DOTS[Math.floor(Math.random() * DOTS.length)];
+  }
+
+  function fontSizeFor(density, layer) {
+    var base = isMobile ? 7 : 9;
+    if (layer === 0) return base - 2;
+    if (layer === 2) return base + 1;
+    if (density > 0.65) return base + 1;
+    return base;
+  }
+
+  function buildCharacters() {
+    chars = [];
+    var cellSize = isMobile ? 28 : 22;
+    var cols = Math.ceil(W / cellSize);
+    var rows = Math.ceil(H / cellSize);
+    var maxDensityCells = isMobile ? cols * rows * 0.42 : cols * rows * 0.50;
+
+    /* pre-seed noise offset so the map shifts slightly each rebuild */
+    var ox = Math.random() * 1000;
+    var oy = Math.random() * 1000;
+
+    var placed = 0;
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var cx = c * cellSize + cellSize * 0.5;
+        var cy = r * cellSize + cellSize * 0.5;
+        var d = densityAt(cx + ox, cy + oy);
+
+        /* probability of placing a char in this cell */
+        var prob = d * 0.85;
+        if (placed > maxDensityCells) prob *= 0.25;
+        if (Math.random() > prob) continue;
+
+        var layer;
+        var rnd = Math.random();
+        if (d > 0.62 && rnd < 0.18) {
+          layer = 2;
+        } else if (d > 0.35 && rnd < 0.55) {
+          layer = 1;
+        } else {
+          layer = 0;
+        }
+
+        var baseAlpha;
+        if (layer === 0) baseAlpha = 0.04 + d * 0.08;
+        else if (layer === 1) baseAlpha = 0.10 + d * 0.22;
+        else baseAlpha = 0.30 + d * 0.48;
+
+        chars.push({
+          x: cx + (Math.random() - 0.5) * cellSize * 0.6,
+          y: cy + (Math.random() - 0.5) * cellSize * 0.6,
+          char: pickChar(d),
+          layer: layer,
+          baseAlpha: baseAlpha,
+          vx: (Math.random() - 0.5) * 0.12,
+          vy: (Math.random() - 0.5) * 0.06,
+          phase: Math.random() * Math.PI * 2,
+          size: fontSizeFor(d, layer),
+          density: d
+        });
+
+        placed++;
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Theme colours                                                     */
+  /* ------------------------------------------------------------------ */
   function getColors() {
     var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     return {
-      dot: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
-      word: isDark ? 'rgba(167,139,250,0.12)' : 'rgba(109,40,217,0.08)',
-      coord: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
-      glow: isDark ? 'rgba(167,139,250,0.05)' : 'rgba(109,40,217,0.03)'
+      dim:    isDark ? 'rgba(255,255,255,0.08)'  : 'rgba(0,0,0,0.07)',
+      mid:    isDark ? 'rgba(192,192,192,0.30)'   : 'rgba(120,120,120,0.24)',
+      bright: isDark ? 'rgba(255,255,255,0.78)'   : 'rgba(20,20,20,0.60)',
+      glow:   isDark ? 'rgba(192,192,192,0.10)'   : 'rgba(160,160,160,0.10)',
+      bg:     isDark ? '#0a0a0a'                   : '#ffffff'
     };
   }
 
-  function Particle(type) {
-    this.type = type;
-    this.reset(true);
+  /* ------------------------------------------------------------------ */
+  /*  Dimensions & resize                                               */
+  /* ------------------------------------------------------------------ */
+  function measure() {
+    var rect = canvas.getBoundingClientRect();
+    isMobile = window.innerWidth < 768;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width;
+    H = rect.height;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-
-  Particle.prototype.reset = function(initial) {
-    var m = isMobile ? 0.5 : 1;
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    if (this.type === 'dot') {
-      this.r = Math.random() * 1 + 0.3;
-      this.baseAlpha = Math.random() * 0.5 + 0.3;
-      this.speed = (Math.random() * 0.08 + 0.02) * m;
-    } else if (this.type === 'word') {
-      this.text = WORDS[Math.floor(Math.random() * WORDS.length)];
-      this.size = Math.floor(Math.random() * 4 + 9);
-      this.baseAlpha = Math.random() * 0.5 + 0.3;
-      this.speed = (Math.random() * 0.06 + 0.02) * m;
-      this.phase = Math.random() * Math.PI * 2;
-      this.pulseSpeed = Math.random() * 0.003 + 0.001;
-    } else {
-      this.text = (Math.random() * 180 - 90).toFixed(1) + '° ' + ['N','S'][Math.floor(Math.random()*2)] + ' ' + (Math.random() * 360 - 180).toFixed(1) + '° ' + ['E','W'][Math.floor(Math.random()*2)];
-      this.size = Math.floor(Math.random() * 2 + 8);
-      this.baseAlpha = Math.random() * 0.4 + 0.2;
-      this.speed = (Math.random() * 0.04 + 0.01) * m;
-    }
-    this.alpha = initial ? 0 : this.baseAlpha;
-    this.vx = (Math.random() - 0.5) * this.speed;
-    this.vy = (Math.random() - 0.5) * this.speed * 0.5;
-    this.fadeIn = initial ? Math.random() * 180 + 60 : 0;
-  };
-
-  Particle.prototype.update = function() {
-    if (this.fadeIn > 0) { this.fadeIn--; this.alpha = this.baseAlpha * (1 - this.fadeIn / 180); }
-    if (this.type === 'word' && this.fadeIn <= 0) {
-      this.phase += this.pulseSpeed;
-      this.alpha = this.baseAlpha + Math.sin(this.phase) * this.baseAlpha * 0.2;
-    }
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < -80) this.x = W + 80;
-    if (this.x > W + 80) this.x = -80;
-    if (this.y < -40) this.y = H + 40;
-    if (this.y > H + 40) this.y = -40;
-    var dx = this.x - mouseLX, dy = this.y - mouseLY;
-    var dist = Math.sqrt(dx * dx + dy * dy);
-    var glowR = isMobile ? 80 : 160;
-    if (dist < glowR) this.alpha = Math.min(this.alpha + (1 - dist / glowR) * 0.2, 0.6);
-  };
-
-  Particle.prototype.draw = function(colors) {
-    if (this.alpha < 0.01) return;
-    var a = Math.round(this.alpha * 100) / 100;
-    if (this.type === 'dot') {
-      ctx.beginPath();
-      ctx.arc(this.x * dpr, this.y * dpr, this.r * dpr, 0, Math.PI * 2);
-      ctx.fillStyle = colors.dot.replace(/,[\d.]+\)/, ',' + a + ')');
-      ctx.fill();
-    } else if (this.type === 'word') {
-      ctx.font = '500 ' + (this.size * dpr) + 'px ui-monospace, monospace';
-      ctx.fillStyle = colors.word.replace(/,[\d.]+\)/, ',' + a + ')');
-      ctx.textAlign = 'center';
-      ctx.fillText(this.text, this.x * dpr, this.y * dpr);
-    } else {
-      ctx.font = '400 ' + (this.size * dpr) + 'px ui-monospace, monospace';
-      ctx.fillStyle = colors.coord.replace(/,[\d.]+\)/, ',' + (a * 0.6) + ')');
-      ctx.textAlign = 'center';
-      ctx.fillText(this.text, this.x * dpr, this.y * dpr);
-    }
-  };
 
   function resize() {
-    var rect = canvas.parentElement.getBoundingClientRect();
-    if (rect.width === W && rect.height === H) return;
-    W = rect.width; H = rect.height;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    particles = [];
-    var area = W * H;
-    var dots = isMobile ? Math.floor(area / 14000) : Math.floor(area / 7000);
-    var words = isMobile ? 10 : Math.floor(area / 35000);
-    var coords = isMobile ? 5 : Math.floor(area / 60000);
-    for (var i = 0; i < dots; i++) particles.push(new Particle('dot'));
-    for (var i = 0; i < words; i++) particles.push(new Particle('word'));
-    for (var i = 0; i < coords; i++) particles.push(new Particle('coord'));
+    measure();
+    buildCharacters();
+    if (prefersReduced) drawFrame();
   }
 
-  function draw() {
-    if (!isVisible) { requestAnimationFrame(draw); return; }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    mouseLX += (mouseX - mouseLX) * 0.05;
-    mouseLY += (mouseY - mouseLY) * 0.05;
+  /* ------------------------------------------------------------------ */
+  /*  Draw                                                              */
+  /* ------------------------------------------------------------------ */
+  function drawFrame() {
     var colors = getColors();
-    for (var i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw(colors);
+    ctx.clearRect(0, 0, W, H);
+
+    /* centre mask — dim centre so headline stays readable */
+    var cx = W * 0.5;
+    var cy = H * 0.5;
+    var maskR = Math.max(W, H) * 0.55;
+    var maskGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, maskR);
+    maskGrad.addColorStop(0, 'rgba(0,0,0,0.28)');
+    maskGrad.addColorStop(0.45, 'rgba(0,0,0,0.10)');
+    maskGrad.addColorStop(1, 'rgba(0,0,0,0)');
+
+    /* parallax offsets per layer */
+    var dx = smoothMouse.x;
+    var dy = smoothMouse.y;
+    var offsets = [
+      { x: dx * 0.01, y: dy * 0.01 },
+      { x: dx * 0.02, y: dy * 0.02 },
+      { x: dx * 0.03, y: dy * 0.03 }
+    ];
+
+    var t = time;
+
+    for (var i = 0, len = chars.length; i < len; i++) {
+      var ch = chars[i];
+      var lo = offsets[ch.layer];
+
+      /* slow drift */
+      ch.x += ch.vx * 0.3;
+      ch.y += ch.vy * 0.2;
+
+      /* wrap around */
+      if (ch.x < -40) ch.x += W + 80;
+      if (ch.x > W + 40) ch.x -= W + 80;
+      if (ch.y < -40) ch.y += H + 80;
+      if (ch.y > H + 40) ch.y -= H + 80;
+
+      /* wave distortion */
+      var wy = Math.sin(ch.x * 0.002 + t * 0.0003) * 2;
+
+      /* opacity flicker */
+      var flicker = Math.sin(ch.phase + t * 0.0008) * 0.10;
+      var shimmer = 0;
+      if (ch.layer === 2) {
+        shimmer = Math.sin(ch.phase * 1.7 + t * 0.0014) * 0.18;
+      }
+      var alpha = Math.max(0, Math.min(1, ch.baseAlpha + flicker + shimmer));
+
+      /* pick colour bucket */
+      var col;
+      if (ch.layer === 0) col = colors.dim;
+      else if (ch.layer === 2) col = colors.bright;
+      else col = alpha > 0.22 ? colors.mid : colors.dim;
+
+      var px = ch.x + lo.x;
+      var py = ch.y + lo.y + wy;
+
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = col;
+      ctx.font = ch.size + 'px "JetBrains Mono","Fira Code","SF Mono",monospace';
+      ctx.fillText(ch.char, px, py);
     }
-    if (mouseLX > 0 && mouseLY > 0 && !isMobile) {
-      var glow = ctx.createRadialGradient(mouseLX * dpr, mouseLY * dpr, 0, mouseLX * dpr, mouseLY * dpr, 120 * dpr);
+
+    ctx.globalAlpha = 1;
+
+    /* cursor glow (desktop only) */
+    if (mouseActive && !isMobile) {
+      var gx = smoothMouse.x + W * 0.5;
+      var gy = smoothMouse.y + H * 0.5;
+      var glowR = isMobile ? 90 : 140;
+      var glow = ctx.createRadialGradient(gx, gy, 0, gx, gy, glowR);
       glow.addColorStop(0, colors.glow);
-      glow.addColorStop(1, 'transparent');
+      glow.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = glow;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(gx - glowR, gy - glowR, glowR * 2, glowR * 2);
     }
-    requestAnimationFrame(draw);
+
+    /* re-apply centre mask */
+    ctx.fillStyle = maskGrad;
+    ctx.fillRect(0, 0, W, H);
   }
 
-  var resizeTimer;
-  window.addEventListener('resize', function() { clearTimeout(resizeTimer); resizeTimer = setTimeout(resize, 200); }, { passive: true });
-  if (!isMobile) {
-    canvas.parentElement.addEventListener('mousemove', function(e) {
-      var r = canvas.getBoundingClientRect();
-      mouseX = e.clientX - r.left; mouseY = e.clientY - r.top;
-    }, { passive: true });
-    canvas.parentElement.addEventListener('mouseleave', function() { mouseX = -9999; mouseY = -9999; });
+  /* ------------------------------------------------------------------ */
+  /*  Animation loop                                                    */
+  /* ------------------------------------------------------------------ */
+  function tick(ts) {
+    if (paused) { rafId = requestAnimationFrame(tick); return; }
+    time = ts || 0;
+
+    /* lerp mouse */
+    smoothMouse.x += (mouse.x - smoothMouse.x) * 0.06;
+    smoothMouse.y += (mouse.y - smoothMouse.y) * 0.06;
+
+    drawFrame();
+    rafId = requestAnimationFrame(tick);
   }
-  new IntersectionObserver(function(e) { isVisible = e[0].isIntersecting; }, { threshold: 0.05 }).observe(canvas.parentElement);
-  resize(); draw();
+
+  /* ------------------------------------------------------------------ */
+  /*  Mouse tracking                                                    */
+  /* ------------------------------------------------------------------ */
+  function onMouseMove(e) {
+    var rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left - W * 0.5;
+    mouse.y = e.clientY - rect.top  - H * 0.5;
+    mouseActive = true;
+  }
+
+  function onMouseLeave() {
+    mouseActive = false;
+    mouse.x = 0;
+    mouse.y = 0;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Visibility observer — pause when offscreen                        */
+  /* ------------------------------------------------------------------ */
+  var observer;
+  function observeVisibility() {
+    if (!('IntersectionObserver' in window)) return;
+    observer = new IntersectionObserver(function (entries) {
+      paused = !entries[0].isIntersecting;
+    }, { threshold: 0.05 });
+    observer.observe(canvas);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Theme change watcher                                              */
+  /* ------------------------------------------------------------------ */
+  var themeObserver;
+  function watchTheme() {
+    if (!('MutationObserver' in window)) return;
+    themeObserver = new MutationObserver(function () {
+      /* colours are read live each frame — nothing extra needed */
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Init                                                              */
+  /* ------------------------------------------------------------------ */
+  function init() {
+    measure();
+    buildCharacters();
+    observeVisibility();
+    watchTheme();
+
+    /* mouse events — desktop only */
+    if (!isMobile) {
+      canvas.addEventListener('mousemove', onMouseMove, { passive: true });
+      canvas.addEventListener('mouseleave', onMouseLeave, { passive: true });
+    }
+
+    window.addEventListener('resize', resize, { passive: true });
+
+    if (prefersReduced) {
+      /* single static frame */
+      drawFrame();
+    } else {
+      rafId = requestAnimationFrame(tick);
+    }
+  }
+
+  /* start when DOM is ready */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

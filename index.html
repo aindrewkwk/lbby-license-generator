@@ -1,235 +1,310 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R Studio — Elegant software for gamers and creators</title>
-  <meta name="description" content="R Studio is an indie software studio from Vietnam building polished tools for gamers, creators, and education.">
-  <meta property="og:title" content="R Studio — Elegant software for gamers and creators">
-  <meta property="og:description" content="Indie software studio from Vietnam. Building polished tools for gamers, creators, and education.">
+  <title>R Studio — Software for gamers, creators, and education</title>
+  <meta name="description" content="R Studio is an indie software studio from Vietnam building polished tools like Lbby and EduManage.">
+  <meta property="og:title" content="R Studio — Software for gamers, creators, and education">
+  <meta property="og:description" content="R Studio is an indie software studio from Vietnam building polished tools like Lbby and EduManage.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rstudio.live">
   <link rel="icon" href="/assets/lbby-r-studio.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.v2.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.v3.css">
+  <script>
+    // Anti-flash theme: set before render
+    (function() {
+      try {
+        var t = localStorage.getItem('rs-theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch(e) {}
+    })();
+  </script>
 </head>
 <body>
 
   <!-- ── Nav ──────────────────────────────────────────────────────── -->
   <nav class="nav" id="nav">
-    <a href="/" class="nav-brand">
-      <img src="/assets/lbby-r-studio.png" alt="R Studio">
-      <span>R Studio</span>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links" id="nav-links">
-      <a href="#products" data-vi="Sản phẩm">Products</a>
-      <a href="#about" data-vi="Giới thiệu">About</a>
-      <a href="#team" data-vi="Thành viên">Team</a>
-      <a href="#contact" data-vi="Liên hệ">Contact</a>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-          <svg class="theme-icon sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="theme-icon moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="/assets/lbby-r-studio.png" alt="R Studio" style="height:24px;width:auto;border-radius:5px;display:inline-block;vertical-align:middle;margin-right:8px;">
+        R Studio
+      </a>
+      <div class="nav__links">
+        <a href="#products" class="nav__link" data-vi="Sản phẩm">Products</a>
+        <a href="#about" class="nav__link" data-vi="Giới thiệu">About</a>
+        <a href="#team" class="nav__link" data-vi="Thành viên">Team</a>
+        <a href="#contact" class="nav__link" data-vi="Liên hệ">Contact</a>
+      </div>
+      <div class="nav__toggles">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+        <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
           <span class="lang-label" data-vi="EN">VI</span>
         </button>
       </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
+  <!-- Mobile Dropdown -->
+  <div class="nav__dropdown" id="nav-dropdown">
+    <a href="#products" data-vi="Sản phẩm">Products</a>
+    <a href="#about" data-vi="Giới thiệu">About</a>
+    <a href="#team" data-vi="Thành viên">Team</a>
+    <a href="#contact" data-vi="Liên hệ">Contact</a>
+    <div class="nav__dropdown-toggles">
+      <button class="theme-toggle" aria-label="Switch theme" onclick="document.getElementById('theme-toggle').click()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+      </button>
+      <button class="lang-toggle" onclick="document.getElementById('lang-toggle').click()">
+        <span class="lang-label" data-vi="EN">VI</span>
+      </button>
+    </div>
+  </div>
+
   <!-- ── Hero ─────────────────────────────────────────────────────── -->
   <section class="hero" id="hero">
-    <div class="hero-bg">
-      <canvas id="ascii-bg"></canvas>
-    </div>
-    <div class="hero-content" id="hero-content">
-      <span class="hero-eyebrow" data-vi="Studio Indie · Việt Nam">Indie Studio · Vietnam</span>
-      <h1>Building elegant software<br>for <span>gamers</span> and <span>creators</span>.</h1>
-      <p class="hero-sub" data-vi="R Studio tạo ra những công cụ mạnh mẽ, tinh tế — từ máy chủ Minecraft đến nền tảng giáo dục.">R Studio builds powerful, polished tools that feel effortless — from Minecraft server hosting to education platforms.</p>
-      <div class="hero-buttons">
-        <a href="#products" class="btn btn-primary" data-vi="Khám phá sản phẩm">Explore Products</a>
-        <a href="#team" class="btn btn-secondary" data-vi="Gặp đội ngũ">Meet the Team</a>
+    <canvas class="hero__canvas" id="ascii-bg"></canvas>
+    <div class="hero__content">
+      <p class="hero__eyebrow" data-vi="Studio Indie · Việt Nam">Indie Studio · Vietnam</p>
+      <h1 class="hero__headline" data-vi="Tạo ra phần mềm sống động.">Building software that feels alive.</h1>
+      <p class="hero__sub" data-vi="R Studio tạo ra những công cụ đơn giản, tinh tế cho game thủ, người sáng tạo và giáo dục.">R Studio creates simple, polished tools for gamers, creators, and education.</p>
+      <div class="hero__buttons">
+        <a href="#products" class="btn btn--primary" data-vi="Khám phá sản phẩm">Explore Products</a>
+        <a href="#team" class="btn btn--secondary" data-vi="Gặp đội ngũ">Meet the Team</a>
       </div>
+    </div>
+    <div class="hero__strip">
+      <span class="hero__strip-word">R Studio</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Lbby</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">EduManage</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Vietnam</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Indie Software</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Gamers</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Creators</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Education</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Tools</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Systems</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Build</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Create</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Host</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Learn</span>
+      <span class="hero__strip-word">·</span>
+      <span class="hero__strip-word">Play</span>
     </div>
   </section>
 
   <!-- ── Products ─────────────────────────────────────────────────── -->
-  <section class="section" id="products">
-    <div class="section-header">
-      <h2 data-vi="Đang xây dựng">What we're building</h2>
-      <p data-vi="Công cụ tinh tế giải quyết vấn đề thực tế.">Crafted tools that solve real problems.</p>
+  <section class="products section" id="products">
+    <div class="products__header reveal">
+      <p class="label" data-vi="Sản phẩm">Products</p>
+      <h2 class="section-title" data-vi="Hai công cụ tập trung. Được xây dựng bằng sự chăm sóc.">Two focused tools. Built with care.</h2>
     </div>
-    <div class="products-grid">
 
-      <a href="https://lbby.rstudio.live" class="product-card">
-        <span class="product-label" data-vi="Dành cho game thủ">For gamers</span>
-        <div class="product-icon">
-          <img src="/assets/lbby-app-icon-square.png" alt="Lbby">
-        </div>
-        <h3>Lbby</h3>
-        <p data-vi="Máy chủ Minecraft hiện đại. Cài đặt, quản lý và chia sẻ — tất cả từ một ứng dụng. Không cần port forwarding, không terminal, không rắc rối.">A modern Minecraft server host. Install, manage, and share — all from one native app. No port forwarding, no terminal, no headaches.</p>
-        <span class="product-link" data-vi="Tìm hiểu thêm">Learn more <span class="arrow">→</span></span>
-      </a>
+    <a href="https://lbby.rstudio.live" class="product-item reveal">
+      <span class="product__index">01</span>
+      <div class="product__body">
+        <p class="product__label" data-vi="Dành cho game thủ">For gamers</p>
+        <h3 class="product__title">Lbby</h3>
+        <p class="product__desc" data-vi="Máy chủ Minecraft hiện đại. Cài đặt, quản lý và chia sẻ từ một ứng dụng — không cần port forwarding, không terminal, không rắc rối.">A modern Minecraft server host. Install, manage, and share from one native app — no port forwarding, no terminal, no headaches.</p>
+        <span class="product__cta" data-vi="Xem Lbby">View Lbby <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </a>
 
-      <a href="https://edumanage.rstudio.live" class="product-card">
-        <span class="product-label" data-vi="Dành cho giáo dục">For education</span>
-        <div class="product-icon">
-          <img src="/assets/edumanage-icon.svg" alt="EduManage">
-        </div>
-        <h3>EduManage <span class="badge" data-vi="Sắp ra mắt">Coming soon</span></h3>
-        <p data-vi="Quản lý trường học thông minh cho giáo dục hiện đại. Học sinh, giáo viên, lịch học, điểm số — tất cả trong một nền tảng.">Smart school management for modern education. Students, teachers, schedules, grades — all in one platform.</p>
-        <span class="product-link" data-vi="Tìm hiểu thêm">Learn more <span class="arrow">→</span></span>
-      </a>
-
-    </div>
+    <a href="https://edumanage.rstudio.live" class="product-item reveal">
+      <span class="product__index">02</span>
+      <div class="product__body">
+        <p class="product__label" data-vi="Dành cho giáo dục">For education</p>
+        <h3 class="product__title">EduManage <span style="font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent-silver);margin-left:8px;" data-vi="Sắp ra mắt">Coming soon</span></h3>
+        <p class="product__desc" data-vi="Nền tảng quản lý trường học thông minh cho học sinh, giáo viên, lịch học, điểm số và quy trình học tập hàng ngày.">A smart school management platform for students, teachers, schedules, grades, and daily academic workflows.</p>
+        <span class="product__cta" data-vi="Xem EduManage">View EduManage <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </div>
+    </a>
   </section>
 
   <!-- ── About ────────────────────────────────────────────────────── -->
-  <section class="section" id="about">
-    <div class="about-layout">
-      <div class="about-text">
-        <h2 data-vi="Studio nhỏ, ý tưởng lớn">Small studio, big ideas</h2>
-        <p data-vi="R Studio là studio phần mềm indie tại Việt Nam. Chúng tôi tin rằng phần mềm tuyệt vời phải nhẹ nhàng — mạnh mẽ bên trong, tinh tế bên ngoài, và miễn phí để trải nghiệm.">R Studio is an indie software studio based in Vietnam. We believe great software should feel effortless — powerful under the hood, polished on the surface, and free to try.</p>
+  <section class="about section" id="about">
+    <div class="about__header reveal">
+      <p class="label" data-vi="Giới thiệu">About</p>
+    </div>
+    <div class="about__split reveal">
+      <div class="about__left">
+        <h2 class="section-title" data-vi="Studio nhỏ, ý tưởng lớn.">Small studio, big ideas.</h2>
       </div>
-      <div class="about-stats">
-        <div class="stat-card">
-          <div class="stat-icon">🇻🇳</div>
-          <div class="stat-label" data-vi="Trụ sở Việt Nam">Vietnam-based</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">⚡</div>
-          <div class="stat-label" data-vi="Tự phát triển">Indie-built</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🎮</div>
-          <div class="stat-label" data-vi="Game thủ + Người sáng tạo">Gamers + creators</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">✨</div>
-          <div class="stat-label" data-vi="Miễn phí trải nghiệm">Free to try</div>
-        </div>
+      <div class="about__right">
+        <p data-vi="R Studio là studio phần mềm indie tại Việt Nam. Chúng tôi tạo ra những công cụ mạnh mẽ bên trong, tinh tế bên ngoài, và đủ đơn giản để cảm thấy nhẹ nhàng.">R Studio is an indie software studio based in Vietnam. We build tools that are powerful under the hood, polished on the surface, and simple enough to feel effortless.</p>
       </div>
+    </div>
+    <div class="about__meta reveal">
+      <span class="about__meta-item" data-vi="Trụ sở Việt Nam">Vietnam-based</span>
+      <span class="about__meta-divider">·</span>
+      <span class="about__meta-item" data-vi="Tự phát triển">Indie-built</span>
+      <span class="about__meta-divider">·</span>
+      <span class="about__meta-item" data-vi="Game thủ + Người sáng tạo">Gamers + creators</span>
+      <span class="about__meta-divider">·</span>
+      <span class="about__meta-item" data-vi="Miễn phí trải nghiệm">Free to try</span>
     </div>
   </section>
 
   <!-- ── Team ─────────────────────────────────────────────────────── -->
-  <section class="section" id="team">
-    <div class="section-header">
-      <h2>Members</h2>
-      <p data-vi="Những người giúp R Studio xây dựng, kiểm thử và hoàn thiện sản phẩm.">The people helping R Studio build, test, review, and polish our products.</p>
+  <section class="team section" id="team">
+    <div class="team__header reveal">
+      <p class="label" data-vi="Thành viên">Team</p>
+      <h2 class="section-title">Members</h2>
+      <p class="body-text" data-vi="Những người giúp R Studio xây dựng, kiểm thử, đánh giá và hoàn thiện sản phẩm.">The people helping R Studio build, test, review, and polish our products.</p>
     </div>
-    <div class="team-grid">
+    <div class="team__grid reveal-stagger">
+
       <div class="team-card">
-        <div class="team-avatar"><img src="/assets/members/member-row-8.jpg" alt="Trần Đình Tiến Anh"></div>
-        <div class="team-name">Trần Đình Tiến Anh</div>
-        <div class="team-role">Founder / OP</div>
-        <div class="team-handle">@_aindrew</div>
+        <img class="team-card__avatar" src="/assets/members/member-row-8.jpg" alt="Trần Đình Tiến Anh">
+        <div class="team-card__info">
+          <div class="team-card__name">Trần Đình Tiến Anh</div>
+          <div class="team-card__role">Founder / OP</div>
+          <div class="team-card__handle">@_aindrew</div>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="team-avatar"><img src="/assets/members/member-row-4.jpg" alt="Nguyễn Lê Gia Hưng"></div>
-        <div class="team-name">Nguyễn Lê Gia Hưng</div>
-        <div class="team-role">PM Assistant / QC Support</div>
-        <div class="team-handle">@imhung</div>
+        <img class="team-card__avatar" src="/assets/members/member-row-4.jpg" alt="Nguyễn Lê Gia Hưng">
+        <div class="team-card__info">
+          <div class="team-card__name">Nguyễn Lê Gia Hưng</div>
+          <div class="team-card__role">PM Assistant / QC Support</div>
+          <div class="team-card__handle">@imhung</div>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="team-avatar"><img src="/assets/members/member-row-6.jpg" alt="Tạ Trần Phúc An"></div>
-        <div class="team-name">Tạ Trần Phúc An</div>
-        <div class="team-role">Lead QC / Tester</div>
-        <div class="team-handle">@.ttpa</div>
+        <img class="team-card__avatar" src="/assets/members/member-row-6.jpg" alt="Tạ Trần Phúc An">
+        <div class="team-card__info">
+          <div class="team-card__name">Tạ Trần Phúc An</div>
+          <div class="team-card__role">Lead QC / Tester</div>
+          <div class="team-card__handle">@.ttpa</div>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="team-avatar"><img src="/assets/members/member-row-7.jpg" alt="Trần Nguyễn Phi Vũ"></div>
-        <div class="team-name">Trần Nguyễn Phi Vũ</div>
-        <div class="team-role">Content Reviewer</div>
-        <div class="team-handle">@mysterious_kiwi_58513</div>
+        <img class="team-card__avatar" src="/assets/members/member-row-7.jpg" alt="Trần Nguyễn Phi Vũ">
+        <div class="team-card__info">
+          <div class="team-card__name">Trần Nguyễn Phi Vũ</div>
+          <div class="team-card__role">Content Reviewer</div>
+          <div class="team-card__handle">@mysterious_kiwi_58513</div>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="team-avatar"><img src="/assets/members/member-row-2.jpg" alt="Lưu Hiển Vinh"></div>
-        <div class="team-name">Lưu Hiển Vinh</div>
-        <div class="team-role">Researcher / Tester</div>
-        <div class="team-handle">@gauchothieunang17078</div>
+        <img class="team-card__avatar" src="/assets/members/member-row-2.jpg" alt="Lưu Hiển Vinh">
+        <div class="team-card__info">
+          <div class="team-card__name">Lưu Hiển Vinh</div>
+          <div class="team-card__role">Researcher / Tester</div>
+          <div class="team-card__handle">@gauchothieunang17078</div>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="team-avatar"><img src="/assets/members/member-row-3.jpg" alt="La Quốc Bảo"></div>
-        <div class="team-name">La Quốc Bảo</div>
-        <div class="team-role">Researcher / Tester</div>
-        <div class="team-handle">@silvyanniiz</div>
+        <img class="team-card__avatar" src="/assets/members/member-row-3.jpg" alt="La Quốc Bảo">
+        <div class="team-card__info">
+          <div class="team-card__name">La Quốc Bảo</div>
+          <div class="team-card__role">Researcher / Tester</div>
+          <div class="team-card__handle">@silvyanniiz</div>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="team-avatar"><img src="/assets/members/member-row-5.jpg" alt="Trung Hiếu"></div>
-        <div class="team-name">Trung Hiếu</div>
-        <div class="team-role">Researcher / Tester</div>
-        <div class="team-handle">@fishonboat</div>
+        <img class="team-card__avatar" src="/assets/members/member-row-5.jpg" alt="Trung Hiếu">
+        <div class="team-card__info">
+          <div class="team-card__name">Trung Hiếu</div>
+          <div class="team-card__role">Researcher / Tester</div>
+          <div class="team-card__handle">@fishonboat</div>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="team-avatar"><div class="avatar-placeholder">DG</div></div>
-        <div class="team-name">Dương Giang</div>
-        <div class="team-role">UI/UX</div>
-        <div class="team-handle">@Bunnieyang</div>
+        <div class="team-card__avatar" style="display:flex;align-items:center;justify-content:center;background:var(--surface-soft);font-size:18px;font-weight:800;color:var(--text-faint);">DG</div>
+        <div class="team-card__info">
+          <div class="team-card__name">Dương Giang</div>
+          <div class="team-card__role">UI/UX</div>
+          <div class="team-card__handle">@Bunnieyang</div>
+        </div>
       </div>
+
     </div>
   </section>
 
   <!-- ── Connect ──────────────────────────────────────────────────── -->
-  <section class="section" id="contact">
-    <div class="section-header">
-      <h2 data-vi="Theo dõi">Follow along</h2>
-      <p data-vi="Tham gia trò chuyện hoặc xem công việc của chúng tôi.">Join the conversation or check out our work.</p>
+  <section class="connect section" id="contact">
+    <div class="connect__header reveal">
+      <p class="label" data-vi="Kết nối">Connect</p>
+      <h2 class="section-title" data-vi="Theo dõi.">Follow along.</h2>
+      <p class="body-text" data-vi="Tham gia trò chuyện hoặc khám phá những gì chúng tôi đang xây dựng.">Join the conversation or explore what we're building.</p>
     </div>
-    <div class="contact-grid">
-      <a href="https://discord.gg/cAyhN24pAN" target="_blank" class="contact-card">
-        <div class="contact-icon">💬</div>
-        <div class="contact-info">
-          <div class="contact-label">Discord</div>
-          <div class="contact-sub" data-vi="Tham gia cộng đồng">Join our community</div>
-        </div>
+    <div class="connect__links reveal">
+
+      <a href="https://discord.gg/cAyhN24pAN" target="_blank" class="connect__link">
+        <span class="connect__link-name">Discord</span>
+        <span class="connect__link-handle" data-vi="Tham gia cộng đồng">Join our community</span>
+        <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-      <a href="https://github.com/aindrewkwk" target="_blank" class="contact-card">
-        <div class="contact-icon">📦</div>
-        <div class="contact-info">
-          <div class="contact-label">GitHub</div>
-          <div class="contact-sub" data-vi="Dự án mã nguồn mở">Open source projects</div>
-        </div>
+
+      <a href="https://github.com/aindrewkwk" target="_blank" class="connect__link">
+        <span class="connect__link-name">GitHub</span>
+        <span class="connect__link-handle" data-vi="Dự án mã nguồn mở">Open source projects</span>
+        <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-      <a href="mailto:prodrstudio26@gmail.com" class="contact-card">
-        <div class="contact-icon">✉️</div>
-        <div class="contact-info">
-          <div class="contact-label" data-vi="Thư điện tử">Email</div>
-          <div class="contact-sub">prodrstudio26@gmail.com</div>
-        </div>
+
+      <a href="mailto:prodrstudio26@gmail.com" class="connect__link">
+        <span class="connect__link-name" data-vi="Thư điện tử">Email</span>
+        <span class="connect__link-handle">prodrstudio26@gmail.com</span>
+        <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-      <a href="https://lbby.rstudio.live" class="contact-card">
-        <div class="contact-icon">🎮</div>
-        <div class="contact-info">
-          <div class="contact-label">Lbby</div>
-          <div class="contact-sub" data-vi="Máy chủ Minecraft">Minecraft server host</div>
-        </div>
+
+      <a href="https://lbby.rstudio.live" class="connect__link">
+        <span class="connect__link-name">Lbby</span>
+        <span class="connect__link-handle" data-vi="Máy chủ Minecraft">Minecraft server host</span>
+        <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-      <a href="https://edumanage.rstudio.live" class="contact-card">
-        <div class="contact-icon">📚</div>
-        <div class="contact-info">
-          <div class="contact-label">EduManage</div>
-          <div class="contact-sub" data-vi="Quản lý giáo dục">School management</div>
-        </div>
+
+      <a href="https://edumanage.rstudio.live" class="connect__link">
+        <span class="connect__link-name">EduManage</span>
+        <span class="connect__link-handle" data-vi="Quản lý giáo dục">School management</span>
+        <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
+
     </div>
   </section>
 
   <!-- ── Footer ───────────────────────────────────────────────────── -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="/assets/lbby-r-studio.png" alt="R Studio">
-        <span>R Studio</span>
+    <div class="footer__inner">
+      <p class="footer__copy" data-vi="© 2026 R Studio. Bảo lưu mọi quyền.">&copy; 2026 R Studio. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="https://lbby.rstudio.live" class="footer__link">Lbby</a>
+        <a href="https://edumanage.rstudio.live" class="footer__link">EduManage</a>
+        <a href="https://discord.gg/cAyhN24pAN" target="_blank" class="footer__link">Discord</a>
+        <a href="https://github.com/aindrewkwk" target="_blank" class="footer__link">GitHub</a>
       </div>
-      <p data-vi="© 2026 R Studio. Bảo lưu mọi quyền.">&copy; 2026 R Studio. All rights reserved.</p>
-      <p class="footer-sub" data-vi="Sản xuất tại Việt Nam 🇻🇳">Made in Vietnam 🇻🇳</p>
     </div>
   </footer>
 
