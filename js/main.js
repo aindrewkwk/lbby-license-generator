@@ -10,6 +10,7 @@
   // ── Theme Toggle ──────────────────────────────────────────────
   var html = document.documentElement;
   var themeToggle = document.getElementById('theme-toggle');
+  var favicon = document.getElementById('favicon');
   var savedTheme = null;
   try { savedTheme = localStorage.getItem('rs-theme'); } catch(e) {}
   var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -22,6 +23,10 @@
     // Update toggle aria-label
     if (themeToggle) {
       themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    // Update favicon
+    if (favicon) {
+      favicon.href = theme === 'dark' ? '/assets/favicon-white.png' : '/assets/favicon-black.png';
     }
   }
 
