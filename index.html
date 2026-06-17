@@ -15,8 +15,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.v3.css">
+  <link rel="stylesheet" href="/css/theme-icons.css">
   <script>
-    // Anti-flash theme: set before render
     (function() {
       try {
         var t = localStorage.getItem('rs-theme');
@@ -28,7 +28,6 @@
 </head>
 <body>
 
-  <!-- ── Nav ──────────────────────────────────────────────────────── -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="/" class="nav__logo">
@@ -56,7 +55,6 @@
     </div>
   </nav>
 
-  <!-- Mobile Dropdown -->
   <div class="nav__dropdown" id="nav-dropdown">
     <a href="#products" data-vi="Sản phẩm">Products</a>
     <a href="#about" data-vi="Giới thiệu">About</a>
@@ -64,7 +62,8 @@
     <a href="#contact" data-vi="Liên hệ">Contact</a>
     <div class="nav__dropdown-toggles">
       <button class="theme-toggle" aria-label="Switch theme" onclick="document.getElementById('theme-toggle').click()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+        <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+        <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <button class="lang-toggle" onclick="document.getElementById('lang-toggle').click()">
         <span class="lang-label" data-vi="EN">VI</span>
@@ -72,7 +71,6 @@
     </div>
   </div>
 
-  <!-- ── Hero ─────────────────────────────────────────────────────── -->
   <section class="hero" id="hero">
     <canvas class="hero__canvas" id="ascii-bg"></canvas>
     <div class="hero__content">
@@ -117,13 +115,11 @@
     </div>
   </section>
 
-  <!-- ── Products ─────────────────────────────────────────────────── -->
   <section class="products section" id="products">
     <div class="products__header reveal">
       <p class="label" data-vi="Sản phẩm">Products</p>
       <h2 class="section-title" data-vi="Hai công cụ tập trung. Được xây dựng bằng sự chăm sóc.">Two focused tools. Built with care.</h2>
     </div>
-
     <a href="https://lbby.rstudio.live" class="product-item reveal">
       <span class="product__index">01</span>
       <div class="product__body">
@@ -133,7 +129,6 @@
         <span class="product__cta" data-vi="Xem Lbby">View Lbby <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
       </div>
     </a>
-
     <a href="https://edumanage.rstudio.live" class="product-item reveal">
       <span class="product__index">02</span>
       <div class="product__body">
@@ -145,7 +140,6 @@
     </a>
   </section>
 
-  <!-- ── About ────────────────────────────────────────────────────── -->
   <section class="about section" id="about">
     <div class="about__header reveal">
       <p class="label" data-vi="Giới thiệu">About</p>
@@ -169,7 +163,6 @@
     </div>
   </section>
 
-  <!-- ── Team ─────────────────────────────────────────────────────── -->
   <section class="team section" id="team">
     <div class="team__header reveal">
       <p class="label" data-vi="Thành viên">Team</p>
@@ -177,83 +170,41 @@
       <p class="body-text" data-vi="Những người giúp R Studio xây dựng, kiểm thử, đánh giá và hoàn thiện sản phẩm.">The people helping R Studio build, test, review, and polish our products.</p>
     </div>
     <div class="team__grid reveal-stagger">
-
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-8.jpg" alt="Trần Đình Tiến Anh">
-        <div class="team-card__info">
-          <div class="team-card__name">Trần Đình Tiến Anh</div>
-          <div class="team-card__role">Founder / OP</div>
-          <div class="team-card__handle">@_aindrew</div>
-        </div>
+        <div class="team-card__info"><div class="team-card__name">Trần Đình Tiến Anh</div><div class="team-card__role">Founder / OP</div><div class="team-card__handle">@_aindrew</div></div>
       </div>
-
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-4.jpg" alt="Nguyễn Lê Gia Hưng">
-        <div class="team-card__info">
-          <div class="team-card__name">Nguyễn Lê Gia Hưng</div>
-          <div class="team-card__role">PM Assistant / QC Support</div>
-          <div class="team-card__handle">@imhung</div>
-        </div>
+        <div class="team-card__info"><div class="team-card__name">Nguyễn Lê Gia Hưng</div><div class="team-card__role">PM Assistant / QC Support</div><div class="team-card__handle">@imhung</div></div>
       </div>
-
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-6.jpg" alt="Tạ Trần Phúc An">
-        <div class="team-card__info">
-          <div class="team-card__name">Tạ Trần Phúc An</div>
-          <div class="team-card__role">Lead QC / Tester</div>
-          <div class="team-card__handle">@.ttpa</div>
-        </div>
+        <div class="team-card__info"><div class="team-card__name">Tạ Trần Phúc An</div><div class="team-card__role">Lead QC / Tester</div><div class="team-card__handle">@.ttpa</div></div>
       </div>
-
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-7.jpg" alt="Trần Nguyễn Phi Vũ">
-        <div class="team-card__info">
-          <div class="team-card__name">Trần Nguyễn Phi Vũ</div>
-          <div class="team-card__role">Content Reviewer</div>
-          <div class="team-card__handle">@mysterious_kiwi_58513</div>
-        </div>
+        <div class="team-card__info"><div class="team-card__name">Trần Nguyễn Phi Vũ</div><div class="team-card__role">Content Reviewer</div><div class="team-card__handle">@mysterious_kiwi_58513</div></div>
       </div>
-
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-2.jpg" alt="Lưu Hiển Vinh">
-        <div class="team-card__info">
-          <div class="team-card__name">Lưu Hiển Vinh</div>
-          <div class="team-card__role">Researcher / Tester</div>
-          <div class="team-card__handle">@gauchothieunang17078</div>
-        </div>
+        <div class="team-card__info"><div class="team-card__name">Lưu Hiển Vinh</div><div class="team-card__role">Researcher / Tester</div><div class="team-card__handle">@gauchothieunang17078</div></div>
       </div>
-
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-3.jpg" alt="La Quốc Bảo">
-        <div class="team-card__info">
-          <div class="team-card__name">La Quốc Bảo</div>
-          <div class="team-card__role">Researcher / Tester</div>
-          <div class="team-card__handle">@silvyanniiz</div>
-        </div>
+        <div class="team-card__info"><div class="team-card__name">La Quốc Bảo</div><div class="team-card__role">Researcher / Tester</div><div class="team-card__handle">@silvyanniiz</div></div>
       </div>
-
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-5.jpg" alt="Trung Hiếu">
-        <div class="team-card__info">
-          <div class="team-card__name">Trung Hiếu</div>
-          <div class="team-card__role">Researcher / Tester</div>
-          <div class="team-card__handle">@fishonboat</div>
-        </div>
+        <div class="team-card__info"><div class="team-card__name">Trung Hiếu</div><div class="team-card__role">Researcher / Tester</div><div class="team-card__handle">@fishonboat</div></div>
       </div>
-
       <div class="team-card">
         <div class="team-card__avatar" style="display:flex;align-items:center;justify-content:center;background:var(--surface-soft);font-size:18px;font-weight:800;color:var(--text-faint);">DG</div>
-        <div class="team-card__info">
-          <div class="team-card__name">Dương Giang</div>
-          <div class="team-card__role">UI/UX</div>
-          <div class="team-card__handle">@Bunnieyang</div>
-        </div>
+        <div class="team-card__info"><div class="team-card__name">Dương Giang</div><div class="team-card__role">UI/UX</div><div class="team-card__handle">@Bunnieyang</div></div>
       </div>
-
     </div>
   </section>
 
-  <!-- ── Connect ──────────────────────────────────────────────────── -->
   <section class="connect section" id="contact">
     <div class="connect__header reveal">
       <p class="label" data-vi="Kết nối">Connect</p>
@@ -261,41 +212,34 @@
       <p class="body-text" data-vi="Tham gia trò chuyện hoặc khám phá những gì chúng tôi đang xây dựng.">Join the conversation or explore what we're building.</p>
     </div>
     <div class="connect__links reveal">
-
       <a href="https://discord.gg/cAyhN24pAN" target="_blank" class="connect__link">
         <span class="connect__link-name">Discord</span>
         <span class="connect__link-handle" data-vi="Tham gia cộng đồng">Join our community</span>
         <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-
       <a href="https://github.com/aindrewkwk" target="_blank" class="connect__link">
         <span class="connect__link-name">GitHub</span>
         <span class="connect__link-handle" data-vi="Dự án mã nguồn mở">Open source projects</span>
         <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-
       <a href="mailto:prodrstudio26@gmail.com" class="connect__link">
         <span class="connect__link-name" data-vi="Thư điện tử">Email</span>
         <span class="connect__link-handle">prodrstudio26@gmail.com</span>
         <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-
       <a href="https://lbby.rstudio.live" class="connect__link">
         <span class="connect__link-name">Lbby</span>
         <span class="connect__link-handle" data-vi="Máy chủ Minecraft">Minecraft server host</span>
         <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-
       <a href="https://edumanage.rstudio.live" class="connect__link">
         <span class="connect__link-name">EduManage</span>
         <span class="connect__link-handle" data-vi="Quản lý giáo dục">School management</span>
         <svg class="connect__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-
     </div>
   </section>
 
-  <!-- ── Footer ───────────────────────────────────────────────────── -->
   <footer class="footer">
     <div class="footer__inner">
       <p class="footer__copy" data-vi="© 2026 R Studio. Bảo lưu mọi quyền.">&copy; 2026 R Studio. All rights reserved.</p>
