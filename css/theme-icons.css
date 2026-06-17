@@ -1,0 +1,5 @@
+/* Theme icon visibility */
+.sun-icon { display: none; }
+.moon-icon { display: none; }
+[data-theme="dark"] .sun-icon { display: block; }
+[data-theme="light"] .moon-icon { display: block; }
