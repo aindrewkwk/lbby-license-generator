@@ -1342,6 +1342,22 @@ body::before {
   mix-blend-mode: normal;
 }
 
+.pixel-logo--dark {
+  display: block;
+}
+
+.pixel-logo--light {
+  display: none;
+}
+
+[data-theme="light"] .pixel-logo--dark {
+  display: none;
+}
+
+[data-theme="light"] .pixel-logo--light {
+  display: block;
+}
+
 .hero__content {
   z-index: 2;
   display: grid;
