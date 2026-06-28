@@ -13,8 +13,7 @@
   var favicon = document.getElementById('favicon');
   var savedTheme = null;
   try { savedTheme = localStorage.getItem('rs-theme'); } catch(e) {}
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+  var currentTheme = savedTheme || 'dark';
 
   function setTheme(theme) {
     currentTheme = theme;
@@ -77,6 +76,20 @@
   }
   window.addEventListener('scroll', updateActiveLink, { passive: true });
   updateActiveLink();
+
+  // ── Kinetic page variables ───────────────────────────────────
+  function updateKineticVars() {
+    var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var progress = Math.min(1, Math.max(0, window.scrollY / max));
+    html.style.setProperty('--scroll-y', String(Math.round(window.scrollY)));
+    html.style.setProperty('--scroll-progress', progress.toFixed(4));
+  }
+
+  if (!reducedMotion) {
+    updateKineticVars();
+    window.addEventListener('scroll', updateKineticVars, { passive: true });
+    window.addEventListener('resize', updateKineticVars);
+  }
 
   // ── Language Toggle ───────────────────────────────────────────
   var currentLang = 'en';

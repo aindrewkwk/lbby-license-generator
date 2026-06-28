@@ -21,7 +21,7 @@
     (function() {
       try {
         var t = localStorage.getItem('rs-theme');
-        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (!t) t = 'dark';
         document.documentElement.setAttribute('data-theme', t);
         var f = document.getElementById('favicon');
         if (f) f.href = t === 'dark' ? '/assets/favicon-white.png' : '/assets/favicon-black.png';
@@ -77,13 +77,39 @@
 
   <section class="hero" id="hero">
     <canvas class="hero__canvas" id="ascii-bg"></canvas>
+    <div class="site-noise" aria-hidden="true"></div>
+    <div class="scanline" aria-hidden="true"></div>
+    <div class="hero__chrome" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="hero__logo-field" aria-hidden="true">
+      <img src="/assets/rstudio-pixel-logo.png" alt="">
+    </div>
     <div class="hero__content">
       <p class="hero__eyebrow" data-vi="Studio Indie · Việt Nam">Indie Studio · Vietnam</p>
-      <h1 class="hero__headline" data-vi="Tạo ra phần mềm sống động.">Building software that feels alive.</h1>
-      <p class="hero__sub" data-vi="R Studio tạo ra những công cụ đơn giản, tinh tế cho game thủ, người sáng tạo và giáo dục.">R Studio creates simple, polished tools for gamers, creators, and education.</p>
+      <h1 class="hero__headline" data-vi="R Studio">R Studio</h1>
+      <p class="hero__kicker" data-vi="Môi trường khép kín cho sản phẩm, game và công cụ giáo dục.">A closed environment for products, games, and education tools.</p>
+      <p class="hero__sub" data-vi="Phần mềm nhỏ, sắc, được xây bằng nhịp điệu: thử nghiệm nhanh, giao diện rõ, và những chi tiết có chủ đích.">Small sharp software built with rhythm: fast experiments, clear interfaces, and deliberate detail.</p>
       <div class="hero__buttons">
-        <a href="#products" class="btn btn--primary" data-vi="Khám phá sản phẩm">Explore Products</a>
-        <a href="#team" class="btn btn--secondary" data-vi="Gặp đội ngũ">Meet the Team</a>
+        <a href="#products" class="btn btn--primary" data-vi="Xem hệ thống">View system</a>
+        <a href="#contact" class="btn btn--secondary" data-vi="Liên hệ">Contact</a>
+      </div>
+      <div class="hero__socials" aria-label="R Studio links">
+        <a href="https://discord.gg/cAyhN24pAN" target="_blank" aria-label="Discord">□</a>
+        <a href="mailto:prodrstudio26@gmail.com" aria-label="Email">↗</a>
+      </div>
+      <div class="hero__manifest">
+        <div>
+          <span class="hero__rule-title" data-vi="Không ngày lãng phí.">NO WASTED DAYS.</span>
+        </div>
+        <div>
+          <span class="hero__rule-title" data-vi="01. Nhịp xây dựng">01. BUILD RHYTHM</span>
+          <p data-vi="Ý tưởng biến thành bản chạy thử trước khi mất động lực.">Ideas become working drafts before the energy fades.</p>
+        </div>
+        <div>
+          <span class="hero__rule-title" data-vi="02. Môi trường mạnh">02. STRONG ENVIRONMENT</span>
+          <p data-vi="Logo, sản phẩm, cộng đồng và công cụ cùng nói một ngôn ngữ.">Logo, product, community, and tools speak one language.</p>
+        </div>
       </div>
     </div>
     <div class="hero__strip">
@@ -119,10 +145,8 @@
     </div>
   </section>
 
-  <!-- Full Logo Showcase -->
   <div class="logo-showcase reveal">
-    <img class="logo-showcase__img logo-showcase-white" src="/assets/logo-full-white.png" alt="R Studio">
-    <img class="logo-showcase__img logo-showcase-black" src="/assets/logo-full-black.png" alt="R Studio">
+    <img class="logo-showcase__img" src="/assets/rstudio-pixel-logo.png" alt="R Studio pixel logo">
   </div>
 
   <section class="products section" id="products">
@@ -185,16 +209,24 @@
         <div class="team-card__info"><div class="team-card__name">Trần Đình Tiến Anh</div><div class="team-card__role">Founder / OP</div><div class="team-card__handle">@_aindrew</div></div>
       </div>
       <div class="team-card">
-        <img class="team-card__avatar" src="/assets/members/member-row-4.jpg" alt="Nguyễn Lê Gia Hưng">
-        <div class="team-card__info"><div class="team-card__name">Nguyễn Lê Gia Hưng</div><div class="team-card__role">PM Assistant / QC Support</div><div class="team-card__handle">@imhung</div></div>
+        <img class="team-card__avatar" src="/assets/members/member-row-7.jpg" alt="Trần Nguyễn Phi Vũ">
+        <div class="team-card__info"><div class="team-card__name">Trần Nguyễn Phi Vũ</div><div class="team-card__role">Content Reviewer</div><div class="team-card__handle">@mysterious_kiwi_58513</div></div>
       </div>
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-6.jpg" alt="Tạ Trần Phúc An">
         <div class="team-card__info"><div class="team-card__name">Tạ Trần Phúc An</div><div class="team-card__role">Lead QC / Tester</div><div class="team-card__handle">@.ttpa</div></div>
       </div>
       <div class="team-card">
-        <img class="team-card__avatar" src="/assets/members/member-row-7.jpg" alt="Trần Nguyễn Phi Vũ">
-        <div class="team-card__info"><div class="team-card__name">Trần Nguyễn Phi Vũ</div><div class="team-card__role">Content Reviewer</div><div class="team-card__handle">@mysterious_kiwi_58513</div></div>
+        <img class="team-card__avatar" src="/assets/members/member-row-9.png" alt="Đào Ngọc Hoàng Trí">
+        <div class="team-card__info"><div class="team-card__name">Đào Ngọc Hoàng Trí</div><div class="team-card__role">QC / Tester</div><div class="team-card__handle">@yiren1659</div></div>
+      </div>
+      <div class="team-card">
+        <img class="team-card__avatar" src="/assets/members/member-row-4.jpg" alt="Nguyễn Lê Gia Hưng">
+        <div class="team-card__info"><div class="team-card__name">Nguyễn Lê Gia Hưng</div><div class="team-card__role">PM Assistant / QC Support</div><div class="team-card__handle">@imhung</div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-card__avatar" style="display:flex;align-items:center;justify-content:center;background:var(--surface-soft);font-size:18px;font-weight:800;color:var(--text-faint);">DG</div>
+        <div class="team-card__info"><div class="team-card__name">Dương Giang</div><div class="team-card__role">UI/UX</div><div class="team-card__handle">@Bunnieyang</div></div>
       </div>
       <div class="team-card">
         <img class="team-card__avatar" src="/assets/members/member-row-2.jpg" alt="Lưu Hiển Vinh">
@@ -205,12 +237,8 @@
         <div class="team-card__info"><div class="team-card__name">La Quốc Bảo</div><div class="team-card__role">Researcher / Tester</div><div class="team-card__handle">@silvyanniiz</div></div>
       </div>
       <div class="team-card">
-        <img class="team-card__avatar" src="/assets/members/member-row-5.jpg" alt="Trung Hiếu">
-        <div class="team-card__info"><div class="team-card__name">Trung Hiếu</div><div class="team-card__role">Researcher / Tester</div><div class="team-card__handle">@fishonboat</div></div>
-      </div>
-      <div class="team-card">
-        <div class="team-card__avatar" style="display:flex;align-items:center;justify-content:center;background:var(--surface-soft);font-size:18px;font-weight:800;color:var(--text-faint);">DG</div>
-        <div class="team-card__info"><div class="team-card__name">Dương Giang</div><div class="team-card__role">UI/UX</div><div class="team-card__handle">@Bunnieyang</div></div>
+        <img class="team-card__avatar" src="/assets/members/member-row-5.jpg" alt="Trọng Hiếu">
+        <div class="team-card__info"><div class="team-card__name">Trọng Hiếu</div><div class="team-card__role">Researcher / Tester</div><div class="team-card__handle">@fishonboat</div></div>
       </div>
     </div>
   </section>
