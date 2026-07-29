@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /license/
-Disallow: /license.html
 Disallow: /js/
 Disallow: /css/
 
